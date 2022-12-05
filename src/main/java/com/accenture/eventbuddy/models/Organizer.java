@@ -1,0 +1,21 @@
+package com.accenture.eventbuddy.models;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Data;
+
+@Entity
+@Data
+public class Organizer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long OrganizerId;
+    private String OrganizerName;
+    private String OrganizerEMail;
+    private String phoneNumber;
+
+
+
+}
