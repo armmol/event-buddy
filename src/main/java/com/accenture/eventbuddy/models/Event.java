@@ -2,7 +2,11 @@ package com.accenture.eventbuddy.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
+
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -22,5 +26,16 @@ public class Event{
 
     @ManyToOne(targetEntity = Address.class, cascade = CascadeType.ALL)
     private Address address;
+
+    @OneToMany(mappedBy = "event", fetch = FetchType.EAGER)
+    private List<Attendance> attendances = new ArrayList<>();
+
+    public List<Attendance> getAttendances() {
+        return attendances;
+    }
+    public void setAttendances(List<Attendance> attendances){ this.attendances = attendances;}
+
+
+
 
 }

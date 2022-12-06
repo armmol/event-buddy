@@ -20,8 +20,6 @@ public class Visitor {
     @ManyToOne(targetEntity = Language.class, cascade = CascadeType.ALL)
     private Language language;
 
-    @ManyToOne(targetEntity = Address.class, cascade = CascadeType.ALL)
-    private Attendance attendance;
 
 
 

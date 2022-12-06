@@ -14,5 +14,10 @@ public class Attendance {
 
     @ManyToOne(targetEntity = Event.class, cascade = CascadeType.ALL)
     private Event event;
+
+    @ManyToOne(targetEntity = Visitor.class, cascade = CascadeType.ALL)
+    private Visitor visitor;
+
+
 }
 
