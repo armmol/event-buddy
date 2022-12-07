@@ -4,7 +4,7 @@ import com.accenture.eventbuddy.models.Organizer;
 
 import java.util.List;
 
-public interface OrganizerService {
+public interface OrganizerServiceContract {
     void storeOrganizer(Organizer organizer);
 
     Organizer getById(Long id);
