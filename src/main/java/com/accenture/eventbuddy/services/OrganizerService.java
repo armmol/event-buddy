@@ -22,13 +22,17 @@ public class OrganizerService implements OrganizerServiceContract {
     }
 
     @Override
-    public Organizer getById(Long id){
+    public Organizer getById(Long id) {
         return organizerRepository.findById(id).orElse(null);
     }
 
     @Override
-    public List<Organizer> all(){ return (List<Organizer>) organizerRepository.findAll();}
+    public List<Organizer> all() {
+        return (List<Organizer>) organizerRepository.findAll();
+    }
 
     @Override
-    public void deleteById(Long id){ organizerRepository.deleteById(id);}
+    public void deleteById(Long id) {
+        organizerRepository.deleteById(id);
+    }
 }
