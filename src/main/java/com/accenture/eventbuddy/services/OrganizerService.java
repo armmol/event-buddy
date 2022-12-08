@@ -3,12 +3,14 @@ package com.accenture.eventbuddy.services;
 import com.accenture.eventbuddy.contracts.OrganizerServiceContract;
 import com.accenture.eventbuddy.models.Organizer;
 import com.accenture.eventbuddy.repo.OrganizerRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class OrganizerService implements OrganizerServiceContract {
 
-    OrganizerRepository organizerRepository;
+    private OrganizerRepository organizerRepository;
 
     public OrganizerService(OrganizerRepository organizerRepository) {
         this.organizerRepository = organizerRepository;

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+<body>
+
+<div>
+    <form
+    method="post"
+    role="form"
+    action="#"
+    th:action="@{register/save}"
+    th:object="${user}">
+     <div>
+        <label>Username</label>
+         <input
+            id="username"
+            name="username"
+            placeholder="Enter username"
+            th:field="*{username}"
+            type="text"
+         />
+     </div>
+        <div>
+            <label>Password</label>
+            <input
+                    id="password"
+                    name="password"
+                    placeholder="Enter password"
+                    th:field="*{password}"
+                    type="text"
+            />
+        </div>
+        <div>
+            <label>Role</label>
+            <select name="role" id="role" th:field="*{role}">
+                <option th:each="role : ${T(com.accenture.eventbuddy.auth.UserRole).values()}"
+                        th:value="${role}"
+                        th:text="${role}"/>
+            </select>
+        </div>
+        <div>
+                <div>
+                    <h1>If you are visitor, fill this:</h1>
+                    <label>Name</label>
+                    <input
+                            id="visitorName"
+                            name="visitorName"
+                            placeholder="Enter Your name"
+                            th:field="*{visitor.visitorName}"
+                            type="text"
+                    />
+                </div>
+                <div>
+                    <label>Surname</label>
+                    <input
+                            id="visitorSurname"
+                            name="visitorSurname"
+                            placeholder="Enter Your surname"
+                            th:field="*{visitor.visitorSurname}"
+                            type="text"
+                    />
+                </div>
+                <div>
+                    <label>E-mail</label>
+                    <input
+                            id="visitorEmail"
+                            name="visitorEmail"
+                            placeholder="Enter e-mail"
+                            th:field="*{visitor.visitorEmail}"
+                            type="text"
+                    />
+                </div>
+                <div>
+                    <label>Description</label>
+                    <input
+                            id="visitorDescription"
+                            name="visitorDescription"
+                            placeholder="Enter description"
+                            th:field="*{visitor.visitorDescription}"
+                            type="text"
+                    />
+                </div>
+                <div>
+                    <label>Gender</label>
+                    <select name="gender" id="gender" th:field="*{visitor.gender}">
+                        <option th:each="gender : ${T(com.accenture.eventbuddy.models.Gender).values()}"
+                                th:value="${gender}"
+                                th:text="${gender}"/>
+                    </select>
+                </div>
+                <div>
+                    <label>Date of birth</label>
+                    <input type="date"
+                           value="2018-07-22"
+                           min="2018-01-01" max="2018-12-31"
+                            id="dateOfBirth"
+                            name="dateOfBirth"
+                            placeholder="Enter Your date of birth"
+                            th:field="*{visitor.dateOfBirth}"
+                    />
+                </div>
+        </div>
+        <div>
+            <div>
+                <h1>If you are organizer, fill this:</h1>
+                <label>Name</label>
+                <input
+                        id="organizerName"
+                        name="organizerName"
+                        placeholder="Enter organization name"
+                        th:field="*{organizer.organizerName}"
+                        type="text"
+                />
+            </div>
+            <div>
+                <label>E-mail</label>
+                <input
+                        id="organizerEmail"
+                        name="organizerEmail"
+                        placeholder="Enter e-mail"
+                        th:field="*{organizer.organizerEmail}"
+                        type="text"
+                />
+            </div>
+            <div>
+                <label>Phone number</label>
+                <input
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        placeholder="Enter phone number"
+                        th:field="*{organizer.phoneNumber}"
+                        type="text"
+                />
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <button type="submit">Register</button>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

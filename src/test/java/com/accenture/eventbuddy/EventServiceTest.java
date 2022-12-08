@@ -34,7 +34,7 @@ public class EventServiceTest {
         address.setCountry("Latvia");
         event.setAddress(address);
         Organizer organizer = new Organizer();
-        organizer.setOrganizerEMail("e@mail.com");
+        organizer.setOrganizerEmail("e@mail.com");
         organizer.setOrganizerName("Organizer");
         organizer.setPhoneNumber("+37122222222");
         event.setOrganizer(organizer);

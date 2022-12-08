@@ -1,9 +1,7 @@
 package com.accenture.eventbuddy.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.accenture.eventbuddy.auth.User;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -11,10 +9,12 @@ import lombok.Data;
 public class Organizer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long OrganizerId;
-    private String OrganizerName;
-    private String OrganizerEMail;
+    private Long organizerId;
+    private String organizerName;
+    private String organizerEmail;
     private String phoneNumber;
+    @ManyToOne(targetEntity = User.class, cascade = CascadeType.ALL)
+    private User user;
 
 
 
