@@ -17,7 +17,47 @@ public class VisitorController {
     @Autowired
     private VisitorService visitorService;
 
-    //where is this going to be used?
+    @RequestMapping("/add")
+    public String addVisitor(Model model){
+        model.addAttribute("visitor", new Visitor());
+        return "visitor/add";
+    }
+    @PostMapping("/add")
+    public String addVisitor(@ModelAttribute Visitor visitor){
+        visitorService.storeVisitor(visitor);
+        return "redirect:/visitor/all";
+    }
+    @GetMapping("/all")
+    public String allVisitors(Model model){
+        List<Visitor> visitors = visitorService.all();
+        model.addAttribute("visitors", visitors);
+        return "visitor/all";
+    }
+    @GetMapping("/delete/{id}")
+    public String deleteVisitor(@PathVariable Long id){
+        visitorService.deleteById(id);
+        return "redirect:/visitor/all";
+    }
+    @GetMapping("/edit/{id}")
+    public String editVisitor(@PathVariable Long id, Model model){
+        Visitor visitor = visitorService.getVisitorById(id);
+        model.addAttribute("visitor", visitor);
+        return "visitor/edit";
+    }
+    @PostMapping("/edit/{id}")
+    public String editVisitor(@PathVariable Long id, @ModelAttribute Visitor visitor){
+        visitorService.updateVisitor(visitor);
+        return "redirect:/visitor/all";
+    }
+    @GetMapping("/details/{id}")
+    public String detailsVisitor(@PathVariable Long id, Model model){
+        Visitor visitor = visitorService.getVisitorById(id);
+        model.addAttribute("visitor", visitor);
+        return "visitor/details";
+    }
+
+
+    /*//where is this going to be used?
     @RequestMapping(value = {"/addVisitor"}, method = RequestMethod.GET)
     public String showAddVisitorPage(@PathVariable Long id, Model model){
         Visitor visitor = new Visitor();
@@ -52,5 +92,5 @@ public class VisitorController {
         Visitor visitor = visitorService.getById(id);
         model.addAttribute("visitor", visitor);
         return "showVisitor";
-    }
+    }*/
 }
