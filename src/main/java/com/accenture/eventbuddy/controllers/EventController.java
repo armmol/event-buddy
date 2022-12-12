@@ -19,44 +19,45 @@ public class EventController {
 
     //Add event GET
     @RequestMapping(value = {"/addEvent"}, method = RequestMethod.GET)
-    public String showAddEventPage(@PathVariable Long id, Model model){
+    public String showAddEventPage(@PathVariable Long id, Model model) {
         Event event = new Event();
-       // event.setOrganizer(OrganizerService.getById(id));
+        // event.setOrganizer(OrganizerService.getById(id));
         model.addAttribute("event", event);
         return "addEvent";
     }
 
     //Add event POST
     @RequestMapping(value = {"/addEvent"}, method = RequestMethod.POST)
-    public String saveEvent(@ModelAttribute("eventForm") Event event){
+    public String saveEvent(@ModelAttribute("eventForm") Event event) {
         Organizer organizer = event.getOrganizer();
-        if(organizer != null ){
+        if (organizer != null) {
             event.setOrganizer(organizer);
             eventService.storeEvent(event);
             return "redirect:/showEvent/" + event.getEventId();
-        }else return "redirect:/notFoundError";
+        } else return "redirect:/notFoundError";
     }
 
     //Delete event
     @RequestMapping(value = {"/deleteEvent"}, method = RequestMethod.POST)
-    public String deleteEvent(@RequestParam Long id){
+    public String deleteEvent(@RequestParam Long id) {
         eventService.deleteById(id);
         return "redirect:/eventList";
     }
 
     //Show event list
-    @RequestMapping (value = {"eventList"}, method = RequestMethod.GET)
-    public String events(Model model){
+    @RequestMapping(value = {"eventList"}, method = RequestMethod.GET)
+    public String events(Model model) {
         List<Event> events = eventService.all();
         model.addAttribute("events", events);
         return "eventList";
     }
 
     //Show specific event
-    @RequestMapping (value = {"/showEvent/{id}"}, method = RequestMethod.GET)
-    public String event(@PathVariable("id") Long id, Model model){
+    @RequestMapping(value = {"/{visitorId}/showEvent/{id}"}, method = RequestMethod.GET)
+    public String event(@PathVariable("visitorId") Long visitorId, @PathVariable("id") Long id, Model model) {
         Event event = eventService.getById(id);
         model.addAttribute("event", event);
+        model.addAttribute("visitorId", visitorId);
         model.addAttribute("attendances", event.getAttendances());
         return "showEvent";
     }
