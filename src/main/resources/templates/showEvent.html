@@ -40,7 +40,7 @@
         <button type="submit"
                 class="btn btn-outline-light"
                 style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
-                th:action="@{/showVisitor/${visitorId}">Profile
+                th:action="@{/showVisitor/$visitorId}">Profile
         </button>
     </form>
 </nav>
@@ -66,23 +66,7 @@
                  Overflow-y:scroll;">
                 <h1 style="color #171738">Description</h1>
                 <div class="overflow-auto" style="font-weight:bold;
-                            color:#DFF3E4;">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Nunc in nisl mattis, facilisis felis ac, ornare sem.Integer varius eros et leo eleifend
-                    hendrerit. Curabitur porta aliquet sagittis. Mauris ut odio neque. Ut iaculis bibendum commodo.
-                    Nulla orci orci, consequat et massa nec, pulvinar euismod nulla.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Nunc in nisl mattis, facilisis felis ac, ornare sem.Integer varius eros et leo eleifend
-                    hendrerit. Curabitur porta aliquet sagittis. Mauris ut odio neque. Ut iaculis bibendum commodo.
-                    Nulla orci orci, consequat et massa nec, pulvinar euismod nulla.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Nunc in nisl mattis, facilisis felis ac, ornare sem.Integer varius eros et leo eleifend
-                    hendrerit. Curabitur porta aliquet sagittis. Mauris ut odio neque. Ut iaculis bibendum commodo.
-                    Nulla orci orci, consequat et massa nec, pulvinar euismod nulla.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Nunc in nisl mattis, facilisis felis ac, ornare sem.Integer varius eros et leo eleifend
-                    hendrerit. Curabitur porta aliquet sagittis. Mauris ut odio neque. Ut iaculis bibendum commodo.
-                    Nulla orci orci, consequat et massa nec, pulvinar euismod nulla.
+                            color:#DFF3E4;" th:text="${event.description}">
                 </div>
             </div>
         </div>

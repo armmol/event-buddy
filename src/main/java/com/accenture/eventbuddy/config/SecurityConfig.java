@@ -14,7 +14,7 @@ public class SecurityConfig {
         return http.csrf().disable()
                 .headers().frameOptions().disable().and()
                 .authorizeHttpRequests()
-              //  .requestMatchers("/**").permitAll() // TODO: REMOVE
+                .requestMatchers("/**").permitAll() // TODO: REMOVE
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/**").authenticated()
                 .and()
