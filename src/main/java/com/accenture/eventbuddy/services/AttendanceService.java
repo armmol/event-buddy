@@ -21,16 +21,19 @@ public class AttendanceService implements AttendanceServiceContract {
     }
 
     @Override
-    public Attendance getById(Long id){
+    public Attendance getById(Long id) {
         return attendanceRepository.findById(id).orElse(null);
     }
 
     @Override
-    public List<Attendance> all(){ return (List<Attendance>) attendanceRepository.findAll();}
+    public List<Attendance> all() {
+        return (List<Attendance>) attendanceRepository.findAll();
+    }
 
     @Override
-    public void deleteById(Long id){ attendanceRepository.deleteById(id);}
-
+    public void deleteById(Long id) {
+        attendanceRepository.deleteById(id);
+    }
 
 
 }
