@@ -1,5 +1,6 @@
 package com.accenture.eventbuddy.services;
 
+import com.accenture.eventbuddy.auth.User;
 import com.accenture.eventbuddy.contracts.VisitorServiceContract;
 import com.accenture.eventbuddy.models.Visitor;
 import com.accenture.eventbuddy.repo.VisitorRepository;
@@ -33,5 +34,9 @@ public class VisitorService implements VisitorServiceContract {
     @Override
     public void deleteById(Long id) {
         visitorRepository.deleteById(id);
+    }
+
+    public Visitor getByUser(User user) {
+        return visitorRepository.findByUser(user);
     }
 }

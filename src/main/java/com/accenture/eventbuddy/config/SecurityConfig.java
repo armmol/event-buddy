@@ -18,7 +18,7 @@ public class SecurityConfig {
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/**").authenticated()
                 .and()
-                .formLogin().and()
+                .formLogin().defaultSuccessUrl("/event/eventList", true).and()
                 .build();
     }
 
