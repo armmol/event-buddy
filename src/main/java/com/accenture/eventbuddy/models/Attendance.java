@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 public class Attendance {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long attendanceId;
    // @DateTimeFormat(pattern = "yyyy-MM-dd")
   //  private Date attendanceDate;

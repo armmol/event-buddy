@@ -37,19 +37,15 @@ public class EventController {
     //Add event POST
     @RequestMapping(value = {"/addEvent"}, method = RequestMethod.POST)
     public String saveEvent(@ModelAttribute("eventForm") Event event) {
-        Organizer organizer = event.getOrganizer();
-        if (organizer != null) {
-            event.setOrganizer(organizer);
-            eventService.storeEvent(event);
-            return "redirect:/showEvent/" + event.getEventId();
-        } else return "redirect:/notFoundError";
+        eventService.storeEvent(event);
+        return "redirect:showEvent/" + event.getEventId();
     }
 
     //Delete event
     @RequestMapping(value = {"/deleteEvent"}, method = RequestMethod.POST)
     public String deleteEvent(@RequestParam Long id) {
         eventService.deleteById(id);
-        return "redirect:/eventList";
+        return "redirect:eventList";
     }
 
     //Show event list
@@ -62,16 +58,19 @@ public class EventController {
 
     //Show specific event
     @RequestMapping(value = {"/{visitorId}/showEvent/{id}/{gender}/{language}/{dateOfBirth}"}, method = RequestMethod.GET)
-    public String event(@PathVariable("visitorId") Long visitorId,
-                        @PathVariable("id") Long id,
-                        @PathVariable("gender") Gender gender,
-                        @PathVariable("language") Language language,
-                        @PathVariable("dateOfBirth") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateOfBirth,
-                        Model model) {
+    public String event(@PathVariable("visitorId") Long visitorId, @PathVariable("id") Long id, @PathVariable("gender") Gender gender, @PathVariable("language") Language language, @PathVariable("dateOfBirth") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateOfBirth, Model model) {
         Event event = eventService.getById(id);
         model.addAttribute("event", event);
         model.addAttribute("visitorId", visitorId);
         model.addAttribute("attendances", attendanceService.getMatchingAttendanceList(event, gender, language, dateOfBirth));
+        return "showEvent";
+    }
+
+    @RequestMapping(value = {"/showEvent/{id}"}, method = RequestMethod.GET)
+    public String showEvent(@PathVariable("id") Long id, Model model) {
+        Event event = eventService.getById(id);
+        model.addAttribute("event", event);
+        model.addAttribute("attendances", event.getAttendances());
         return "showEvent";
     }
 
