@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import lombok.Data;
 
 
-@Entity
+@Entity (name="address_table")
 @Data
 public class Address {
     @Id

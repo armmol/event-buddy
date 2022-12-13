@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (1, 'a', 1, 'a');
 Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (2, 'b', 1, 'b');
 Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (3, 'c', 1, 'c');
@@ -32,3 +33,35 @@ insert into EVENT (EVENT_ID, DESCRIPTION, END_DATE, GENRE, NAME, START_DATE, ADD
 insert into EVENT (EVENT_ID, DESCRIPTION, END_DATE, GENRE, NAME, START_DATE, ADDRESS_ADDRESS_ID, ORGANIZER_ORGANIZER_ID) values (8, 'aliquam erat volutpat in congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus cursus urna ut tellus', '2022-09-25 10:40:40', 0, 'Brandegee''s Onion', '2022-09-21 07:53:26', 2, 3);
 insert into EVENT (EVENT_ID, DESCRIPTION, END_DATE, GENRE, NAME, START_DATE, ADDRESS_ADDRESS_ID, ORGANIZER_ORGANIZER_ID) values (9, 'libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit amet', '2022-06-15 10:51:18', 0, 'Oval-leaf Clustervine', '2022-09-05 01:05:49', 1, 1);
 insert into EVENT (EVENT_ID, DESCRIPTION, END_DATE, GENRE, NAME, START_DATE, ADDRESS_ADDRESS_ID, ORGANIZER_ORGANIZER_ID) values (10, 'ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat in congue etiam justo etiam pretium', '2022-07-28 15:35:41', 0, 'Idaho Esslingeriana Lichen', '2022-08-16 14:46:42', 2, 1);
+=======
+INSERT INTO user_table (id, username, password, role) VALUES (1, 'visitor1', '1', 'VISITOR')
+INSERT INTO user_table (id, username, password, role) VALUES (2, 'visitor3', '1', 'VISITOR')
+INSERT INTO user_table (id, username, password, role) VALUES (3, 'visitor2', '1', 'VISITOR')
+
+
+INSERT INTO visitors_table (visitor_id, visitor_name, visitor_surname, visitor_email, gender, date_of_birth, visitor_description, visitor_language, user_col) VALUES (1, 'Visitor', 'One', 'visitor1@email.com', 'MAN', '1990-01-01', 'aaaa', 'LV', 1)
+INSERT INTO visitors_table (visitor_id, visitor_name, visitor_surname, visitor_email, gender, date_of_birth, visitor_description, visitor_language, user_col) VALUES (2, 'Visitor', 'Two', 'visitor2@email.com', 'WOMAN', '2000-01-01', 'aaaa', 'RU', 2)
+INSERT INTO visitors_table (visitor_id, visitor_name, visitor_surname, visitor_email, gender, date_of_birth, visitor_description, visitor_language, user_col) VALUES (3, 'Visitor', 'Three', 'visitor3@email.com', 'OTHER', '1995-01-01', 'aaaa', 'EN', 3)
+
+INSERT INTO user_table (id, username, password, role) VALUES (4, 'organizer1', '1', 'ORGANIZER')
+INSERT INTO user_table (id, username, password, role) VALUES (5, 'organizer2', '1', 'ORGANIZER')
+INSERT INTO user_table (id, username, password, role) VALUES (6, 'organizer3', '1', 'ORGANIZER')
+
+INSERT INTO organizers_table (organizer_id, organizer_name, organizer_email, phone_number, user_col) VALUES (1, 'TestOrganizer1', 'organizer1@email.com', '22121212', 4)
+INSERT INTO organizers_table (organizer_id, organizer_name, organizer_email, phone_number, user_col) VALUES (2, 'TestOrganizer2', 'organizer2@email.com', '22121213', 5)
+INSERT INTO organizers_table (organizer_id, organizer_name, organizer_email, phone_number, user_col) VALUES (3, 'TestOrganizer3', 'organizer3@email.com', '22121214', 6)
+
+
+INSERT INTO address_table (address_id, country, city) VALUES (1, 'Latvia', 'Riga')
+INSERT INTO address_table (address_id, country, city) VALUES (2, 'Lithuania', 'Kaunas')
+INSERT INTO address_table (address_id, country, city) VALUES (3, 'Germany', 'Bremen')
+
+
+INSERT INTO event_table (event_id, name, start_date, end_date, description, genre, address_col, org_col) VALUES (1, 'event1', '2022-12-23', '2022-12-25', 'aa', 'FESTIVAL', 1, 1)
+INSERT INTO event_table (event_id, name, start_date, end_date, description, genre, address_col, org_col) VALUES (2, 'event2', '2023-01-01', '2023-01-10', 'aa', 'FESTIVAL', 2, 2)
+INSERT INTO event_table (event_id, name, start_date, end_date, description, genre, address_col, org_col) VALUES (3, 'event3', '2023-03-01', '2023-05-31', 'aa', 'EXHIBITION', 3, 3)
+
+
+INSERT INTO attendance_table (attendance_id, event_col, visit_col) VALUES (1, 1, 1)
+INSERT INTO attendance_table (attendance_id, event_col, visit_col) VALUES (2, 2, 2)
+>>>>>>> main
