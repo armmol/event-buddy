@@ -13,8 +13,8 @@ Insert into VISITORS_TABLE (DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_
 Insert into VISITORS_TABLE (DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('2010-01-28', 'MAN', 'Burn of first degree of right toe(s) (nail), initial encounter', 'vyanov3@globo.com', 'LV', 'Estée', 'Yanov', 4);
 Insert into VISITORS_TABLE (DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('2001-10-06', 'MAN', 'Blister (nonthermal), unspecified lesser toe(s), initial encounter', 'roconnor4@drupal.org', 'EN', 'Pénélope', 'O''Connor', 5);
 
-Insert into ADDRESS (ADDRESS_ID, CITY, COUNTRY) Values (1, 'Kaunas', 'Lithuania');
-Insert into ADDRESS (ADDRESS_ID, CITY, COUNTRY) Values (2, 'Vilnius', 'Lithuania');
+Insert into ADDRESS_TABLE (ADDRESS_ID, CITY, COUNTRY) Values (1, 'Kaunas', 'Lithuania');
+Insert into ADDRESS_TABLE (ADDRESS_ID, CITY, COUNTRY) Values (2, 'Vilnius', 'Lithuania');
 
 insert into ORGANIZERS_TABLE (ORGANIZER_ID, ORGANIZER_EMAIL, ORGANIZER_NAME, PHONE_NUMBER, USER_COL) values (1, 'egrowden0@soup.io', 'Linkbuzz', '836-710-1765', 6);
 insert into ORGANIZERS_TABLE (ORGANIZER_ID, ORGANIZER_EMAIL, ORGANIZER_NAME, PHONE_NUMBER, USER_COL) values (2, 'fbotterman1@unicef.org', 'Quatz', '635-636-8732', 6);
