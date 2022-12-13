@@ -1,7 +1,9 @@
 package com.accenture.eventbuddy.models;
-
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 
 @Entity(name="attendance_table")
