@@ -1,16 +1,14 @@
 package com.accenture.eventbuddy.controllers;
 
-import com.accenture.eventbuddy.auth.User;
-import com.accenture.eventbuddy.auth.UserDetailsServiceImpl;
-import com.accenture.eventbuddy.auth.UserRepository;
+import com.accenture.eventbuddy.models.Language;
 import com.accenture.eventbuddy.models.Visitor;
 import com.accenture.eventbuddy.services.VisitorService;
+import jakarta.el.EvaluationListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -18,20 +16,48 @@ import java.util.List;
 public class VisitorController {
     @Autowired
     private VisitorService visitorService;
-    @Autowired
-    private UserDetailsServiceImpl userService;
-    @Autowired
-    private UserRepository userRepository;
 
-    //add common data to model
-//    @ModelAttribute
-//    public void addCommonData(Model model, Principal principal) {
-//        String username = principal.getName();
-//        User user = userRepository.findByUsername(username);
-//        model.addAttribute("user", user);
-//    }
+    @RequestMapping("/add")
+    public String addVisitor(Model model){
+        model.addAttribute("visitor", new Visitor());
+        return "visitor/add";
+    }
+    @PostMapping("/add")
+    public String addVisitor(@ModelAttribute Visitor visitor){
+        visitorService.storeVisitor(visitor);
+        return "redirect:/visitor/all";
+    }
+    @GetMapping("/all")
+    public String allVisitors(Model model){
+        List<Visitor> visitors = visitorService.all();
+        model.addAttribute("visitors", visitors);
+        return "visitor/all";
+    }
+    @GetMapping("/delete/{id}")
+    public String deleteVisitor(@PathVariable Long id){
+        visitorService.deleteById(id);
+        return "redirect:/visitor/all";
+    }
+    @GetMapping("/edit/{id}")
+    public String editVisitor(@PathVariable Long id, Model model){
+        Visitor visitor = visitorService.getVisitorById(id);
+        model.addAttribute("visitor", visitor);
+        return "visitor/edit";
+    }
+    @PostMapping("/edit/{id}")
+    public String editVisitor(@PathVariable Long id, @ModelAttribute Visitor visitor){
+        visitorService.updateVisitor(visitor);
+        return "redirect:/visitor/all";
+    }
+    @GetMapping("/details/{id}")
+    public String detailsVisitor(@PathVariable Long id, Model model){
+        Visitor visitor = visitorService.getVisitorById(id);
+        model.addAttribute("visitor", visitor);
+        return "visitor/details";
+    }
 
-    //where is this going to be used?
+
+    /*//where is this going to be used?
     @RequestMapping(value = {"/addVisitor"}, method = RequestMethod.GET)
     public String showAddVisitorPage(@PathVariable Long id, Model model){
         Visitor visitor = new Visitor();
@@ -40,7 +66,7 @@ public class VisitorController {
     }
 
     @RequestMapping(value = {"/addVisitor"}, method = RequestMethod.POST)
-    public String saveVisitor(@ModelAttribute("visitorForm") Visitor visitor){
+    public String saveEvent(@ModelAttribute("visitorForm") Visitor visitor){
         //Language language = visitor.getLanguage();
         if(visitor != null ){
             visitorService.storeVisitor(visitor);
@@ -49,50 +75,22 @@ public class VisitorController {
     }
 
     @RequestMapping(value = {"/deleteVisitor"}, method = RequestMethod.POST)
-    public String deleteVisitor(@RequestParam Long id){
+    public String deleteEvent(@RequestParam Long id){
         visitorService.deleteById(id);
         return "redirect:/visitorList";
     }
 
     @RequestMapping (value = {"visitorList"}, method = RequestMethod.GET)
-    public String visitors(Model model){
+    public String events(Model model){
         List<Visitor> visitors = visitorService.all();
         model.addAttribute("visitors", visitors);
         return "visitorList";
     }
 
     @RequestMapping (value = {"/showVisitor/{id}"}, method = RequestMethod.GET)
-    public String showVisitor(@PathVariable("id") Long id, Model model){
+    public String event(@PathVariable("id") Long id, Model model){
         Visitor visitor = visitorService.getById(id);
         model.addAttribute("visitor", visitor);
         return "showVisitor";
-    }
-
-    @RequestMapping (value = {"/visitorProfile"}, method = RequestMethod.GET)
-    public String visitorProfile(Model model, Principal principal){
-        String username = principal.getName();
-        User user = userRepository.findByUsername(username);
-        Visitor visitor = visitorService.getByUser(user);
-        model.addAttribute("visitor", visitor);
-        return "visitorProfile";
-    }
-
-    @RequestMapping(value = {"/visitorProfile/edit"}, method = RequestMethod.GET)
-    public String showEditVisitorProfilePage(Model model, Principal principal){
-        String username = principal.getName();
-        User user = userRepository.findByUsername(username);
-        Visitor visitor = visitorService.getByUser(user);
-        model.addAttribute("visitor", visitor);
-        return "editVisitorProfile";
-    }
-
-    @RequestMapping(value = {"/visitorProfile/edit"}, method = RequestMethod.POST)
-    public String editVisitorProfile(@ModelAttribute("visitorForm") Visitor visitor, Principal principal){
-        String username = principal.getName();
-        User user = userRepository.findByUsername(username);
-        visitor.setUser(user);
-        visitorService.storeVisitor(visitor);
-        return "redirect:/visitorProfile";
-    }
-
+    }*/
 }
