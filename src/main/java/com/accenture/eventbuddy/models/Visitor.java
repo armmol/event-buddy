@@ -8,25 +8,25 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-@Entity
+@Entity(name="visitors_table")
 @Data
 public class Visitor {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long visitorId;
     private String visitorName;
     private String visitorSurname;
     private String visitorEmail;
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
     private String visitorDescription;
     @ManyToOne(targetEntity = User.class, cascade = CascadeType.ALL)
+    @JoinColumn(name="user_col")
     private User user;
-
-    @ManyToOne(targetEntity = Language.class, cascade = CascadeType.ALL)
-    private Language language;
-
+    @Enumerated(EnumType.STRING)
+    private Language visitorLanguage;
     // get age by date of birth
     public int getAge() {
         Date date = new Date();

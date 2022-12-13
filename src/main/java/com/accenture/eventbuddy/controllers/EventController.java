@@ -1,13 +1,18 @@
 package com.accenture.eventbuddy.controllers;
 
 import com.accenture.eventbuddy.models.Event;
+import com.accenture.eventbuddy.models.Gender;
+import com.accenture.eventbuddy.models.Language;
 import com.accenture.eventbuddy.models.Organizer;
+import com.accenture.eventbuddy.services.AttendanceService;
 import com.accenture.eventbuddy.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -16,6 +21,9 @@ public class EventController {
 
     @Autowired
     private EventService eventService;
+
+    @Autowired
+    private AttendanceService attendanceService;
 
     //Add event GET
     @RequestMapping(value = {"/addEvent"}, method = RequestMethod.GET)
@@ -29,19 +37,15 @@ public class EventController {
     //Add event POST
     @RequestMapping(value = {"/addEvent"}, method = RequestMethod.POST)
     public String saveEvent(@ModelAttribute("eventForm") Event event) {
-        Organizer organizer = event.getOrganizer();
-        if (organizer != null) {
-            event.setOrganizer(organizer);
-            eventService.storeEvent(event);
-            return "redirect:/showEvent/" + event.getEventId();
-        } else return "redirect:/notFoundError";
+        eventService.storeEvent(event);
+        return "redirect:showEvent/" + event.getEventId();
     }
 
     //Delete event
     @RequestMapping(value = {"/deleteEvent"}, method = RequestMethod.POST)
     public String deleteEvent(@RequestParam Long id) {
         eventService.deleteById(id);
-        return "redirect:/eventList";
+        return "redirect:eventList";
     }
 
     //Show event list
@@ -53,11 +57,19 @@ public class EventController {
     }
 
     //Show specific event
-    @RequestMapping(value = {"/{visitorId}/showEvent/{id}"}, method = RequestMethod.GET)
-    public String event(@PathVariable("visitorId") Long visitorId, @PathVariable("id") Long id, Model model) {
+    @RequestMapping(value = {"/{visitorId}/showEvent/{id}/{gender}/{language}/{dateOfBirth}"}, method = RequestMethod.GET)
+    public String event(@PathVariable("visitorId") Long visitorId, @PathVariable("id") Long id, @PathVariable("gender") Gender gender, @PathVariable("language") Language language, @PathVariable("dateOfBirth") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateOfBirth, Model model) {
         Event event = eventService.getById(id);
         model.addAttribute("event", event);
         model.addAttribute("visitorId", visitorId);
+        model.addAttribute("attendances", attendanceService.getMatchingAttendanceList(event, gender, language, dateOfBirth));
+        return "showEvent";
+    }
+
+    @RequestMapping(value = {"/showEvent/{id}"}, method = RequestMethod.GET)
+    public String showEvent(@PathVariable("id") Long id, Model model) {
+        Event event = eventService.getById(id);
+        model.addAttribute("event", event);
         model.addAttribute("attendances", event.getAttendances());
         return "showEvent";
     }

@@ -28,7 +28,7 @@ public class EventServiceTest {
         event.setDescription("description");
         event.setStartDate(Date.valueOf("2022-01-01"));
         event.setEndDate(Date.valueOf("2022-02-01"));
-        event.setGenre(Genre.UNKNOWN);
+        event.setGenre(Genre.FESTIVAL);
         Address address = new Address();
         address.setCity("Valka");
         address.setCountry("Latvia");
