@@ -1,11 +1,11 @@
-Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (1, 'a', 1, 'a');
-Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (2, 'b', 1, 'b');
-Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (3, 'c', 1, 'c');
-Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (4, 'd', 1, 'd');
-Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (5, 'e', 1, 'e');
-Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (6, 'f', 0, 'f');
-Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (7, 'g', 0, 'g');
-Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (8, 'h', 0, 'h');
+Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (1, 'a', 'ORGANIZER', 'a');
+Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (2, 'b', 'ORGANIZER', 'b');
+Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (3, 'c', 'ORGANIZER', 'c');
+Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (4, 'd', 'ORGANIZER', 'd');
+Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (5, 'e', 'ORGANIZER', 'e');
+Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (6, 'f', 'VISITOR', 'f');
+Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (7, 'g', 'VISITOR', 'g');
+Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (8, 'h', 'VISITOR', 'h');
 
 Insert into VISITORS_TABLE (DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('1999-12-06', 'MAN', 'Laceration without foreign body of nose, sequela', 'beastop0@tripadvisor.com', 'EN','Estève', 'Eastop', 1);
 Insert into VISITORS_TABLE (DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('1999-04-19', 'MAN', 'Drowning and submersion due to being washed overboard from (nonpowered) inflatable craft, initial encounter', 'mflicker1@boston.com', 'EN', 'Adélaïde', 'Flicker', 2);
