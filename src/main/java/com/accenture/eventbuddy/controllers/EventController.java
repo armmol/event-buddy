@@ -3,7 +3,6 @@ package com.accenture.eventbuddy.controllers;
 import com.accenture.eventbuddy.models.Event;
 import com.accenture.eventbuddy.models.Gender;
 import com.accenture.eventbuddy.models.Language;
-import com.accenture.eventbuddy.models.Organizer;
 import com.accenture.eventbuddy.services.AttendanceService;
 import com.accenture.eventbuddy.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +48,7 @@ public class EventController {
     }
 
     //Show event list
-    @RequestMapping(value = {"eventList"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/eventList"}, method = RequestMethod.GET)
     public String events(Model model) {
         List<Event> events = eventService.all();
         model.addAttribute("events", events);
