@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 public class Event{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long eventId;
     private String name;
     @DateTimeFormat(pattern = "yyyy-MM-dd")

@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class Organizer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long organizerId;
     private String organizerName;
     private String organizerEmail;

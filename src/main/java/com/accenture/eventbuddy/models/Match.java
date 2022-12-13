@@ -8,7 +8,7 @@ import lombok.Data;
 public class Match {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long matchId;
     @ManyToOne(targetEntity = Attendance.class, cascade = CascadeType.ALL)
     private Attendance attendance1;
