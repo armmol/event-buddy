@@ -6,7 +6,9 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity(name="visitors_table")
 @Data
@@ -27,4 +29,10 @@ public class Visitor {
     private User user;
     @Enumerated(EnumType.STRING)
     private Language visitorLanguage;
+    @OneToMany(targetEntity = Attendance.class, fetch = FetchType.EAGER, mappedBy = "attendanceId")
+    private List<Attendance> attendances = new ArrayList<>();
+    public List<Attendance> getAttendances() {
+        return attendances;
+    }
+    public void setAttendances(List<Attendance> attendances){ this.attendances = attendances;}
 }

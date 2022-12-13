@@ -45,6 +45,7 @@ public class OrganizerController {
     public String organizer(@PathVariable("organizerId") Long organizerId, Model model) {
         Organizer organizer = organizerService.getById(organizerId);
         model.addAttribute("organizer", organizer);
+        model.addAttribute("event", organizer.getEvent());
         return "showOrganizer";
     }
 }

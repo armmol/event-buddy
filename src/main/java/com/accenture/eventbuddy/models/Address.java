@@ -1,9 +1,6 @@
 package com.accenture.eventbuddy.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 
@@ -15,5 +12,7 @@ public class Address {
     private Long addressId;
     private String country;
     private String city;
+    //@OneToMany(targetEntity = Event.class)
+   // private Event event;
 
 }

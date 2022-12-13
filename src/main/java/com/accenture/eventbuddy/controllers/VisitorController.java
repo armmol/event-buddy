@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping(path = "visitor")
+@RequestMapping
 public class VisitorController {
     @Autowired
     private VisitorService visitorService;
 
-    @RequestMapping("/add")
+    @RequestMapping(value = {"/add"}, method = RequestMethod.GET)
     public String addVisitor(Model model){
         model.addAttribute("visitor", new Visitor());
         return "visitor/add";
