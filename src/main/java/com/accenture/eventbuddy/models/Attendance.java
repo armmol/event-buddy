@@ -12,8 +12,8 @@ public class Attendance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long attendanceId;
-   // @DateTimeFormat(pattern = "yyyy-MM-dd")
-  //  private Date attendanceDate;
+    // @DateTimeFormat(pattern = "yyyy-MM-dd")
+    //  private Date attendanceDate;
     @JoinColumn(name="event_col")
     @ManyToOne(targetEntity = Event.class, cascade = CascadeType.ALL)
     private Event event;
@@ -23,4 +23,3 @@ public class Attendance {
 
 
 }
-

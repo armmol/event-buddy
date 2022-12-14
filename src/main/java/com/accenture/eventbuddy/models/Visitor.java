@@ -35,4 +35,13 @@ public class Visitor {
         return attendances;
     }
     public void setAttendances(List<Attendance> attendances){ this.attendances = attendances;}
+    // get age by date of birth
+    public int getAge() {
+        Date date = new Date();
+        int age = date.getYear() - dateOfBirth.getYear();
+        if (date.getYear() < dateOfBirth.getMonth() || date.getMonth() == dateOfBirth.getMonth() && date.getDate() < dateOfBirth.getDate()) {
+            age--;
+        }
+        return age;
+    }
 }

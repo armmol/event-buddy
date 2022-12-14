@@ -1,31 +1,34 @@
-INSERT INTO user_table ( username, password, role) VALUES ( 'visitor1', '1', 'VISITOR')
-INSERT INTO user_table ( username, password, role) VALUES ( 'visitor3', '1', 'VISITOR')
-INSERT INTO user_table ( username, password, role) VALUES ( 'visitor2', '1', 'VISITOR')
+Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('a', 'VISITOR', 'a');
+Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('b', 'ORGANIZER', 'b');
+Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('c', 'ORGANIZER', 'c');
+Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('d', 'ORGANIZER', 'd');
+Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('e', 'ORGANIZER', 'e');
+Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('f', 'VISITOR', 'f');
+Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('g', 'VISITOR', 'g');
+Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('h', 'VISITOR', 'h');
 
+Insert into VISITORS_TABLE (DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('1999-12-06', 'MAN', 'Laceration without foreign body of nose, sequela', 'beastop0@tripadvisor.com', 'EN','Estève', 'Eastop', 1);
+Insert into VISITORS_TABLE (DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('1999-04-19', 'MAN', 'Drowning and submersion due to being washed overboard from (nonpowered) inflatable craft, initial encounter', 'mflicker1@boston.com', 'EN', 'Adélaïde', 'Flicker', 2);
+Insert into VISITORS_TABLE (DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('1998-06-25', 'MAN', 'Fracture of neck, unspecified', 'uvenditti2@linkedin.com', 'LV', 'Frédérique', 'Venditti', 3);
+Insert into VISITORS_TABLE (DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('2010-01-28', 'MAN', 'Burn of first degree of right toe(s) (nail), initial encounter', 'vyanov3@globo.com', 'LV', 'Estée', 'Yanov', 4);
+Insert into VISITORS_TABLE (DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('2001-10-06', 'MAN', 'Blister (nonthermal), unspecified lesser toe(s), initial encounter', 'roconnor4@drupal.org', 'EN', 'Pénélope', 'O''Connor', 5);
 
-INSERT INTO visitors_table ( visitor_name, visitor_surname, visitor_email, gender, date_of_birth, visitor_description, visitor_language, user_col) VALUES ( 'Visitor', 'One', 'visitor1@email.com', 'MAN', '1990-01-01', 'aaaa', 'LV', 1)
-INSERT INTO visitors_table ( visitor_name, visitor_surname, visitor_email, gender, date_of_birth, visitor_description, visitor_language, user_col) VALUES ( 'Visitor', 'Two', 'visitor2@email.com', 'WOMAN', '2000-01-01', 'aaaa', 'RU', 2)
-INSERT INTO visitors_table ( visitor_name, visitor_surname, visitor_email, gender, date_of_birth, visitor_description, visitor_language, user_col) VALUES ( 'Visitor', 'Three', 'visitor3@email.com', 'OTHER', '1995-01-01', 'aaaa', 'EN', 3)
+Insert into ADDRESS_TABLE ( CITY, COUNTRY) Values ( 'Kaunas', 'Lithuania');
+Insert into ADDRESS_TABLE ( CITY, COUNTRY) Values ( 'Vilnius', 'Lithuania');
 
-INSERT INTO user_table ( username, password, role) VALUES ( 'organizer1', '1', 'ORGANIZER')
-INSERT INTO user_table ( username, password, role) VALUES ( 'organizer2', '1', 'ORGANIZER')
-INSERT INTO user_table ( username, password, role) VALUES ( 'organizer3', '1', 'ORGANIZER')
+insert into ORGANIZERS_TABLE ( ORGANIZER_EMAIL, ORGANIZER_NAME, PHONE_NUMBER, USER_COL) values ( 'egrowden0@soup.io', 'Linkbuzz', '836-710-1765', 6);
+insert into ORGANIZERS_TABLE ( ORGANIZER_EMAIL, ORGANIZER_NAME, PHONE_NUMBER, USER_COL) values ( 'fbotterman1@unicef.org', 'Quatz', '635-636-8732', 6);
+insert into ORGANIZERS_TABLE ( ORGANIZER_EMAIL, ORGANIZER_NAME, PHONE_NUMBER, USER_COL) values ( 'vcastagne2@mapy.cz', 'Edgeify', '141-431-4124', 7);
+insert into ORGANIZERS_TABLE ( ORGANIZER_EMAIL, ORGANIZER_NAME, PHONE_NUMBER, USER_COL) values ( 'gdrache3@mtv.com', 'Youspan', '715-810-1953', 8);
+insert into ORGANIZERS_TABLE ( ORGANIZER_EMAIL, ORGANIZER_NAME, PHONE_NUMBER, USER_COL) values ( 'jledgister4@photobucket.com', 'Mudo', '367-805-7317', 7);
 
-INSERT INTO organizers_table ( organizer_name, organizer_email, phone_number, user_col) VALUES ( 'TestOrganizer1', 'organizer1@email.com', '22121212', 4)
-INSERT INTO organizers_table ( organizer_name, organizer_email, phone_number, user_col) VALUES ( 'TestOrganizer2', 'organizer2@email.com', '22121213', 5)
-INSERT INTO organizers_table ( organizer_name, organizer_email, phone_number, user_col) VALUES ( 'TestOrganizer3', 'organizer3@email.com', '22121214', 6)
-
-
-INSERT INTO address_table ( country, city) VALUES ( 'Latvia', 'Riga')
-INSERT INTO address_table ( country, city) VALUES ( 'Lithuania', 'Kaunas')
-INSERT INTO address_table ( country, city) VALUES ( 'Germany', 'Bremen')
-
-
-INSERT INTO event_table ( name, start_date, end_date, description, genre, address_col, org_col) VALUES ( 'event1', '2022-12-23', '2022-12-25', 'aa', 'FESTIVAL', 1, 1)
-INSERT INTO event_table ( name, start_date, end_date, description, genre, address_col, org_col) VALUES ( 'event2', '2023-01-01', '2023-01-10', 'aa', 'FESTIVAL', 2, 2)
-INSERT INTO event_table ( name, start_date, end_date, description, genre, address_col, org_col) VALUES ( 'event3', '2023-03-01', '2023-05-31', 'aa', 'EXHIBITION', 3, 3)
-
-
-INSERT INTO attendance_table ( event_col, visit_col) VALUES ( 1, 1)
-INSERT INTO attendance_table ( event_col, visit_col) VALUES ( 1, 2)
-INSERT INTO attendance_table ( event_col, visit_col) VALUES ( 1, 3)
+insert into EVENT_TABLE ( DESCRIPTION, END_DATE, GENRE, NAME, START_DATE, ADDRESS_COL, ORG_COL) values ( 'nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non pretium quis lectus suspendisse potenti in eleifend quam', '2022-11-16 22:44:26', 'FESTIVAL', 'Cupflower', '2022-07-24 08:26:31', 2, 3);
+insert into EVENT_TABLE ( DESCRIPTION, END_DATE, GENRE, NAME, START_DATE, ADDRESS_COL, ORG_COL) values ( 'nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac', '2022-05-30 21:42:17', 'FESTIVAL', 'Nylon Hedgehog Cactus', '2022-08-13 01:11:37', 2, 5);
+insert into EVENT_TABLE ( DESCRIPTION, END_DATE, GENRE, NAME, START_DATE, ADDRESS_COL, ORG_COL) values ( 'egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo', '2022-05-16 12:34:50', 'FESTIVAL', 'Sedge', '2022-10-15 18:31:40', 2, 1);
+insert into EVENT_TABLE ( DESCRIPTION, END_DATE, GENRE, NAME, START_DATE, ADDRESS_COL, ORG_COL) values ( 'a suscipit nulla elit ac nulla sed vel enim sit amet nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus semper interdum mauris ullamcorper purus', '2022-01-09 12:36:24', 'FESTIVAL', 'Mottled Spurge', '2022-01-20 18:44:49', 2, 4);
+insert into EVENT_TABLE ( DESCRIPTION, END_DATE, GENRE, NAME, START_DATE, ADDRESS_COL, ORG_COL) values ( 'vulputate nonummy maecenas tincidunt lacus at velit vivamus vel nulla eget eros elementum pellentesque quisque porta volutpat erat quisque erat eros', '2022-01-15 13:36:09', 'FESTIVAL', 'Partridgeberry', '2022-06-18 22:27:22', 1, 4);
+insert into EVENT_TABLE ( DESCRIPTION, END_DATE, GENRE, NAME, START_DATE, ADDRESS_COL, ORG_COL) values ( 'sem fusce consequat nulla nisl nunc nisl duis bibendum felis sed', '2022-09-19 18:02:47', 'FESTIVAL', 'Mazus', '2022-01-17 19:09:38', 2, 5);
+insert into EVENT_TABLE ( DESCRIPTION, END_DATE, GENRE, NAME, START_DATE, ADDRESS_COL, ORG_COL) values ( 'vel sem sed sagittis nam congue risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede libero quis', '2022-05-09 18:11:26', 'FESTIVAL', 'Blue Orchid', '2022-02-27 10:09:56', 2, 2);
+insert into EVENT_TABLE ( DESCRIPTION, END_DATE, GENRE, NAME, START_DATE, ADDRESS_COL, ORG_COL) values ( 'aliquam erat volutpat in congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus cursus urna ut tellus', '2022-09-25 10:40:40', 'FESTIVAL', 'Brandegee''s Onion', '2022-09-21 07:53:26', 2, 3);
+insert into EVENT_TABLE ( DESCRIPTION, END_DATE, GENRE, NAME, START_DATE, ADDRESS_COL, ORG_COL) values ( 'libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit amet', '2022-06-15 10:51:18', 'FESTIVAL', 'Oval-leaf Clustervine', '2022-09-05 01:05:49', 1, 1);
+insert into EVENT_TABLE ( DESCRIPTION, END_DATE, GENRE, NAME, START_DATE, ADDRESS_COL, ORG_COL) values ( 'ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat in congue etiam justo etiam pretium', '2022-07-28 15:35:41', 'FESTIVAL', 'Idaho Esslingeriana Lichen', '2022-08-16 14:46:42', 2, 1);

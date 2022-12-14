@@ -1,5 +1,6 @@
 package com.accenture.eventbuddy.services;
 
+import com.accenture.eventbuddy.auth.User;
 import com.accenture.eventbuddy.models.Visitor;
 import com.accenture.eventbuddy.repo.VisitorRepository;
 import org.springframework.stereotype.Service;
@@ -23,15 +24,19 @@ public class VisitorService {
         return (List<Visitor>) visitorRepository.findAll();
     }
 
-    public Visitor getVisitorById(Long id){
-        return visitorRepository.findById(id).get();
-    }
-
     public void updateVisitor(Visitor visitor){
         visitorRepository.save(visitor);
     }
 
     public void storeVisitor(Visitor visitor) {
         visitorRepository.save(visitor);
+    }
+
+    public Visitor getById(Long id) {
+        return visitorRepository.findById(id).get();
+    }
+
+    public Visitor getByUser(User user) {
+        return visitorRepository.findByUser(user);
     }
 }

@@ -26,5 +26,4 @@ public class Organizer {
     }
     public void setEvent(List<Event> events){ this.events = events;}
 
-
 }

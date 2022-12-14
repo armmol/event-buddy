@@ -5,45 +5,76 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">
 </head>
-<body style="background-color:#7180B9; color:171738">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+<body style="background-image: url('/assets/images/background.png');color:171738">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
-<nav class="navbar navbar-dark bg-dark">
+<script type="text/javascript">
+function Check(){
+    var val = document.getElementById('role').value;
+    if(val=='ORGANIZER'){
+        document.getElementById('visitorSec').style.display="none";
+        document.getElementById('organizerSec').style.display="";
+    }else if(val=='VISITOR'){
+        document.getElementById('visitorSec').style.display="";
+        document.getElementById('organizerSec').style.display="none";
+    }else{
+        document.getElementById('visitorSec').style.display="none";
+        document.getElementById('organizerSec').style.display="none";
+    }
+}
+</script>
+<script type="text/javascript">
+function Validate(){
+    var val = document.getElementById('role').value;
+    if(val=='ORGANIZER'){
+        if(document.getElementById('organizerName').value=="" ||
+            document.getElementById('organizerName').value=="" ||
+            document.getElementById('organizerName').value==""){
+                alert("Complete All fields");
+                return false;
+        }
+        else{
+            document.getElementById('registrationForm').thAction="@{register/saveOrganizer}";
+            return true;
+        }
+    }else if(val=='VISITOR'){
+        if(document.getElementById('visitorName').value=="" ||
+            document.getElementById('visitorSurname').value=="" ||
+            document.getElementById('visitorDescription').value=="" ||
+            document.getElementById('dateOfBirth').value=="" ||
+            document.getElementById('gender').value=="" ||
+            document.getElementById('language').value=="" ||
+            document.getElementById('visitorEmail').value==""){
+                alert("Complete All fields");
+                return false;
+        }
+        else{
+            document.getElementById('registrationForm').thAction="@{register/saveVisitor}";
+            return true;
+        }
+    }
+}
+</script>
+<nav class="navbar sticky-top navbar-dark bg-dark">
     <form>
         <button type="submit"
                 class="btn btn-outline-light"
                 style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
-                th:action="@{visitor/eventList}">Sign In
+                th:action="@{event/eventList}">Sign In
         </button>
     </form>
 </nav>
+<h1>Sign up to find an Event Buddy!<br>Already registered? Sign in by clicking the button above</h1>
 <div style="margin: 170px;
-     place-content: center
-     width: 50%;
      border: 3px solid white;
      padding: 10px;">
-    <form
+    <form   id="registrationForm"
             method="post"
             role="form"
             action="#"
-            th:action="@{register/save}"
+            th:action="@{register/saveOrganizer}"
             th:object="${user}">
         <div class="container-fluid">
             <div class="row">
@@ -52,241 +83,262 @@
                         text-align: center;
                         padding: 10px;">
                         <div>
-                            <img src="logo.png" alt="Bootcamp" style="width:100%; height:100%">
+                            <img th:src="@{/assets/images/logo.png}"
+                                 alt="Bootcamp" style="width:100%; height:100%">
                         </div>
                     </div>
                 </div>
                 <div class="col">
+                    <div id="login" style="margin: 10px;
+                            text-align: center;
+                            border: 3px solid white;
+                            padding: 10px;">
+                        <!--                    <section id="loginSection">-->
+                        <div id="username-wasValid" class="was-validated">
+                            <div class="input-group input-group-sm mb-3">
+                                <span class="input-group-text" id="inputGroup-username">Username</span>
 
-                    <div style="margin: 10px;
-                 text-align: center;
-                 border: 3px solid white;
-                 padding: 10px;">
-                        <section class="loginSection">
-                            <div class="input-group has-validation">
-                                <div class="form-floating is-invalid">
-                                    <div class="input-group input-group-sm mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroup-username">Username</span>
-                                        </div>
-                                        <input
-                                                style="background-color:#DFF3E4; opacity:0.5; color:171738;"
-                                                class="form-control"
-                                                id="username"
-                                                name="username"
-                                                placeholder="Enter username"
-                                                th:field="*{username}"
-                                                type="text"
-                                        />
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Please choose a username.
-                                    </div>
+                                <input style="background-color:#DFF3E4; opacity:0.5; color:171738;"
+                                       class="form-control"
+                                       id="username"
+                                       name="username"
+                                       placeholder="Enter username"
+                                       th:field="*{username}"
+                                       type="text"
+                                       required
+                                />
+                            </div>
+                            <div class="invalid-feedback">
+                                Please choose a username.
+                            </div>
+                        </div>
+                        <div class="was-validated">
+                            <div class="input-group input-group-sm mb-3">
+                                <span class="input-group-text" id="inputGroup-password">Password</span>
+                                <input
+                                        style="background-color:#DFF3E4; opacity:0.5; color:171738;"
+                                        class="form-control"
+                                        id="password"
+                                        name="password"
+                                        placeholder="Enter password"
+                                        th:field="*{password}"
+                                        type="password"
+                                        required
+                                />
+                            </div>
+                            <div class="invalid-feedback">
+                                Please complete your password.
+                            </div>
+                        </div>
+                        <div>
+                            <div class="was-validated">
+                                <select onchange="Check()" class="form-select form-select-sm mb-3"
+                                        aria-label=".form-select-lg example"
+                                        id="role"
+                                        name="role"
+                                        style="background-color:#DFF3E4; opacity:0.5; color:171738;"
+                                        th:field="*{role}"
+                                        required>
+                                    <option selected value="role" style="color:#171738">Role</option>
+                                    <option style="color:#171738"
+                                            th:each="role : ${T(com.accenture.eventbuddy.auth.UserRole).values()}"
+                                            th:value="${role}"
+                                            th:text="${role}"></option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please set your role.
                                 </div>
                             </div>
-                            <div class="input-group has-validation" >
-                                <div class="form-floating is-invalid">
-                                    <div class="input-group input-group-sm mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroup-password">Password</span>
-                                        </div>
-                                        <input
-                                                style="background-color:#DFF3E4; opacity:0.5; color:171738;"
-                                                class="form-control"
-                                                id="password"
-                                                name="password"
-                                                placeholder="Enter password"
-                                                th:field="*{password}"
-                                                type="password"/>
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Please complete your password.
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="input-group has-validation">
-                                    <div class="form-floating is-invalid">
-                                        <select class="form-select form-select-lg mb-3"
-                                                aria-label=".form-select-lg example"
-                                                id="role"
-                                                name="role"
-                                                style="background-color:#DFF3E4; opacity:0.5; color:171738;"
-                                                th:field="*{role}">
-                                            <option style="color:#171738"
-                                                    value="Role">Role
-                                            </option>
-                                            <option style="color:#171738"
-                                                    th:each="role : ${T(com.accenture.eventbuddy.auth.UserRole).values()}"
-                                                    th:value="${role}"
-                                                    th:text="${role}"></option>
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Please set your role.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        <section class="visitorSection">
+                        </div>
+                        <!--                    </section>-->
+                        <!--                    <section id="visitorSection">-->
+                        <div id="visitorSec" style="display:none">
                             <h1 style="color:#DFF3E4;">If you are a visitor, fill this:</h1>
-                            <div class="input-group has-validation">
-                                <div class="form-floating is-invalid">
-                                    <div class="input-group input-group-sm mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroup-visitorName">Name</span>
-                                        </div>
-                                        <input
-                                                style="background-color:#DFF3E4; opacity:0.5; color:171738;"
-                                                class="form-control"
-                                                id="visitorName"
-                                                name="visitorName"
-                                                placeholder="Enter Your name"
-                                                th:field="*{visitor.visitorName}"
-                                                type="text"/>
+                            <div class="was-validated">
+                                <div class="input-group input-group-sm mb-3">
+                                    <span class="input-group-text" id="inputGroup-visitorName">Name</span>
+                                    <input
+                                            style="background-color:#DFF3E4; opacity:0.5; color:171738;"
+                                            class="form-control"
+                                            id="visitorName"
+                                            name="visitorName"
+                                            placeholder="Enter Your name"
+                                            th:field="*{name}"
+                                            type="text"
+                                    />
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please input your name.
+                                </div>
+                            </div>
+                            <div class="was-validated">
+                                <div class="input-group input-group-sm mb-3">
+                                    <span class="input-group-text" id="inputGroup-surname">Surname</span>
+
+                                    <input
+                                            style="background-color:#DFF3E4; opacity:0.5; color:171738;"
+                                            class="form-control"
+                                            id="visitorSurname"
+                                            name="visitorSurname"
+                                            placeholder="Enter Your surname"
+                                            th:field="*{surname}"
+                                            type="text"
+                                    />
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please input your Surname.
+                                </div>
+                            </div>
+
+                            <div class="was-validated">
+
+                                <div class="input-group input-group-sm mb-3">
+
+                                    <span class="input-group-text" id="inputGroup-visitorEmail">Email</span>
+
+                                    <input style="background-color:#DFF3E4; opacity:0.5; color:171738;"
+                                           class="form-control"
+                                           id="visitorEmail"
+                                           name="visitorEmail"
+                                           placeholder="Enter e-mail"
+                                           th:field="*{email}"
+                                           type="email"
+                                    />
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please input your email.
+                                </div>
+                            </div>
+                            <div class="was-validated">
+                                <div class="input-group input-group-sm mb-3">
+                                            <span class="input-group-text"
+                                                  id="inputGroup-description">Description</span>
+
+                                    <input
+                                            style="background-color:#DFF3E4; opacity:0.5; color:171738;"
+                                            class="form-control"
+                                            id="visitorDescription"
+                                            name="visitorDescription"
+                                            placeholder="Enter description"
+                                            th:field="*{visitor.visitorDescription}"
+                                            type="text"
+                                    />
+                                </div>
+                            </div>
+                            <div class="was-validated">
+                                <div class="select">
+                                    <select id="gender" class="form-select form-select-sm mb-3"
+                                            aria-label=".form-select-lg example"
+                                            style="background-color:#DFF3E4; opacity:0.5; color:171738;">
+                                        <option selected value="gender">Gender</option>
+                                        <option th:each="gender : ${T(com.accenture.eventbuddy.models.Gender).values()}"
+                                                th:value="${gender}"
+                                                th:text="${gender}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="was-validated">
+                                <div class="select">
+                                    <select id="language" class="form-select form-select-sm mb-3"
+                                            aria-label=".form-select-lg example"
+                                            style="background-color:#DFF3E4; opacity:0.5; color:171738;">
+                                        <option selected value="language">Language</option>
+                                        <option th:each="language : ${T(com.accenture.eventbuddy.models.Language).values()}"
+                                                th:value="${language}"
+                                                th:text="${language}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div style="margin: 10px;">
+                                        <h4 style=" font-weight : bold; color:#DFF3E4; text-align : right;">Date of Birth</h4>
                                     </div>
-                                    <div class="invalid-feedback">
-                                        Please input your name.
+                                </div>
+                                <div class="col">
+                                    <div style="margin: 10px;">
+                                        <div class="input-block">
+                                            <div class="col-5">
+                                                <div>
+                                                    <input type="date"
+                                                           value="2018-07-22"
+                                                           max="2016-12-31"
+                                                           id="dateOfBirth"
+                                                           name="dateOfBirth"
+                                                           width="40px"
+                                                           placeholder="Enter Your date of birth"
+                                                           th:field="${user.dateOfBirth}"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="input-group has-validation">
-                                <div class="form-floating is-invalid">
-                                    <div class="input-group input-group-sm mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroup-surname">Surname</span>
-                                        </div>
-                                        <input
-                                                style="background-color:#DFF3E4; opacity:0.5; color:171738;"
-                                                class="form-control"
-                                                id="visitorSurname"
-                                                name="visitorSurname"
-                                                placeholder="Enter Your surname"
-                                                th:field="*{visitor.visitorSurname}"
-                                                type="text"/>
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Please input your Surname.
-                                    </div>
-                                </div>
+                        </div>
+                        <!--                    </section>-->
+                        <!--                    <section id="organizerSection">-->
+                        <div id="organizerSec" style="display:none">
+                            <div>
+                                <h1 style="color:#DFF3E4;">If you are an organizer, fill this:</h1>
                             </div>
-                            <div class="input-group has-validation">
-                                <div class="form-floating is-invalid">
-                                    <div class="input-group input-group-sm mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroup-visitorEmail">Email</span>
-                                        </div>
-                                        <input
-                                                style="background-color:#DFF3E4; opacity:0.5; color:171738;"
-                                                class="form-control"
-                                                id="visitorEmail"
-                                                name="visitorEmail"
-                                                placeholder="Enter e-mail"
-                                                th:field="*{visitor.visitorEmail}"
-                                                type="email"/>
-                                    </div>
+                            <div class="was-validated">
+                                <div class="input-group input-group-sm mb-3">
+                                    <span class="input-group-text">Name</span>
+                                    <input
+                                            style="background-color:#DFF3E4; opacity:0.5; color:171738;"
+                                            class="form-control"
+                                            id="organizerName"
+                                            name="organizerName"
+                                            placeholder="Enter organization name"
+                                            th:field="*{name}"
+                                            type="text"
+                                    />
                                     <div class="invalid-feedback">
                                         Please input your email.
                                     </div>
                                 </div>
                             </div>
-                            <div class="input-group has-validation">
-                                <div class="form-floating is-invalid">
-                                    <div class="input-group input-group-sm mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"
-                                                  id="inputGroup-description">Description</span>
-                                        </div>
-                                        <input
-                                                style="background-color:#DFF3E4; opacity:0.5; color:171738;"
-                                                class="form-control"
-                                                id="visitorDescription"
-                                                name="visitorDescription"
-                                                placeholder="Enter description"
-                                                th:field="*{visitor.visitorDescription}"
-                                                type="text"/>
-                                    </div>
+                            <div class="was-validated">
+                                <div class="input-group input-group-sm mb-3">
+                                    <span class="input-group-text">Email</span>
+                                    <input
+                                            style="background-color:#DFF3E4; opacity:0.5; color:171738;"
+                                            class="form-control"
+                                            id="organizerEmail"
+                                            name="organizerEmail"
+                                            placeholder="Enter e-mail"
+                                            th:field="*{email}"
+                                            type="email"
+                                    />
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please input your email.
                                 </div>
                             </div>
-                            <div class="select">
-                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
-                                        style="background-color:#DFF3E4; opacity:0.5; color:171738;">
-                                    <option value="Gender">Gender</option>
-                                    <option th:each="gender : ${T(com.accenture.eventbuddy.models.Gender).values()}"
-                                            th:value="${gender}"
-                                            th:text="${gender}"></option>
-                                </select>
-                            </div>
-
-                            <div class="input-block">
-                                <label style=" font-weight : bold; color:#DFF3E4;">Date of Birth</label>
-                                <div class="col-5">
-                                    <div class="input-group dateOfBirth" id="datePicker">
-                                        <input type="text"
-                                               class="form-control"
-                                               value="2018-07-22"
-                                               min="2018-01-01" max="2018-12-31"
-                                               id="dateOfBirth"
-                                               name="dateOfBirth"
-                                               placeholder="Enter Your date of birth"
-                                               th:field="*{visitor.dateOfBirth}"/>
-                                        <span class="input-group-append">
-                                                <span class="input-group-text bg-light d-block">
-                                                        <i class="fa fa-calendar"></i>
-                                                </span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <section class="organizerSection">
-                            <h1 style="color:#DFF3E4;">If you are an organizer, fill this:</h1>
-                            <div class="input-group input-group-sm mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroup-name">Name</span>
-                                </div>
-                                <input
-                                        style="background-color:#DFF3E4; opacity:0.5; color:171738;"
-                                        class="form-control"
-                                        id="organizerName"
-                                        name="organizerName"
-                                        placeholder="Enter organization name"
-                                        th:field="*{organizer.organizerName}"
-                                        type="text"
-                                />
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroup-email">Email</span>
-                                </div>
-                                <input
-                                        style="background-color:#DFF3E4; opacity:0.5; color:171738;"
-                                        class="form-control"
-                                        id="organizerEmail"
-                                        name="organizerEmail"
-                                        placeholder="Enter e-mail"
-                                        th:field="*{organizer.organizerEmail}"
-                                        type="text"
-                                />
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <div class="input-group-prepend">
+                            <div class="was-validated">
+                                <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-phoneNumber">Phone Number</span>
+                                    <input type="number"
+                                           style="background-color:#DFF3E4; opacity:0.5; color:171738;"
+                                           class="form-control"
+                                           aria-label="Small"
+                                           aria-describedby="inputGroup-sizing-sm"
+                                           id="phoneNumber"
+                                           placeholder="Enter phone number"
+                                           th:field="*{phoneNumber}"
+                                    />
                                 </div>
-                                <input type="text"
-                                       style="background-color:#DFF3E4; opacity:0.5; color:171738;"
-                                       class="form-control"
-                                       aria-label="Small"
-                                       aria-describedby="inputGroup-sizing-sm"
-                                       id="phoneNumber"
-                                       placeholder="Enter phone number"
-                                       th:field="*{organizer.phoneNumber}">
+                                <div class="invalid-feedback">
+                                    Please input your phone number.
+                                </div>
                             </div>
-                        </section>
+                        </div>
+                        <!--                    </section>-->
                         <div class="form-group">
                             <button type="submit"
                                     class="btn btn-outline-light"
+                                    onclick="return Validate()"
                                     style="color:#DFF3E4; border: 3px solid #DFF3E4;">Register
                             </button>
                         </div>
