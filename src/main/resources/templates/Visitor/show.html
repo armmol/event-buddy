@@ -15,11 +15,11 @@
                 style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
                 th:action="@{/matches}">Matches
         </button>
-        <button type="submit"
-                class="btn btn-outline-light"
-                style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
-                th:action="@{/eventList}">Events
-        </button>
+        <a type="button"
+           class="btn btn-outline-light"
+           style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+           th:href="@{/event/{id}/eventList(id=${user})}">Events
+        </a>
     </form>
 </nav>
 <section class="">
@@ -41,27 +41,18 @@
                            th:href="'mailto:' + ${visitor.visitorEmail}">
                             Message now
                         </a>
-<!--                        <div class="d-flex justify-content-between text-center mt-5 mb-2">-->
-<!--                            <div>-->
-<!--                                <p class="mb-2 h5" style="color:#DFF3E4; opacity:0.5">Age</p>-->
-<!--                                <p class="text mb-0" style="color:#DFF3E4; opacity:0.7" th:text="${visitor.getAge}">Visitors age</p>-->
-<!--                            </div>-->
-<!--                            <div class="px-3">-->
-<!--                                <p class="mb-2 h5" style="color:#DFF3E4; opacity:0.5">Gender</p>-->
-<!--                                <p class="text mb-0" style="color:#DFF3E4; opacity:0.7" th:text="${visitor.gender}">Visitors gender</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
                     </div>
                 </div>
                 <div class="row py-3" >
                     <div class="col-md-4">
                         <div class="card mb-4 mb-md-0">
                             <div class="card-body" style="border: 3px solid white;background-color:#7180B9">
-                                <p class="mb-3"><span style="color:#DFF3E4; font-size: 1.5rem" class="text font-italic me-1 ">Details</span>
-                                </p>
+                                <p class="mb-3"><span style="color:#DFF3E4; font-size: 1.5rem" class="text font-italic me-1 ">Details</span></p>
                                 <p class="mb-1" style="color:#DFF3E4; font-size: 1rem;">Age</p><span style="color:#DFF3E4" th:text="${visitor.getAge}" class="text">age</span>
                                 <p></p>
                                 <p class="mb-1" style="color:#DFF3E4; font-size: 1rem;">Gender</p><span style="color:#DFF3E4;" th:text="${visitor.gender}" class="text">gender</span>
+                                <p></p>
+                                <p class="mb-1" style="color:#DFF3E4; font-size: 1rem;">Language</p><span style="color:#DFF3E4;" th:text="${visitor.visitorLanguage}" class="text">language</span>
 
                             </div>
                         </div>
@@ -69,8 +60,7 @@
                     <div class="col-md-8">
                         <div class="card mb-4 mb-md-0">
                             <div class="card-body" style="border: 3px solid white;background-color:#7180B9">
-                                <p class="mb-3"><span style="color:#DFF3E4; font-size: 1.5rem" class="text font-italic me-1 ">Description</span>
-                                </p>
+                                <p class="mb-3"><span style="color:#DFF3E4; font-size: 1.5rem" class="text font-italic me-1 ">Description</span></p>
                                 <p class="mb-1" style="color:#DFF3E4; font-size: 1rem;" th:text="${visitor.visitorDescription}">description</p>
 
                             </div>

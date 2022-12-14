@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
-@RequestMapping
+@RequestMapping("/visitor")
 public class VisitorController {
     @Autowired
     private VisitorService visitorService;
@@ -101,53 +102,58 @@ public class VisitorController {
         return "showVisitor";
     }
 
-    @RequestMapping (value = {"/visitorProfile"}, method = RequestMethod.GET)
-    public String visitorProfile(Model model, Principal principal){
-        String username = principal.getName();
-        User user = userRepository.findByUsername(username);
-        Visitor visitor = visitorService.getByUser(user);
-        model.addAttribute("visitor", visitor);
-        return "visitorProfile";
-    }
 
-    @RequestMapping(value = {"/visitorProfile/edit"}, method = RequestMethod.GET)
-    public String showEditVisitorProfilePage(Model model, Principal principal){
-        String username = principal.getName();
-        User user = userRepository.findByUsername(username);
-        Visitor visitor = visitorService.getByUser(user);
-        model.addAttribute("visitor", visitor);
-        return "editVisitorProfile";
-    }
-
-    @RequestMapping(value = {"/visitorProfile/edit"}, method = RequestMethod.POST)
-    public String editVisitorProfile(@ModelAttribute("visitor") Visitor visitor,
-                                     Principal principal, BindingResult result, Model model){
-        if(result.hasErrors()){
-            visitor.setVisitorId(visitor.getVisitorId());
-            return "editVisitorProfile";
+    @RequestMapping(value = {"/{id}/visitorProfile"}, method = RequestMethod.GET)
+    public String showEditVisitorProfilePage(Model model, @PathVariable Long id){
+        Optional<User> user = userRepository.findById(id);
+        model.addAttribute("user", id);
+        if (user.isPresent()) {
+            if (user.get().getRole().equals("VISITOR")) {
+                Visitor visitor = visitorService.getByUser(user.get());
+                model.addAttribute("visitor", visitor);
+                return "visitor/show";
+            } else {
+                return "registration";
+            }
         }
-        String username = principal.getName();
-        User user = userRepository.findByUsername(username);
-        // get visitor by user
-        Visitor visitor1 = visitorService.getByUser(user);
-//        String username = principal.getName();
-//        User user = userRepository.findByUsername(username);
-//        visitor.setUser(user);
+        return "registration";
+    }
 
+    @RequestMapping(value = {"/{id}/visitorProfile/personal"}, method = RequestMethod.GET)
+    public String showEditVisitorProfilePersonalPage(Model model, @PathVariable Long id){
+        Optional<User> user = userRepository.findById(id);
+        if (user.isPresent()) {
+            Visitor visitor = visitorService.getByUser(user.get());
+            model.addAttribute("visitor", visitor);
+            model.addAttribute("user", id);
+            return "visitor/showPersonal";
+        }
+        return "registration/register";
+    }
 
+    @RequestMapping(value = {"/{id}/visitorProfile/edit"}, method = RequestMethod.GET)
+    public String showEditVisitorProfilePage(Model model, @PathVariable Long id, Principal principal){
+        Optional<User> user = userRepository.findById(id);
+        if (user.isPresent()) {
+            Visitor visitor = visitorService.getByUser(user.get());
+            model.addAttribute("visitor", visitor);
+            return "visitor/edit";
+        }
+        return "registration/register";
+    }
+
+    @RequestMapping(value = {"/{id}/visitorProfile/edit"}, method = RequestMethod.POST)
+    public String editVisitorProfile(@ModelAttribute("visitor") Visitor visitor, BindingResult result, Model model, @PathVariable Long id){
+        if (result.hasErrors()) {
+            visitor.setVisitorId(id);
+            return "visitor/edit";
+        }
+        Visitor visitor1 = visitorService.getById(id);
         visitor1.setVisitorDescription(visitor.getVisitorDescription());
         visitorService.updateVisitor(visitor1);
-        return "redirect:/visitor/visitorProfile";
+        model.addAttribute("user", id);
+        return "redirect:/visitor/" + visitor1.getVisitorId() + "/visitorProfile/personal";
     }
-//        String username = principal.getName();
-//        User user = userRepository.findByUsername(username);
-//        visitor.setUser(user);
-//
-//        if(visitor != null ){
-//            visitorService.updateVisitor(visitor);
-//            return "redirect:/visitor/visitorProfile";
-//        }else return "redirect:/notFoundError";
-//  }
 
     // edit profile post method
 //    @RequestMapping(value = {"/visitorProfile/edit"}, method = RequestMethod.POST)
