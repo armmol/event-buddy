@@ -16,18 +16,19 @@ function ConnectToast(){
     const toast = new bootstrap.Toast(toastLiveExample)
     toast.show()
 }
+
 </script>
 <nav class="navbar sticky-top navbar-dark bg-dark">
     <form>
         <a type="button"
-                class="btn btn-outline-light"
-                style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
-                th:href="@{/matches}">Matches
+           class="btn btn-outline-light"
+           style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+           th:href="@{/matches}">Matches
         </a>
         <a type="button"
-                class="btn btn-outline-light"
-                style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
-                th:href="@{/event/eventList}">Events
+           class="btn btn-outline-light"
+           style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+           th:href="@{/event/eventList}">Events
         </a>
         <!--        <button type="button"-->
         <!--                class="btn btn-outline-light"-->
@@ -36,119 +37,125 @@ function ConnectToast(){
         <!--        </button>-->
     </form>
 </nav>
-<div class="container-fluid">
-    <div style="margin: 10px;
+<div class="container">
+    <div class="row">
+        <div class="container-fluid">
+            <div style="margin: 10px;
                  text-align: center;
                  height: 300px;
                  padding: 10px;">
-        <div class="container" style="position: relative;">
-            <img src="https://picsum.photos/2500/1667" height="300px" width="100%">
-            <div class="text-block" style="position: absolute;
+                <div class="container" style="position: relative;">
+                    <img src="https://picsum.photos/2500/1667" height="300px" width="100%">
+                    <div class="text-block" style="position: absolute;
                             bottom: 20px;
                             right: 20px;
                             background-color: black;
                             color: white;
                             padding-left: 20px;
                             padding-right: 20px;">
-                <h4 th:text="${event.name}"></h4>
+                        <h4 th:text="${event.name}"></h4>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <div style="margin: 10px;
+            <div class="row">
+                <div class="col">
+                    <div style="margin: 10px;
                  text-align: center;
                  height: 300px;
                  padding: 10px;">
-                <div>
-                    <img th:src="@{/assets/images/logo.png}" alt="Bootcamp" height="270px" width="300px">
+                        <div>
+                            <img th:src="@{/assets/images/logo.png}" alt="Bootcamp" height="270px" width="300px">
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col">
-            <div style="margin: 10px;
+                <div class="col">
+                    <div style="margin: 10px;
                  text-align: center;
                  height: 300px;
                  border: 3px solid white;
                  padding: 10px;
                  Overflow-y:scroll;">
-                <h1 style="color #DFF3E4">Description</h1>
-                <div class="overflow-auto" style="font-weight:bold;
+                        <h1 style="color #DFF3E4">Description</h1>
+                        <div class="overflow-auto" style="font-weight:bold;
                             color:#DFF3E4;" th:text="${event.description}">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Choose by criteria
-<div>
-    <div>
-        <select id="language"
-                name="language"
-                th:fiels="*{language}">
-            <option th:each="language : ${T(com.accenture.eventbuddy.models.Language).values()}"
-                    th:value="${language}"
-                    th:text="${language}">
-            </option>
-        </select>
-    </div>
-    <div>
-        <select id="gender"
-                name="gender"
-                th:fiels="*{gender}">
-            <option th:each="gender : ${T(com.accenture.eventbuddy.models.Gender).values()}"
-                    th:value="${gender}"
-                    th:text="${gender}">
-            </option>
-        </select>
-    </div>
-    <div class="input-group dateOfBirth" id="datePicker">
-        <input type="date" id="dateOfBirth" name="dateOfBirth"
-               value="2018-07-22"
-               min="2018-01-01" max="2018-12-31">
-    </div>
-    <button type="button">Find matches</button>
-</div>
-
-  -->
-    <h1 style="color:Green">You are Attending this Event</h1>
-    <table class="table table-dark">
-        <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Surname</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Description</th>
-            <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-        <tr th:each="attendee : ${attendances}">
-            <td th:text="${attendee.visitor.visitorName}">
-            <td th:text="${attendee.visitor.visitorSurname}">
-            <td th:text="${attendee.visitor.gender}">
-            <td th:text="${attendee.visitor.visitorDescription}">
-            <td>
-                <button class="btn btn-outline-success"
-                        type="button"
-                        onclick="ConnectToast()">Connect
-                </button>
-                <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                        <div class="toast-header">
-                            <img src="handshake.png" class="rounded me-2" alt="handshake" height="15px" width="15px">
-                            <strong class="me-auto">Connection Update</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                        </div>
-                        <div class="toast-body">
-                            Connected successfully!
                         </div>
                     </div>
                 </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+            </div>
+            <!-- Choose by criteria
+        <div>
+            <div>
+                <select id="language"
+                        name="language"
+                        th:fiels="*{language}">
+                    <option th:each="language : ${T(com.accenture.eventbuddy.models.Language).values()}"
+                            th:value="${language}"
+                            th:text="${language}">
+                    </option>
+                </select>
+            </div>
+            <div>
+                <select id="gender"
+                        name="gender"
+                        th:fiels="*{gender}">
+                    <option th:each="gender : ${T(com.accenture.eventbuddy.models.Gender).values()}"
+                            th:value="${gender}"
+                            th:text="${gender}">
+                    </option>
+                </select>
+            </div>
+            <div class="input-group dateOfBirth" id="datePicker">
+                <input type="date" id="dateOfBirth" name="dateOfBirth"
+                       value="2018-07-22"
+                       min="2018-01-01" max="2018-12-31">
+            </div>
+            <button type="button">Find matches</button>
+        </div>
+
+          -->
+            <h1 style="color:Green">You are Attending this Event</h1>
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Surname</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Description</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                <tr th:each="attendee : ${attendances}">
+                    <td th:text="${attendee.visitor.visitorName}">
+                    <td th:text="${attendee.visitor.visitorSurname}">
+                    <td th:text="${attendee.visitor.gender}">
+                    <td th:text="${attendee.visitor.visitorDescription}">
+                    <td>
+                        <button class="btn btn-outline-success"
+                                type="button"
+                                onclick="ConnectToast()">Connect
+                        </button>
+                        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                                <div class="toast-header">
+                                    <img src="handshake.png" class="rounded me-2" alt="handshake" height="15px"
+                                         width="15px">
+                                    <strong class="me-auto">Connection Update</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="toast"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="toast-body">
+                                    Connected successfully!
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 </body>
 </html>

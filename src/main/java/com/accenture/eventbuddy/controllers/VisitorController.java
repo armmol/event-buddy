@@ -1,12 +1,10 @@
 package com.accenture.eventbuddy.controllers;
 
 import com.accenture.eventbuddy.auth.User;
-import com.accenture.eventbuddy.auth.UserDetailsServiceImpl;
-import com.accenture.eventbuddy.auth.UserRepository;
 import com.accenture.eventbuddy.models.Visitor;
+import com.accenture.eventbuddy.repo.UserRepository;
 import com.accenture.eventbuddy.services.VisitorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,8 +18,6 @@ import java.util.List;
 public class VisitorController {
     @Autowired
     private VisitorService visitorService;
-    @Autowired
-    private UserDetailsServiceImpl userService;
     @Autowired
     private UserRepository userRepository;
 
@@ -48,7 +44,7 @@ public class VisitorController {
     }
     @GetMapping("/edit/{id}")
     public String editVisitor(@PathVariable Long id, Model model){
-        Visitor visitor = visitorService.getVisitorById(id);
+        Visitor visitor = visitorService.getById(id);
         model.addAttribute("visitor", visitor);
         return "visitor/edit";
     }
@@ -59,7 +55,7 @@ public class VisitorController {
     }
     @GetMapping("/details/{id}")
     public String detailsVisitor(@PathVariable Long id, Model model){
-        Visitor visitor = visitorService.getVisitorById(id);
+        Visitor visitor = visitorService.getById(id);
         model.addAttribute("visitor", visitor);
         return "visitor/details";
     }
@@ -85,11 +81,11 @@ public class VisitorController {
 //        }else return "redirect:/notFoundError";
 //    }
 
-    @RequestMapping(value = {"/deleteVisitor"}, method = RequestMethod.POST)
-    public String deleteVisitor(@RequestParam Long id){
-        visitorService.deleteById(id);
-        return "redirect:/visitorList";
-    }
+//    @RequestMapping(value = {"/deleteVisitor"}, method = RequestMethod.POST)
+//    public String deleteVisitor(@RequestParam Long id){
+//        visitorService.deleteById(id);
+//        return "redirect:/visitorList";
+//    }
 
     @RequestMapping (value = {"visitorList"}, method = RequestMethod.GET)
     public String visitors(Model model){
