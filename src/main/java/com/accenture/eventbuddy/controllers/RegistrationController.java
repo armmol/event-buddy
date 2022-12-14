@@ -1,6 +1,5 @@
 package com.accenture.eventbuddy.controllers;
 
-import com.accenture.eventbuddy.auth.UserDetailsServiceImpl;
 import com.accenture.eventbuddy.models.TypeUser;
 import com.accenture.eventbuddy.services.OrganizerService;
 import com.accenture.eventbuddy.services.VisitorService;
@@ -15,9 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping(path = "registration")
 public class RegistrationController {
-
-    @Autowired
-    private UserDetailsServiceImpl userDetailsService;
     @Autowired
     private VisitorService visitorService;
     @Autowired

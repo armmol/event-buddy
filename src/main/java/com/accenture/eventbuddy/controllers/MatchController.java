@@ -1,16 +1,14 @@
 package com.accenture.eventbuddy.controllers;
 
 
-import com.accenture.eventbuddy.models.Attendance;
 import com.accenture.eventbuddy.models.Match;
 import com.accenture.eventbuddy.services.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "match")
@@ -18,7 +16,6 @@ public class MatchController {
 
     @Autowired
     private MatchService matchService;
-
 
     @RequestMapping(value = {"/addMatch"}, method = RequestMethod.GET)
     public String addMatch(@PathVariable Long id, Model model) {
@@ -34,6 +31,10 @@ public class MatchController {
         return "redirect:/event/eventList";
     }
 
-
-
+    @GetMapping("/{id}/matches")
+    public String getAllMatches(@PathVariable Long id, Model model) {
+        List<Match> visitorMatches = matchService.findListOfMatchesForSpecificVisitor(id);
+        model.addAttribute("visitorMatches", visitorMatches);
+        return "matches";
+    }
 }

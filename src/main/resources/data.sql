@@ -7,11 +7,11 @@ Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('f', 'VISITOR', 'f');
 Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('g', 'VISITOR', 'g');
 Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('h', 'VISITOR', 'h');
 
-Insert into VISITORS_TABLE (DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('1999-12-06', 'MAN', 'Laceration without foreign body of nose, sequela', 'beastop0@tripadvisor.com', 'EN','Estève', 'Eastop', 1);
-Insert into VISITORS_TABLE (DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('1999-04-19', 'MAN', 'Drowning and submersion due to being washed overboard from (nonpowered) inflatable craft, initial encounter', 'mflicker1@boston.com', 'EN', 'Adélaïde', 'Flicker', 2);
-Insert into VISITORS_TABLE (DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('1998-06-25', 'MAN', 'Fracture of neck, unspecified', 'uvenditti2@linkedin.com', 'LV', 'Frédérique', 'Venditti', 3);
-Insert into VISITORS_TABLE (DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('2010-01-28', 'MAN', 'Burn of first degree of right toe(s) (nail), initial encounter', 'vyanov3@globo.com', 'LV', 'Estée', 'Yanov', 4);
-Insert into VISITORS_TABLE (DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('2001-10-06', 'MAN', 'Blister (nonthermal), unspecified lesser toe(s), initial encounter', 'roconnor4@drupal.org', 'EN', 'Pénélope', 'O''Connor', 5);
+Insert into VISITORS_TABLE (VISITOR_ID, DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values (1,'1999-12-06', 'MAN', 'Laceration without foreign body of nose, sequela', 'beastop0@tripadvisor.com', 'EN','Estève', 'Eastop', 1);
+Insert into VISITORS_TABLE (VISITOR_ID, DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values (2,'1999-04-19', 'MAN', 'Drowning and submersion due to being washed overboard from (nonpowered) inflatable craft, initial encounter', 'mflicker1@boston.com', 'EN', 'Adélaïde', 'Flicker', 2);
+Insert into VISITORS_TABLE (VISITOR_ID, DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values (3,'1998-06-25', 'MAN', 'Fracture of neck, unspecified', 'uvenditti2@linkedin.com', 'LV', 'Frédérique', 'Venditti', 3);
+Insert into VISITORS_TABLE (VISITOR_ID, DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values (4,'2010-01-28', 'MAN', 'Burn of first degree of right toe(s) (nail), initial encounter', 'vyanov3@globo.com', 'LV', 'Estée', 'Yanov', 4);
+Insert into VISITORS_TABLE (VISITOR_ID, DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values (5,'2001-10-06', 'MAN', 'Blister (nonthermal), unspecified lesser toe(s), initial encounter', 'roconnor4@drupal.org', 'EN', 'Pénélope', 'O''Connor', 5);
 
 Insert into ADDRESS_TABLE ( CITY, COUNTRY) Values ( 'Kaunas', 'Lithuania');
 Insert into ADDRESS_TABLE ( CITY, COUNTRY) Values ( 'Vilnius', 'Lithuania');
@@ -32,3 +32,14 @@ insert into EVENT_TABLE ( DESCRIPTION, END_DATE, GENRE, NAME, START_DATE, ADDRES
 insert into EVENT_TABLE ( DESCRIPTION, END_DATE, GENRE, NAME, START_DATE, ADDRESS_COL, ORG_COL) values ( 'aliquam erat volutpat in congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus cursus urna ut tellus', '2022-09-25 10:40:40', 'FESTIVAL', 'Brandegee''s Onion', '2022-09-21 07:53:26', 2, 3);
 insert into EVENT_TABLE ( DESCRIPTION, END_DATE, GENRE, NAME, START_DATE, ADDRESS_COL, ORG_COL) values ( 'libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit amet', '2022-06-15 10:51:18', 'FESTIVAL', 'Oval-leaf Clustervine', '2022-09-05 01:05:49', 1, 1);
 insert into EVENT_TABLE ( DESCRIPTION, END_DATE, GENRE, NAME, START_DATE, ADDRESS_COL, ORG_COL) values ( 'ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat in congue etiam justo etiam pretium', '2022-07-28 15:35:41', 'FESTIVAL', 'Idaho Esslingeriana Lichen', '2022-08-16 14:46:42', 2, 1);
+
+Insert into ATTENDANCE_TABLE (ATTENDANCE_ID, EVENT_COL, VISIT_COL) values (1, 1, 1);
+Insert into ATTENDANCE_TABLE (ATTENDANCE_ID, EVENT_COL, VISIT_COL) values (2, 2, 2);
+Insert into ATTENDANCE_TABLE (ATTENDANCE_ID, EVENT_COL, VISIT_COL) values (3, 2, 3);
+Insert into ATTENDANCE_TABLE (ATTENDANCE_ID, EVENT_COL, VISIT_COL) values (4, 2, 4);
+Insert into ATTENDANCE_TABLE (ATTENDANCE_ID, EVENT_COL, VISIT_COL) values (5, 2, 5);
+
+Insert into MATCH_TABLE (MATCH_ID, ATT1_COL, ATT2_COL) values (2, 2, 3);
+Insert into MATCH_TABLE (MATCH_ID, ATT1_COL, ATT2_COL) values (3, 2, 4);
+Insert into MATCH_TABLE (MATCH_ID, ATT1_COL, ATT2_COL) values (4, 2, 5);
+
