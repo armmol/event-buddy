@@ -1,13 +1,16 @@
 package com.accenture.eventbuddy.controllers;
 
 
+import com.accenture.eventbuddy.models.Attendance;
 import com.accenture.eventbuddy.models.Match;
+import com.accenture.eventbuddy.models.Visitor;
 import com.accenture.eventbuddy.services.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -34,7 +37,23 @@ public class MatchController {
     @GetMapping("/{id}/matches")
     public String getAllMatches(@PathVariable Long id, Model model) {
         List<Match> visitorMatches = matchService.findListOfMatchesForSpecificVisitor(id);
+        visitorMatches.forEach(i -> {
+            Attendance tempAttendance;
+            if (i.getAttendance1().getVisitor().getVisitorId().equals(id)) {
+                tempAttendance = i.getAttendance2();
+                i.setAttendance2(i.getAttendance1());
+                i.setAttendance1(tempAttendance);
+            }
+        });
         model.addAttribute("visitorMatches", visitorMatches);
         return "matches";
+    }
+
+    @GetMapping("/add/{visitorId}/{attendanceId}")
+    public String createMatch(
+            @PathVariable(name = "visitorId") Long visitorId,
+            @PathVariable(name = "attendanceId") Long attendanceId) {
+        matchService.findOrCreateMatch(visitorId, attendanceId);
+        return "redirect:/match/"+visitorId+"/matches";
     }
 }

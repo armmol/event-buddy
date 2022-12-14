@@ -33,6 +33,8 @@
             <th scope="col">Age</th>
             <th scope="col">Gender</th>
             <th scope="col">Description</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Event</th>
         </tr>
         </thead>
         <tbody>
@@ -42,6 +44,8 @@
             <td th:text="${match.attendance1.visitor.getAge}">
             <td th:text="${match.attendance1.visitor.gender}">
             <td th:text="${match.attendance1.visitor.visitorDescription}">
+            <td th:text="${match.attendance1.visitor.visitorEmail}">
+            <td th:text="${match.attendance1.event.name}">
         </tr>
         </tbody>
     </table>
