@@ -4,7 +4,9 @@ import com.accenture.eventbuddy.auth.User;
 import com.accenture.eventbuddy.auth.UserRole;
 import lombok.Data;
 
-import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 @Data
 public class TypeUser {
@@ -42,8 +44,13 @@ public class TypeUser {
         visitor.setUser(user);
         visitor.setVisitorEmail(email);
         visitor.setVisitorName(name);
-        visitor.setVisitorDescription(description);
-        visitor.setDateOfBirth(new Date(null));
+        visitor.setVisitorDescription(description);//null
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        try {
+            visitor.setDateOfBirth(formatter.parse(dateOfBirth));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         visitor.setVisitorSurname(surname);
         visitor.setGender(gender);
         visitor.setVisitorLanguage(language);

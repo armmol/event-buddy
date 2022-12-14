@@ -1,6 +1,7 @@
 package com.accenture.eventbuddy.services;
 
 
+import com.accenture.eventbuddy.contracts.MatchServiceContract;
 import com.accenture.eventbuddy.models.Attendance;
 import com.accenture.eventbuddy.models.Match;
 import com.accenture.eventbuddy.models.Visitor;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class MatchService {
+public class MatchService implements MatchServiceContract {
 
     private final MatchRepository matchRepository;
     private final AttendanceRepository attendanceRepository;
@@ -25,6 +26,7 @@ public class MatchService {
         this.visitorRepository = visitorRepository;
     }
 
+    @Override
     public void storeMatch(Match match) {
         matchRepository.save(match);
     }
@@ -56,18 +58,22 @@ public class MatchService {
         return match;
     }
 
+    @Override
     public Match getById(Long id) {
         return matchRepository.findById(id).orElse(null);
     }
 
+    @Override
     public List<Match> all() {
         return (List<Match>) matchRepository.findAll();
     }
 
+    @Override
     public void deleteById(Long id) {
         matchRepository.findById(id);
     }
 
+    @Override
     public List<Match> findListOfMatchesForSpecificVisitor(Long visitorId) {
         List<Match> visitorMatchList = new ArrayList<>();
         for (Match match : matchRepository.findAll()) {

@@ -1,7 +1,11 @@
 package com.accenture.eventbuddy.controllers;
 
+import com.accenture.eventbuddy.auth.User;
+import com.accenture.eventbuddy.models.Organizer;
 import com.accenture.eventbuddy.models.TypeUser;
+import com.accenture.eventbuddy.models.Visitor;
 import com.accenture.eventbuddy.services.OrganizerService;
+import com.accenture.eventbuddy.services.UserService;
 import com.accenture.eventbuddy.services.VisitorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +23,9 @@ public class RegistrationController {
     @Autowired
     private OrganizerService organizerService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         TypeUser user = new TypeUser();
@@ -27,13 +34,34 @@ public class RegistrationController {
     }
 
     @PostMapping("/register/saveVisitor")
-    public String saveVisitor(@ModelAttribute ("user") TypeUser user){
-        visitorService.storeVisitor(user.isVisitor());
-        return "redirect:/event/eventList";
+    public String saveVisitor(@ModelAttribute("user") TypeUser user) {
+        Visitor visitor = user.isVisitor();
+        visitorService.storeVisitor(visitor);
+        System.out.println("Visitor");
+        return "redirect:/event/" + visitor.getUser().getId() + "/eventList";
     }
+
     @PostMapping("/register/saveOrganizer")
-    public String saveOrganizer(@ModelAttribute ("user") TypeUser user){
+    public String saveOrganizer(@ModelAttribute("user") TypeUser user) {
+        Organizer organizer = user.isOrganizer();
         organizerService.storeOrganizer(user.isOrganizer());
-        return "redirect:/event/eventList";
+        System.out.println("Organizer");
+        return "redirect:/event/" + organizer.getUser().getId() + "/eventList";
+    }
+
+    @GetMapping("/login")
+    public String login(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "login";
+    }
+
+    @PostMapping("/login/check")
+    public String loginVisitor(@ModelAttribute("user") User user) {
+        for (User userLooper : userService.all()) {
+            if (userLooper.equals(user))
+                return "redirect:/event/" + userLooper.getId() + "/eventList";
+        }
+        return "login";
     }
 }

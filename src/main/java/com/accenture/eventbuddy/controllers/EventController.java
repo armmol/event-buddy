@@ -46,11 +46,11 @@ public class EventController {
     }
 
     //Show event list
-    @RequestMapping(value = {"/{id}/eventList"}, method = RequestMethod.GET)
-    public String events(@PathVariable Long id, Model model) {
+    @RequestMapping(value = {"/{userId}/eventList"}, method = RequestMethod.GET)
+    public String events(@PathVariable("userId") Long userId, Model model) {
         List<Event> events = eventService.all();
+        model.addAttribute("userId", userId);
         model.addAttribute("events", events);
-        model.addAttribute("organizer", id);
         return "eventList";
     }
 
