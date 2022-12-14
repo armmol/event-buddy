@@ -1,4 +1,4 @@
-Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (1, 'a', 'ORGANIZER', 'a');
+Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (1, 'a', 'VISITOR', 'a');
 Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (2, 'b', 'ORGANIZER', 'b');
 Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (3, 'c', 'ORGANIZER', 'c');
 Insert into USER_TABLE (ID, PASSWORD, ROLE, USERNAME) Values (4, 'd', 'ORGANIZER', 'd');

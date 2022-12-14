@@ -6,8 +6,10 @@ import com.accenture.eventbuddy.auth.UserRepository;
 import com.accenture.eventbuddy.models.Visitor;
 import com.accenture.eventbuddy.services.VisitorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -87,12 +89,56 @@ public class VisitorController {
     }
 
     @RequestMapping(value = {"/visitorProfile/edit"}, method = RequestMethod.POST)
-    public String editVisitorProfile(@ModelAttribute("visitorForm") Visitor visitor, Principal principal){
+    public String editVisitorProfile(@ModelAttribute("visitor") Visitor visitor,
+                                     Principal principal, BindingResult result, Model model){
+        if(result.hasErrors()){
+            visitor.setVisitorId(visitor.getVisitorId());
+            return "editVisitorProfile";
+        }
         String username = principal.getName();
         User user = userRepository.findByUsername(username);
-        visitor.setUser(user);
-        visitorService.storeVisitor(visitor);
-        return "redirect:/visitorProfile";
-    }
+        // get visitor by user
+        Visitor visitor1 = visitorService.getByUser(user);
+//        String username = principal.getName();
+//        User user = userRepository.findByUsername(username);
+//        visitor.setUser(user);
+        
 
+        visitor1.setVisitorDescription(visitor.getVisitorDescription());
+        visitorService.updateVisitor(visitor1);
+        return "redirect:/visitor/visitorProfile";
+    }
+//        String username = principal.getName();
+//        User user = userRepository.findByUsername(username);
+//        visitor.setUser(user);
+//
+//        if(visitor != null ){
+//            visitorService.updateVisitor(visitor);
+//            return "redirect:/visitor/visitorProfile";
+//        }else return "redirect:/notFoundError";
+//  }
+
+    // edit profile post method
+//    @RequestMapping(value = {"/visitorProfile/edit"}, method = RequestMethod.POST)
+//    public String editVisitorProfile(@ModelAttribute("visitorForm") Visitor visitor, Principal principal){
+//        String username = principal.getName();
+//        User user = userRepository.findByUsername(username);
+//        visitor.setUser(user);
+//
+//        if(visitor != null ){
+//            visitorService.updateVisitor(visitor);
+//            return "redirect:/visitor/visitorProfile";
+//        }else return "redirect:/notFoundError";
+//    }
+
+//    @RequestMapping(value = {"/visitorProfile/edit"}, method = RequestMethod.POST)
+//    public String editVisitorProfile(Visitor visitor, Principal principal){
+//        System.out.println("VisitorController: editVisitorProfile");
+//        System.out.println(visitor);
+//        String username = principal.getName();
+//        User user = userRepository.findByUsername(username);
+//        visitor.setUser(user);
+//        visitorService.storeVisitor(visitor);
+//        return "redirect:/visitorProfile";
+//    }
 }

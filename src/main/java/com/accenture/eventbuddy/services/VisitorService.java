@@ -24,7 +24,6 @@ public class VisitorService {
         return (List<Visitor>) visitorRepository.findAll();
     }
 
-
     public void updateVisitor(Visitor visitor){
         visitorRepository.save(visitor);
     }
