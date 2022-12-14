@@ -15,4 +15,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     UserRole role;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User user)) return false;
+        return username.equals(user.username) && password.equals(user.password) && role == user.role;
+    }
 }

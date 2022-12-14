@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <meta charset="utf-8">
+</head>
+<body style="background-image: url('/assets/images/background.png');color:171738">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+<nav class="navbar sticky-top navbar-dark bg-dark">
+    <form>
+        <a type="button"
+           class="btn btn-outline-light"
+           style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+           th:href="@{register}">Sign Up
+        </a>
+    </form>
+</nav>
+<div style="margin: 70px;text-align:center;color:#DFF3E4;">
+    <h1>Sign in to find an Event Buddy!<br>Already registered? Sign up by clicking the button above</h1>
+</div>
+<div style="margin: 170px;
+            border: 3px solid white;
+            padding: 10px;">
+    <form id="registrationForm"
+          method="post"
+          role="form"
+          th:action="@{login/check}"
+          th:object="${user}">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div style="margin: 10px;
+                        text-align: center;
+                        padding: 10px;">
+                        <div>
+                            <img th:src="@{/assets/images/logo.png}"
+                                 alt="Bootcamp" style="width:100%; height:100%">
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="login" style="margin: 10px;
+                            text-align: center;
+                            border: 3px solid white;
+                            padding: 10px;">
+                        <!--                    <section id="loginSection">-->
+                        <div id="username-wasValid" class="was-validated">
+                            <div class="input-group input-group-sm mb-3">
+                                <span class="input-group-text" id="inputGroup-username">Username</span>
+
+                                <input style="background-color:#DFF3E4; opacity:0.5; color:171738;"
+                                       class="form-control"
+                                       id="username"
+                                       name="username"
+                                       placeholder="Enter username"
+                                       th:field="*{username}"
+                                       type="text"
+                                       required
+                                />
+                            </div>
+                            <div class="invalid-feedback">
+                                Please choose a username.
+                            </div>
+                        </div>
+                        <div class="was-validated">
+                            <div class="input-group input-group-sm mb-3">
+                                <span class="input-group-text" id="inputGroup-password">Password</span>
+                                <input
+                                        style="background-color:#DFF3E4; opacity:0.5; color:171738;"
+                                        class="form-control"
+                                        id="password"
+                                        name="password"
+                                        placeholder="Enter password"
+                                        th:field="*{password}"
+                                        type="password"
+                                        required
+                                />
+                            </div>
+                            <div class="invalid-feedback">
+                                Please complete your password.
+                            </div>
+                        </div>
+                        <div>
+                            <div class="was-validated">
+                                <select onchange="check()" class="form-select form-select-sm mb-3"
+                                        aria-label=".form-select-lg example"
+                                        id="role"
+                                        name="role"
+                                        style="background-color:#DFF3E4; opacity:0.5; color:171738;"
+                                        th:field="*{role}"
+                                        required>
+                                    <option selected value="role" style="color:#171738">Role</option>
+                                    <option style="color:#171738"
+                                            th:each="role : ${T(com.accenture.eventbuddy.auth.UserRole).values()}"
+                                            th:value="${role}"
+                                            th:text="${role}"></option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please set your role.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button
+                                type="submit"
+                                class="btn btn-outline-light"
+                                style="color:#DFF3E4; border: 3px solid #DFF3E4;">Login
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
