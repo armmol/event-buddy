@@ -10,15 +10,18 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http.csrf().disable()
-                .headers().frameOptions().disable().and()
-                .authorizeHttpRequests()
-                .requestMatchers("/**").permitAll() // TODO: REMOVE
-                .requestMatchers("/auth/**").permitAll()
-                .requestMatchers("/**").authenticated()
-                .and()
-                .formLogin().defaultSuccessUrl("/event/eventList", true).and()
-                .build();
+        return http.authorizeHttpRequests().anyRequest().permitAll().and().build();
+        //        return http.csrf().disable()
+//                .cors().disable()
+//                .headers().frameOptions().disable().and()
+//                .authorizeHttpRequests()
+//                .requestMatchers("/**").permitAll() // TODO: REMOVE
+//                .requestMatchers("/auth/**").permitAll()
+//                .requestMatchers("/**").authenticated()
+//                .and()
+//                .formLogin().defaultSuccessUrl("/event/eventList", true).and()
+//                .build();
     }
+
 
 }

@@ -34,21 +34,25 @@ public class VisitorController {
 //    }
 
     //where is this going to be used?
-    @RequestMapping(value = {"/addVisitor"}, method = RequestMethod.GET)
-    public String showAddVisitorPage(@PathVariable Long id, Model model){
-        Visitor visitor = new Visitor();
-        model.addAttribute("visitor", visitor);
-        return "addVisitor";
-    }
 
-    @RequestMapping(value = {"/addVisitor"}, method = RequestMethod.POST)
-    public String saveVisitor(@ModelAttribute("visitorForm") Visitor visitor){
-        //Language language = visitor.getLanguage();
-        if(visitor != null ){
-            visitorService.storeVisitor(visitor);
-            return "redirect:/showVisitor/" + visitor.getVisitorId();
-        }else return "redirect:/notFoundError";
-    }
+    /**
+     * Commenting out because was not used. Check Registration Controller to add Visitors and Organizer
+     */
+//    @RequestMapping(value = {"/addVisitor"}, method = RequestMethod.GET)
+//    public String showAddVisitorPage(@PathVariable Long id, Model model){
+//        Visitor visitor = new Visitor();
+//        model.addAttribute("visitor", visitor);
+//        return "addVisitor";
+//    }
+//
+//    @RequestMapping(value = {"/addVisitor"}, method = RequestMethod.POST)
+//    public String saveVisitor(@ModelAttribute("visitorForm") Visitor visitor){
+//        //Language language = visitor.getLanguage();
+//        if(visitor != null ){
+//            visitorService.storeVisitor(visitor);
+//            return "redirect:/showVisitor/" + visitor.getVisitorId();
+//        }else return "redirect:/notFoundError";
+//    }
 
     @RequestMapping(value = {"/deleteVisitor"}, method = RequestMethod.POST)
     public String deleteVisitor(@RequestParam Long id){

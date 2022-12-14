@@ -31,9 +31,7 @@ public class Visitor {
     public int getAge() {
         Date date = new Date();
         int age = date.getYear() - dateOfBirth.getYear();
-        if (date.getMonth() < dateOfBirth.getMonth()) {
-            age--;
-        } else if (date.getMonth() == dateOfBirth.getMonth() && date.getDate() < dateOfBirth.getDate()) {
+        if (date.getYear() < dateOfBirth.getMonth() || date.getMonth() == dateOfBirth.getMonth() && date.getDate() < dateOfBirth.getDate()) {
             age--;
         }
         return age;
