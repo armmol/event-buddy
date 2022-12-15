@@ -53,6 +53,6 @@ public class RegistrationController {
             if (userLooper.equals(userReplica))
                 return "redirect:/event/" + userLooper.getId() + "/eventList";
         }
-        return "login";
+        return "redirect:/registration/login";
     }
 }

@@ -35,8 +35,7 @@
 </nav>
 <div class="container">
     <div class="row">
-        <h4 style="color:#DFF3E4;" class="mb-2" >name</h4>
-        <div class="row row-cols-1 py-3 row-cols-md-3 g-4" style="padding: 20px">
+            <div class="row row-cols-1 py-3 row-cols-md-3 g-4" style="padding: 20px">
             <a style="text-decoration: none; color: white" th:href="@{/event/{id}/showEvent/{id2}(id=${userId}, id2=${event.eventId})}"
                th:each="event: ${events}">
                 <div class="col">

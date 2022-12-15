@@ -13,15 +13,25 @@
         crossorigin="anonymous"></script>
 <nav class="navbar navbar-dark bg-dark">
     <form>
-        <button type="submit"
-                class="btn btn-outline-light"
-                style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
-                th:action="@{/matches}">Matches
-        </button>
         <a type="button"
            class="btn btn-outline-light"
            style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
-           th:href="@{/event/{id}/eventList(id=${user})}">Events
+           th:href="@{/match/{id}/matches(id=${userId})}">Matches
+        </a>
+        <a type="button"
+           class="btn btn-outline-light"
+           style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+           th:href="@{/event/{id}/eventList(id=${userId})}">Events
+        </a>
+        <a type="button"
+           class="btn btn-outline-light"
+           style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+           th:href="@{/visitor/{id}/visitorProfile/personal(id=${userId})}">Profile
+        </a>
+        <a type="button"
+           class="btn btn-outline-light"
+           style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+           th:href="@{/registration/login}">Log Out
         </a>
     </form>
 </nav>
@@ -35,7 +45,7 @@
                  border: 3px solid white;background-image: url('/assets/images/background.png');">
                         <h4 style="color:#DFF3E4;" class="mb-2"
                             th:text="${visitor.name + ' ' + visitor.surname}">name</h4>
-                        <p class="text mb-4" style="color:#DFF3E4" th:inline="text">[[${visitor.user.username}]]<span
+                        <p class="text mb-4" style="color:#DFF3E4" th:inline="text">[[${visitor.username}]]<span
                                 class="mx-2">|</span>[[${visitor.email}]]</p>
                         <div class="d-flex justify-content-center">
 

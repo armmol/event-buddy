@@ -26,6 +26,7 @@ function check(){
 }
 
 
+
 </script>
 <script type="text/javascript">
 function validateOrganizer(){
@@ -40,6 +41,7 @@ function validateOrganizer(){
             return true;
         }
 }
+
 </script>
 <script type="text/javascript">
 function validateVisitor(){
@@ -58,6 +60,7 @@ function validateVisitor(){
             return true;
         }
 }
+
 </script>
 
 <nav class="navbar sticky-top navbar-dark bg-dark">
@@ -69,19 +72,14 @@ function validateVisitor(){
         </a>
     </form>
 </nav>
-
-<div class="container">
-    <div class="row">
-        <div style="margin: 70px;text-align:center;color:#DFF3E4;">
-            <h1>Sign up to find an Event Buddy!<br>Already registered? Sign in by clicking the button above</h1>
-        </div>
-    </div>
-</div>
 <div style="margin: 170px;
      border: 3px solid white;
      padding: 10px;">
     <div class="container-fluid">
         <div class="row">
+            <div style="mx: 30px;text-align:center;color:#DFF3E4;">
+                <h1>Sign up to find an Event Buddy!<br>Already registered? Sign in by clicking the "Sign In" button in the bar above!</h1>
+            </div>
             <div class="col">
                 <div style="margin: 10px;
                         text-align: center;
@@ -110,9 +108,6 @@ function validateVisitor(){
                                     th:value="${role}"
                                     th:text="${role}"></option>
                         </select>
-                        <div class="invalid-feedback">
-                            Please set your role.
-                        </div>
                     </div>
                     <!--55555555555555555555555555555555555555555555555555555555555555555555-->
                     <!--55555555555555555555555555555555555555555555555555555555555555555555-->
@@ -137,9 +132,6 @@ function validateVisitor(){
                                            required
                                     />
                                 </div>
-                                <div class="invalid-feedback">
-                                    Please choose a username.
-                                </div>
                             </div>
                             <div class="was-validated">
                                 <div class="input-group input-group-sm mb-3">
@@ -155,9 +147,6 @@ function validateVisitor(){
                                             required
                                     />
                                 </div>
-                                <div class="invalid-feedback">
-                                    Please complete your password.
-                                </div>
                             </div>
                             <div>
                                 <div class="was-validated" style="display:none">
@@ -170,9 +159,6 @@ function validateVisitor(){
                                             required>
                                         <option selected value="VISITOR" style="color:#171738">VISITOR</option>
                                     </select>
-                                    <div class="invalid-feedback">
-                                        Please set your role.
-                                    </div>
                                 </div>
                             </div>
                             <div class="was-validated">
@@ -186,10 +172,8 @@ function validateVisitor(){
                                             placeholder="Enter Your name"
                                             th:field="*{name}"
                                             type="text"
+                                            required
                                     />
-                                </div>
-                                <div class="invalid-feedback">
-                                    Please input your name.
                                 </div>
                             </div>
                             <div class="was-validated">
@@ -202,10 +186,8 @@ function validateVisitor(){
                                            placeholder="Enter Your surname"
                                            th:field="*{surname}"
                                            type="text"
+                                           required
                                     />
-                                </div>
-                                <div class="invalid-feedback">
-                                    Please input your Surname.
                                 </div>
                             </div>
 
@@ -222,10 +204,8 @@ function validateVisitor(){
                                            placeholder="Enter e-mail"
                                            th:field="*{email}"
                                            type="email"
+                                           required
                                     />
-                                </div>
-                                <div class="invalid-feedback">
-                                    Please input your email.
                                 </div>
                             </div>
                             <div class="was-validated">
@@ -239,16 +219,17 @@ function validateVisitor(){
                                             placeholder="Enter description"
                                             th:field="*{description}"
                                             type="text"
+                                            required
                                     />
                                 </div>
                             </div>
                             <div class="was-validated">
-                                <div class="select">
-                                    <select id="gender" class="form-select form-select-sm mb-3"
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="gender">Gender</label>
+                                    <select id="gender" class="form-select"
                                             aria-label=".form-select-lg example"
                                             style="background-color:#DFF3E4; opacity:0.5; color:#171738;"
                                             th:field="${user.gender}">
-                                        <option selected value="gender">Gender</option>
                                         <option th:each="gender : ${T(com.accenture.eventbuddy.models.Gender).values()}"
                                                 th:value="${gender}"
                                                 th:text="${gender}"></option>
@@ -256,12 +237,12 @@ function validateVisitor(){
                                 </div>
                             </div>
                             <div class="was-validated">
-                                <div class="select">
-                                    <select id="language" class="form-select form-select-sm mb-3"
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="language">Preferred Language</label>
+                                    <select id="language" class="form-select"
                                             aria-label=".form-select-lg example"
                                             style="background-color:#DFF3E4; opacity:0.5; color:#171738;"
                                             th:field="*{language}">
-                                        <option selected value="language">Language</option>
                                         <option th:each="language : ${T(com.accenture.eventbuddy.models.Language).values()}"
                                                 th:value="${language}"
                                                 th:text="${language}"></option>
@@ -288,6 +269,7 @@ function validateVisitor(){
                                                            width="40px"
                                                            placeholder="Enter Your date of birth"
                                                            th:field="${user.dateOfBirth}"
+                                                           required
                                                     />
                                                 </div>
                                             </div>
@@ -328,9 +310,6 @@ function validateVisitor(){
                                            required
                                     />
                                 </div>
-                                <div class="invalid-feedback">
-                                    Please choose a username.
-                                </div>
                             </div>
                             <div class="was-validated">
                                 <div class="input-group input-group-sm mb-3">
@@ -346,9 +325,6 @@ function validateVisitor(){
                                             required
                                     />
                                 </div>
-                                <div class="invalid-feedback">
-                                    Please complete your password.
-                                </div>
                             </div>
                             <div>
                                 <div class="was-validated" style="display:none">
@@ -361,9 +337,6 @@ function validateVisitor(){
                                             required>
                                         <option selected value="ORGANIZER" style="color:#171738">ORGANIZER</option>
                                     </select>
-                                    <div class="invalid-feedback">
-                                        Please set your role.
-                                    </div>
                                 </div>
                             </div>
                             <div class="was-validated">
@@ -377,10 +350,8 @@ function validateVisitor(){
                                             placeholder="Enter organization name"
                                             th:field="*{name}"
                                             type="text"
+                                            required
                                     />
-                                    <div class="invalid-feedback">
-                                        Please input your email.
-                                    </div>
                                 </div>
                             </div>
                             <div class="was-validated">
@@ -394,10 +365,8 @@ function validateVisitor(){
                                             placeholder="Enter e-mail"
                                             th:field="*{email}"
                                             type="email"
+                                            required
                                     />
-                                </div>
-                                <div class="invalid-feedback">
-                                    Please input your email.
                                 </div>
                             </div>
                             <div class="was-validated">
@@ -411,10 +380,8 @@ function validateVisitor(){
                                            id="phoneNumber"
                                            placeholder="Enter phone number"
                                            th:field="*{phoneNumber}"
+                                           required
                                     />
-                                </div>
-                                <div class="invalid-feedback">
-                                    Please input your phone number.
                                 </div>
                             </div>
                             <div class="form-group">
