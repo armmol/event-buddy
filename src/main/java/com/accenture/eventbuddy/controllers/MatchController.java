@@ -51,6 +51,7 @@ public class MatchController {
                         i.setAttendance1(tempAttendance);
                     }
                 });
+
                 model.addAttribute("visitorMatches", visitorMatches);
                 model.addAttribute("userId", id);
                 return "matches";

@@ -1,8 +1,10 @@
 package com.accenture.eventbuddy.controllers;
 
 import com.accenture.eventbuddy.auth.UserRole;
+import com.accenture.eventbuddy.models.Event;
 import com.accenture.eventbuddy.models.UserReplica;
 import com.accenture.eventbuddy.repo.UserReplicaRepository;
+import com.accenture.eventbuddy.services.EventService;
 import com.accenture.eventbuddy.services.UserReplicaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/visitor")
@@ -22,6 +25,8 @@ public class VisitorController {
     
     @Autowired
     private UserReplicaService userReplicaService;
+    @Autowired
+    private EventService eventService;
 
     @RequestMapping(value = {"/add"}, method = RequestMethod.GET)
     public String addUserReplica(Model model) {
@@ -124,8 +129,13 @@ public class VisitorController {
                     }
                 }
             } else {
+
                 for (UserReplica userReplica : userReplicaService.all()) {
                     if (userReplica.getId().equals(id)) {
+                        List<Event> events = eventService.all();
+                        model.addAttribute("events", events.stream().
+                                filter(event -> event.getUserReplica().getId().equals(id))
+                                .collect(Collectors.toList()));
                         model.addAttribute("organizer", userReplica);
                         return "organizer/showPersonal";
                     }

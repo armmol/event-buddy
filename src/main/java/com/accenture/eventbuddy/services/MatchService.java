@@ -35,12 +35,16 @@ public class MatchService implements MatchServiceContract {
         List<Match> matches = (List<Match>) matchRepository.findAll();
         Match match = matches.stream().filter(i ->
                 (
-                        i.getAttendance1().getAttendanceId().equals(attendanceId) &&
-                                i.getAttendance2().getUserReplica().getId().equals(userReplicaId)
+                        i.getAttendance1().getUserReplica().getId().equals(userReplicaId) &&
+                                i.getAttendance2().getUserReplica().getId().equals(attendanceId)
+//                        i.getAttendance1().getAttendanceId().equals(attendanceId) &&
+//                                i.getAttendance2().getUserReplica().getId().equals(userReplicaId)
                 ) ||
-                        (i.getAttendance2().getAttendanceId().equals(attendanceId) &&
-                                i.getAttendance1().getUserReplica().getId().equals(attendanceId)))
-                .findFirst().orElse(null);
+                        i.getAttendance2().getUserReplica().getId().equals(userReplicaId) &&
+                                i.getAttendance1().getUserReplica().getId().equals(attendanceId)
+//                        (i.getAttendance2().getAttendanceId().equals(attendanceId) &&
+//                                i.getAttendance1().getUserReplica().getId().equals(attendanceId)))
+        ).findFirst().orElse(null);
         if (match == null) {
             match = new Match();
             UserReplica userReplica = userReplicaRepository.findById(userReplicaId).orElse(null);
