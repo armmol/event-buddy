@@ -146,11 +146,11 @@ function ConnectToast(){
                 <tbody>
                 <tr>
                 <tr th:each="attendee : ${attendances}">
-                    <td th:text="${attendee.visitor.visitorName}">
-                    <td th:text="${attendee.visitor.visitorSurname}">
-                    <td th:text="${attendee.visitor.gender}">
-                    <td th:text="${attendee.visitor.visitorLanguage}">
-                    <td th:text="${attendee.visitor.visitorDescription}">
+                    <td th:text="${attendee.userReplica.name}">
+                    <td th:text="${attendee.userReplica.surname}">
+                    <td th:text="${attendee.userReplica.gender}">
+                    <td th:text="${attendee.userReplica.languages}">
+                    <td th:text="${attendee.userReplica.description}">
                 </tr>
                 </tbody>
             </table>

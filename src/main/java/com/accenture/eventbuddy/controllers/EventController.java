@@ -1,12 +1,12 @@
 package com.accenture.eventbuddy.controllers;
 
-import com.accenture.eventbuddy.auth.User;
 import com.accenture.eventbuddy.auth.UserRole;
 import com.accenture.eventbuddy.models.Event;
 import com.accenture.eventbuddy.models.FilterAttendanceFormData;
+import com.accenture.eventbuddy.models.UserReplica;
 import com.accenture.eventbuddy.services.AttendanceService;
 import com.accenture.eventbuddy.services.EventService;
-import com.accenture.eventbuddy.services.UserService;
+import com.accenture.eventbuddy.services.UserReplicaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +25,7 @@ public class EventController {
     @Autowired
     private AttendanceService attendanceService;
     @Autowired
-    private UserService userService;
+    private UserReplicaService userReplicaService;
 
     //Add event GET
     @RequestMapping(value = {"/addEvent"}, method = RequestMethod.GET)
@@ -56,14 +56,14 @@ public class EventController {
         List<Event> events = eventService.all();
         model.addAttribute("userRole", userRole);
         model.addAttribute("userId", userId);
-        for (User user : userService.all()) {
+        for (UserReplica user : userReplicaService.all()) {
             if (user.getId().equals(userId)) {
                 if (user.getRole() == UserRole.VISITOR) {
                     model.addAttribute("events", events);
                     return "Visitor/eventList";
                 } else {
                     model.addAttribute("events", events.stream().
-                            filter(event -> event.getOrganizer().getUser().getId().equals(userId))
+                            filter(event -> event.getUserReplica().getId().equals(userId))
                             .collect(Collectors.toList()));
                     return "Organizer/eventListOrganizer";
                 }
@@ -89,9 +89,9 @@ public class EventController {
         model.addAttribute("eventId", eventId);
         model.addAttribute("attendances", event.getAttendances());
         model.addAttribute("filterData", new FilterAttendanceFormData());
-        for (User user : userService.all()) {
-            if (user.getId().equals(visitorId)) {
-                if (user.getRole() == UserRole.VISITOR)
+        for (UserReplica userReplica : userReplicaService.all()) {
+            if (userReplica.getId().equals(visitorId)) {
+                if (userReplica.getRole() == UserRole.VISITOR)
                     return "Visitor/showEvent";
                 else
                     return "Organizer/showEventOrganizer";
@@ -111,7 +111,7 @@ public class EventController {
                 filterData.getLanguage(),
                 filterData.getDateOfBirth()));
         model.addAttribute("filterData", new FilterAttendanceFormData());
-        for (User user : userService.all()) {
+        for (UserReplica user : userReplicaService.all()) {
             if (user.getId().equals(visitorId)) {
                 if (user.getRole() == UserRole.VISITOR)
                     return "Visitor/showEvent";

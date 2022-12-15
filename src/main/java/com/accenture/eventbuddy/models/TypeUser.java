@@ -34,6 +34,7 @@ public class TypeUser {
         user.setPhoneNumber(phoneNumber);
         user.setGender(gender);
         user.setLanguages(language);
+        user.setDescription(description);
 
         if(dateOfBirth!=null) {
             try {
