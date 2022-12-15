@@ -16,9 +16,6 @@ function ConnectToast(){
     const toast = new bootstrap.Toast(toastLiveExample)
     toast.show()
 }
-
-
-
 </script>
 <nav class="navbar sticky-top navbar-dark bg-dark">
     <form>
@@ -66,7 +63,7 @@ function ConnectToast(){
                  height: 300px;
                  padding: 10px;">
                         <div>
-                            <img th:src="@{/assets/images/event.png}" alt="Bootcamp" height="300px" width="600px">
+                            <img th:src="@{/assets/images/event ({id}).png(id=${event.eventId})}" height="300px" width="600px">
                         </div>
                     </div>
                 </div>
