@@ -1,51 +1,54 @@
 package com.accenture.eventbuddy.controllers;
 
-import com.accenture.eventbuddy.models.Organizer;
-import com.accenture.eventbuddy.services.OrganizerService;
+import com.accenture.eventbuddy.auth.UserRole;
+import com.accenture.eventbuddy.models.UserReplica;
+import com.accenture.eventbuddy.services.UserReplicaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(path = "organizer")
 public class OrganizerController {
 
     @Autowired
-    private OrganizerService organizerService;
+    private UserReplicaService userReplicaService;
 
-    //Add organizer POST
+    //Add userReplica POST
     @RequestMapping(value = {"/addOrganizer"}, method = RequestMethod.POST)
-    public String saveOrganizer(@ModelAttribute("organizerForm") Organizer organizer) {
-        if (organizer != null) {
-            organizerService.storeOrganizer(organizer);
-            return "redirect:/showOrganizer/" + organizer.getOrganizerId();
+    public String saveOrganizer(@ModelAttribute("organizerForm") UserReplica userReplica) {
+        if (userReplica != null) {
+            userReplicaService.storeUserReplica(userReplica);
+            return "redirect:/showOrganizer/" + userReplica.getId();
         } else return "redirect:/notFoundError";
     }
 
     //Delete organizer
     @RequestMapping(value = {"/deleteOrganizer"}, method = RequestMethod.POST)
     public String deleteOrganizer(@RequestParam Long organizerId) {
-        organizerService.deleteById(organizerId);
+        userReplicaService.deleteById(organizerId);
         return "redirect:/organizerList";
     }
 
     //Show organizer list
     @RequestMapping(value = {"organizerList"}, method = RequestMethod.GET)
     public String organizers(Model model) {
-        List<Organizer> organizers = organizerService.all();
-        model.addAttribute("organizers", organizers);
+        List<UserReplica> userReplicas = userReplicaService.all();
+        model.addAttribute("userReplicas",
+                userReplicas.stream().filter(userReplica -> userReplica.getRole()== UserRole.ORGANIZER).collect(Collectors.toList()));
         return "organizerList";
     }
 
     //Show specific organizer
-    @RequestMapping(value = {"/showOrganizer/{organizerId}"}, method = RequestMethod.GET)
-    public String organizer(@PathVariable("organizerId") Long organizerId, Model model) {
-        Organizer organizer = organizerService.getById(organizerId);
-        model.addAttribute("organizer", organizer);
-        model.addAttribute("event", organizer.getEvent());
+    @RequestMapping(value = {"/showOrganizer/{userId}"}, method = RequestMethod.GET)
+    public String organizer(@PathVariable("userReplicaId") Long userReplicaId, Model model) {
+        UserReplica userReplica = userReplicaService.getById(userReplicaId);
+        model.addAttribute("userReplica", userReplica);
+        model.addAttribute("event", userReplica.getEvents());
         return "showOrganizer";
     }
 }

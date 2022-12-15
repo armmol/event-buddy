@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,9 +24,9 @@ public class Event{
     @Enumerated(EnumType.STRING)
     private Genre genre;
 
-    @ManyToOne(targetEntity = Organizer.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = UserReplica.class, cascade = CascadeType.ALL)
     @JoinColumn(name="org_col")
-    private Organizer organizer;
+    private UserReplica userReplica;
 
     @ManyToOne(targetEntity = Address.class, cascade = CascadeType.ALL)
     @JoinColumn(name="address_col")

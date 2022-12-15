@@ -1,13 +1,11 @@
 package com.accenture.eventbuddy.controllers;
 
 
-import com.accenture.eventbuddy.auth.User;
 import com.accenture.eventbuddy.models.Attendance;
 import com.accenture.eventbuddy.models.Match;
-import com.accenture.eventbuddy.models.Visitor;
+import com.accenture.eventbuddy.models.UserReplica;
 import com.accenture.eventbuddy.services.MatchService;
-import com.accenture.eventbuddy.services.UserService;
-import com.accenture.eventbuddy.services.VisitorService;
+import com.accenture.eventbuddy.services.UserReplicaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,10 +21,7 @@ public class MatchController {
     private MatchService matchService;
 
     @Autowired
-    UserService userService;
-
-    @Autowired
-    VisitorService visitorService;
+    UserReplicaService userReplicaService;
 
     @RequestMapping(value = {"/addMatch"}, method = RequestMethod.GET)
     public String addMatch(@PathVariable Long id, Model model) {
@@ -44,13 +39,13 @@ public class MatchController {
 
     @GetMapping("/{id}/matches")
     public String getAllMatches(@PathVariable Long id, Model model) {
-        User user = userService.getById(id);
-        for (Visitor visitor : visitorService.all()) {
-            if (visitor.getUser().getId().equals(id)) {
+        UserReplica user = userReplicaService.getById(id);
+        for (UserReplica userReplica : userReplicaService.all()) {
+            if (userReplica.getId().equals(id)) {
                 List<Match> visitorMatches = matchService.findListOfMatchesForSpecificVisitor(id);
                 visitorMatches.forEach(i -> {
                     Attendance tempAttendance;
-                    if (i.getAttendance1().getVisitor().getVisitorId().equals(id)) {
+                    if (i.getAttendance1().getUserReplica().getId().equals(id)) {
                         tempAttendance = i.getAttendance2();
                         i.setAttendance2(i.getAttendance1());
                         i.setAttendance1(tempAttendance);

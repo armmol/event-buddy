@@ -153,10 +153,10 @@ function ConnectToast(){
                 <tbody>
                 <tr>
                 <tr th:each="attendee : ${attendances}">
-                    <td th:text="${attendee.visitor.visitorName}">
-                    <td th:text="${attendee.visitor.visitorSurname}">
-                    <td th:text="${attendee.visitor.gender}">
-                    <td th:text="${attendee.visitor.visitorDescription}">
+                    <td th:text="${attendee.userReplica.name}">
+                    <td th:text="${attendee.userReplica.surname}">
+                    <td th:text="${attendee.userReplica.gender}">
+                    <td th:text="${attendee.userReplica.description}">
                     <td>
                         <a class="btn btn-outline-light"
                            th:href="@{/match/add/{visitorId}/{attId}(visitorId=${visitorId},attId=${attendee.attendanceId})}">

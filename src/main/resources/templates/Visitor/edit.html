@@ -35,17 +35,17 @@
                 <div class="card" style="border-radius: 15px;" >
                     <div class="card-body text-center" style="
                  border: 3px solid white;background-image: url('/assets/images/background.png');">
-                        <h4 style="color:#DFF3E4;" class="mb-2" th:inline="text">[[${visitor.visitorName}]] [[${visitor.visitorSurname}]]</h4>
+                        <h4 style="color:#DFF3E4;" class="mb-2" th:inline="text">[[${visitor.name}]] [[${visitor.surname}]]</h4>
                         <div class="text-allign-center" style="color:#DFF3E4;">
-                            <p class="text-center mb-4" style="color:#DFF3E4" th:inline="text">[[${visitor.user.username}]]<span class="text-center mx-2">|</span>[[${visitor.visitorEmail}]]</p>
+                            <p class="text-center mb-4" style="color:#DFF3E4" th:inline="text">[[${visitor.username}]]<span class="text-center mx-2">|</span>[[${visitor.email}]]</p>
                         </div>
-                        <form action="#" th:action="@{/visitor/{id}/visitorProfile/edit(id=${visitor.visitorId})}" th:object="${visitor}" method="post" >
+                        <form action="#" th:action="@{/visitor/{id}/visitorProfile/edit(id=${visitor.id})}" th:object="${visitor}" method="post" >
                             <div class="">
                                 <div class="card mb-4 mb-md-0">
                                     <div class="card-body" style="border: 3px solid white;background-image: url('/assets/images/background.png');">
                                         <p class="mb-3"><span style="color:#DFF3E4; font-size: 1.5rem" class="text font-italic me-1 ">Description</span></p>
 
-                                        <textarea class="form-control" rows="5" th:field="*{visitorDescription}" th:placeholder="*{visitorDescription}"></textarea>
+                                        <textarea class="form-control" rows="5" th:field="*{visitorDescription}" th:placeholder="*{description}"></textarea>
 
                                     </div>
                                 </div>
@@ -53,7 +53,7 @@
                             <a type="button"
                                class="btn btn-outline-light"
                                style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
-                               th:href="@{/visitor/{id}/visitorProfile/personal(id=${visitor.visitorId})}">Cancel changes
+                               th:href="@{/visitor/{id}/visitorProfile/personal(id=${visitor.id})}">Cancel changes
 <!--                            <button type="button" class="btn btn-outline-light" style="color:#DFF3E4; border: 3px solid #DFF3E4;">-->
 <!--                                Cancel changes-->
 <!--                            </button>-->

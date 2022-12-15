@@ -45,11 +45,11 @@
         <tbody>
         <tr>
         <tr th:each="match : ${visitorMatches}">
-            <td th:text="${match.attendance1.visitor.visitorName}">
+            <td th:text="${match.attendance1.visitor.name}">
             <td th:text="${match.attendance1.visitor.getAge}">
             <td th:text="${match.attendance1.visitor.gender}">
-            <td th:text="${match.attendance1.visitor.visitorDescription}">
-            <td th:text="${match.attendance1.visitor.visitorEmail}">
+            <td th:text="${match.attendance1.visitor.description}">
+            <td th:text="${match.attendance1.visitor.email}">
             <td th:text="${match.attendance1.event.name}">
         </tr>
         </tbody>

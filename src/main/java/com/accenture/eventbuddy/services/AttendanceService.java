@@ -42,9 +42,9 @@ public class AttendanceService implements AttendanceServiceContract {
     public List<Attendance> getMatchingAttendanceList(Event event, Gender gender, Language language, Date dateOfBirth) {
         return event.getAttendances()
                 .stream().filter(i ->
-                        i.getVisitor().getGender() == gender
-                                && i.getVisitor().getDateOfBirth().after(dateOfBirth)
-                                && i.getVisitor().getVisitorLanguage() == language)
+                        i.getUserReplica().getGender() == gender
+                                && i.getUserReplica().getDateOfBirth().after(dateOfBirth)
+                                && i.getUserReplica().getLanguages() == language)
                 .toList();
     }
 

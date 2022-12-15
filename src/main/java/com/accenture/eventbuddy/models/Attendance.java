@@ -1,9 +1,7 @@
 package com.accenture.eventbuddy.models;
+
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.util.Date;
 
 
 @Entity(name="attendance_table")
@@ -18,8 +16,8 @@ public class Attendance {
     @ManyToOne(targetEntity = Event.class, cascade = CascadeType.ALL)
     private Event event;
     @JoinColumn(name="visit_col")
-    @ManyToOne(targetEntity = Visitor.class, cascade = CascadeType.ALL)
-    private Visitor visitor;
+    @ManyToOne(targetEntity = UserReplica.class, cascade = CascadeType.ALL)
+    private UserReplica userReplica;
 
 
 }

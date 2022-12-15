@@ -4,10 +4,10 @@ package com.accenture.eventbuddy.services;
 import com.accenture.eventbuddy.contracts.MatchServiceContract;
 import com.accenture.eventbuddy.models.Attendance;
 import com.accenture.eventbuddy.models.Match;
-import com.accenture.eventbuddy.models.Visitor;
+import com.accenture.eventbuddy.models.UserReplica;
 import com.accenture.eventbuddy.repo.AttendanceRepository;
 import com.accenture.eventbuddy.repo.MatchRepository;
-import com.accenture.eventbuddy.repo.VisitorRepository;
+import com.accenture.eventbuddy.repo.UserReplicaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,12 +18,12 @@ public class MatchService implements MatchServiceContract {
 
     private final MatchRepository matchRepository;
     private final AttendanceRepository attendanceRepository;
-    private final VisitorRepository visitorRepository;
+    private final UserReplicaRepository userReplicaRepository;
 
-    public MatchService(MatchRepository matchRepository, AttendanceRepository attendanceRepository, VisitorRepository visitorRepository) {
+    public MatchService(MatchRepository matchRepository, AttendanceRepository attendanceRepository, UserReplicaRepository userReplicaRepository) {
         this.matchRepository = matchRepository;
         this.attendanceRepository = attendanceRepository;
-        this.visitorRepository = visitorRepository;
+        this.userReplicaRepository = userReplicaRepository;
     }
 
     @Override
@@ -31,24 +31,24 @@ public class MatchService implements MatchServiceContract {
         matchRepository.save(match);
     }
 
-    public Match findOrCreateMatch(Long visitorId, Long attendanceId) {
+    public Match findOrCreateMatch(Long userReplicaId, Long attendanceId) {
         List<Match> matches = (List<Match>) matchRepository.findAll();
         Match match = matches.stream().filter(i ->
                 (
                         i.getAttendance1().getAttendanceId().equals(attendanceId) &&
-                                i.getAttendance2().getVisitor().getVisitorId().equals(visitorId)
+                                i.getAttendance2().getUserReplica().getId().equals(userReplicaId)
                 ) ||
                         (i.getAttendance2().getAttendanceId().equals(attendanceId) &&
-                                i.getAttendance1().getVisitor().getVisitorId().equals(attendanceId)))
+                                i.getAttendance1().getUserReplica().getId().equals(attendanceId)))
                 .findFirst().orElse(null);
         if (match == null) {
             match = new Match();
-            Visitor visitor = visitorRepository.findById(visitorId).orElse(null);
+            UserReplica userReplica = userReplicaRepository.findById(userReplicaId).orElse(null);
             Attendance secondAttendance = attendanceRepository.findById(attendanceId).orElse(null);
-            Attendance callersAttendance = attendanceRepository.findByEventAndVisitor(secondAttendance.getEvent(), visitor).orElse(null);
+            Attendance callersAttendance = attendanceRepository.findByEventAndUserReplica(secondAttendance.getEvent(), userReplica).orElse(null);
             if (callersAttendance == null) {
                 callersAttendance = new Attendance();
-                callersAttendance.setVisitor(visitor);
+                callersAttendance.setUserReplica(userReplica);
                 callersAttendance.setEvent(secondAttendance.getEvent());
             }
             match.setAttendance1(callersAttendance);
@@ -74,11 +74,11 @@ public class MatchService implements MatchServiceContract {
     }
 
     @Override
-    public List<Match> findListOfMatchesForSpecificVisitor(Long visitorId) {
+    public List<Match> findListOfMatchesForSpecificVisitor(Long userReplicaId) {
         List<Match> visitorMatchList = new ArrayList<>();
         for (Match match : matchRepository.findAll()) {
-            if (match.getAttendance1().getVisitor().getVisitorId().equals(visitorId) ||
-                    match.getAttendance2().getVisitor().getVisitorId().equals(visitorId)) {
+            if (match.getAttendance1().getUserReplica().getId().equals(userReplicaId) ||
+                    match.getAttendance2().getUserReplica().getId().equals(userReplicaId)) {
                 visitorMatchList.add(match);
             }
         }

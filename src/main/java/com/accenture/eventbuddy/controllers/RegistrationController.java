@@ -1,12 +1,8 @@
 package com.accenture.eventbuddy.controllers;
 
-import com.accenture.eventbuddy.auth.User;
-import com.accenture.eventbuddy.models.Organizer;
 import com.accenture.eventbuddy.models.TypeUser;
-import com.accenture.eventbuddy.models.Visitor;
-import com.accenture.eventbuddy.services.OrganizerService;
-import com.accenture.eventbuddy.services.UserService;
-import com.accenture.eventbuddy.services.VisitorService;
+import com.accenture.eventbuddy.models.UserReplica;
+import com.accenture.eventbuddy.services.UserReplicaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,12 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(path = "registration")
 public class RegistrationController {
     @Autowired
-    private VisitorService visitorService;
-    @Autowired
-    private OrganizerService organizerService;
-
-    @Autowired
-    private UserService userService;
+    private UserReplicaService userReplicaService;
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
@@ -35,31 +26,31 @@ public class RegistrationController {
 
     @PostMapping("/register/saveVisitor")
     public String saveVisitor(@ModelAttribute("user") TypeUser user) {
-        Visitor visitor = user.isVisitor();
-        visitorService.storeVisitor(visitor);
+        UserReplica userReplica = user.isUserReplica();
+        userReplicaService.storeUserReplica(userReplica);
         System.out.println("Visitor");
-        return "redirect:/event/" + visitor.getUser().getId() + "/eventList";
+        return "redirect:/event/" + userReplica.getId() + "/eventList";
     }
 
-    @PostMapping("/register/saveOrganizer")
-    public String saveOrganizer(@ModelAttribute("user") TypeUser user) {
-        Organizer organizer = user.isOrganizer();
-        organizerService.storeOrganizer(user.isOrganizer());
-        System.out.println("Organizer");
-        return "redirect:/event/" + organizer.getUser().getId() + "/eventList";
-    }
+//    @PostMapping("/register/saveOrganizer")
+//    public String saveOrganizer(@ModelAttribute("user") TypeUser user) {
+//        Organizer organizer = user.isOrganizer();
+//        organizerService.storeOrganizer(user.isOrganizer());
+//        System.out.println("Organizer");
+//        return "redirect:/event/" + organizer.getUser().getId() + "/eventList";
+//    }
 
     @GetMapping("/login")
     public String login(Model model) {
-        User user = new User();
-        model.addAttribute("user", user);
+        UserReplica userReplica = new UserReplica();
+        model.addAttribute("user", userReplica);
         return "login";
     }
 
     @PostMapping("/login/check")
-    public String loginVisitor(@ModelAttribute("user") User user) {
-        for (User userLooper : userService.all()) {
-            if (userLooper.equals(user))
+    public String loginVisitor(@ModelAttribute("user") UserReplica userReplica) {
+        for (UserReplica userLooper : userReplicaService.all()) {
+            if (userLooper.equals(userReplica))
                 return "redirect:/event/" + userLooper.getId() + "/eventList";
         }
         return "login";

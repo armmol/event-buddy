@@ -1,12 +1,9 @@
 package com.accenture.eventbuddy.controllers;
 
-import com.accenture.eventbuddy.auth.User;
 import com.accenture.eventbuddy.auth.UserRole;
-import com.accenture.eventbuddy.models.Organizer;
-import com.accenture.eventbuddy.models.Visitor;
-import com.accenture.eventbuddy.repo.UserRepository;
-import com.accenture.eventbuddy.services.OrganizerService;
-import com.accenture.eventbuddy.services.VisitorService;
+import com.accenture.eventbuddy.models.UserReplica;
+import com.accenture.eventbuddy.repo.UserReplicaRepository;
+import com.accenture.eventbuddy.services.UserReplicaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,89 +18,88 @@ import java.util.Optional;
 @RequestMapping("/visitor")
 public class VisitorController {
     @Autowired
-    private VisitorService visitorService;
+    private UserReplicaRepository userReplicaRepository;
+    
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private OrganizerService organizerService;
+    private UserReplicaService userReplicaService;
 
     @RequestMapping(value = {"/add"}, method = RequestMethod.GET)
-    public String addVisitor(Model model) {
-        model.addAttribute("visitor", new Visitor());
+    public String addUserReplica(Model model) {
+        model.addAttribute("visitor", new UserReplica());
         return "visitor/add";
     }
 
     @PostMapping("/add")
-    public String addVisitor(@ModelAttribute Visitor visitor) {
-        visitorService.storeVisitor(visitor);
+    public String addUserReplica(@ModelAttribute UserReplica visitor) {
+        userReplicaService.storeUserReplica(visitor);
         return "redirect:/visitor/all";
     }
 
     @GetMapping("/all")
-    public String allVisitors(Model model) {
-        List<Visitor> visitors = visitorService.all();
+    public String allUserReplicas(Model model) {
+        List<UserReplica> visitors = userReplicaService.all();
         model.addAttribute("visitors", visitors);
         return "visitor/all";
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteVisitor(@PathVariable Long id) {
-        visitorService.deleteById(id);
+    public String deleteUserReplica(@PathVariable Long id) {
+        userReplicaService.deleteById(id);
         return "redirect:/visitor/all";
     }
 
     @GetMapping("/edit/{id}")
-    public String editVisitor(@PathVariable Long id, Model model) {
-        Visitor visitor = visitorService.getById(id);
-        model.addAttribute("visitor", visitor);
+    public String editUserReplica(@PathVariable Long id, Model model) {
+        UserReplica userReplica = userReplicaService.getById(id);
+        model.addAttribute("visitor", userReplica);
         return "visitor/edit";
     }
 
     @PostMapping("/edit/{id}")
-    public String editVisitor(@PathVariable Long id, @ModelAttribute Visitor visitor) {
-        visitorService.updateVisitor(visitor);
+    public String editUserReplica(@PathVariable Long id, @ModelAttribute UserReplica visitor) {
+        userReplicaService.updateUserReplica(visitor);
         return "redirect:/visitor/all";
     }
 
     @GetMapping("/details/{id}")
-    public String detailsVisitor(@PathVariable Long id, Model model) {
-        Visitor visitor = visitorService.getById(id);
+    public String detailsUserReplica(@PathVariable Long id, Model model) {
+        UserReplica visitor = userReplicaService.getById(id);
         model.addAttribute("visitor", visitor);
         return "visitor/details";
     }
 
     @RequestMapping(value = {"visitorList"}, method = RequestMethod.GET)
     public String visitors(Model model) {
-        List<Visitor> visitors = visitorService.all();
+        List<UserReplica> visitors = userReplicaService.all();
         model.addAttribute("visitors", visitors);
         return "visitorList";
     }
 
-    @RequestMapping(value = {"/showVisitor/{id}"}, method = RequestMethod.GET)
-    public String showVisitor(@PathVariable("id") Long id, Model model) {
-        Visitor visitor = visitorService.getById(id);
+    @RequestMapping(value = {"/showUserReplica/{id}"}, method = RequestMethod.GET)
+    public String showUserReplica(@PathVariable("id") Long id, Model model) {
+        UserReplica visitor = userReplicaService.getById(id);
         model.addAttribute("visitor", visitor);
-        return "showVisitor";
+        return "showUserReplica";
     }
 
 
     @RequestMapping(value = {"/{id}/visitorProfile"}, method = RequestMethod.GET)
-    public String showEditVisitorProfilePage(Model model, @PathVariable Long id) {
-        Optional<User> user = userRepository.findById(id);
+    public String showEditUserReplicaProfilePage(Model model, @PathVariable Long id) {
+        Optional<UserReplica> user = userReplicaRepository.findById(id);
         model.addAttribute("user", id);
         if (user.isPresent()) {
             UserRole role = user.get().getRole();
             if (role == UserRole.VISITOR) {
-                for (Visitor visitor : visitorService.all()) {
-                    if (visitor.getUser().getId().equals(id)) {
-                        model.addAttribute("visitor", visitor);
+                for (UserReplica userReplica : userReplicaService.all()) {
+                    if (userReplica.getId().equals(id)) {
+                        model.addAttribute("visitor", userReplica);
                         return "visitor/show";
                     }
                 }
             } else {
-                for (Organizer organizer : organizerService.all()) {
-                    if (organizer.getUser().getId().equals(id)) {
-                        model.addAttribute("organizer", organizer);
+                for (UserReplica userReplica : userReplicaService.all()) {
+                    if (userReplica.getId().equals(id)) {
+                        model.addAttribute("organizer", userReplica);
                         return "organizer/show";
                     }
                 }
@@ -115,22 +111,22 @@ public class VisitorController {
 
 
     @RequestMapping(value = {"/{id}/visitorProfile/personal"}, method = RequestMethod.GET)
-    public String showEditVisitorProfilePersonalPage(Model model, @PathVariable Long id) {
-        Optional<User> user = userRepository.findById(id);
+    public String showProfilePersonalPage(Model model, @PathVariable Long id) {
+        Optional<UserReplica> user = userReplicaRepository.findById(id);
         model.addAttribute("userId", id);
         if (user.isPresent()) {
             UserRole role = user.get().getRole();
             if (role == UserRole.VISITOR) {
-                for (Visitor visitor : visitorService.all()) {
-                    if (visitor.getUser().getId().equals(id)) {
-                        model.addAttribute("visitor", visitor);
+                for (UserReplica userReplica : userReplicaService.all()) {
+                    if (userReplica.getId().equals(id)) {
+                        model.addAttribute("visitor", userReplica);
                         return "visitor/showPersonal";
                     }
                 }
             } else {
-                for (Organizer organizer : organizerService.all()) {
-                    if (organizer.getUser().getId().equals(id)) {
-                        model.addAttribute("organizer", organizer);
+                for (UserReplica userReplica : userReplicaService.all()) {
+                    if (userReplica.getId().equals(id)) {
+                        model.addAttribute("organizer", userReplica);
                         return "organizer/showPersonal";
                     }
                 }
@@ -141,11 +137,10 @@ public class VisitorController {
     }
 
     @RequestMapping(value = {"/{id}/visitorProfile/edit"}, method = RequestMethod.GET)
-    public String showEditVisitorProfilePage(Model model, @PathVariable Long id, Principal principal) {
-        Optional<User> user = userRepository.findById(id);
+    public String showEditUserReplicaProfilePage(Model model, @PathVariable Long id, Principal principal) {
+        Optional<UserReplica> user = userReplicaRepository.findById(id);
         if (user.isPresent()) {
-            Visitor visitor = visitorService.getByUser(user.get());
-            model.addAttribute("visitor", visitor);
+            model.addAttribute("visitor", user);
             model.addAttribute("userId", id);
             return "visitor/edit";
         }
@@ -153,15 +148,15 @@ public class VisitorController {
     }
 
     @RequestMapping(value = {"/{id}/visitorProfile/edit"}, method = RequestMethod.POST)
-    public String editVisitorProfile(@ModelAttribute("visitor") Visitor visitor, BindingResult result, Model model, @PathVariable Long id) {
+    public String editUserReplicaProfile(@ModelAttribute("userReplica") UserReplica userReplica, BindingResult result, Model model, @PathVariable Long id) {
         if (result.hasErrors()) {
-            visitor.setVisitorId(id);
-            return "visitor/edit";
+            userReplica.setId(id);
+            return "userReplica/edit";
         }
-        Visitor visitor1 = visitorService.getById(id);
-        visitor1.setVisitorDescription(visitor.getVisitorDescription());
-        visitorService.updateVisitor(visitor1);
+        UserReplica userReplica1 = userReplicaService.getById(id);
+        userReplica1.setDescription(userReplica.getDescription());
+        userReplicaService.updateUserReplica(userReplica1);
         model.addAttribute("user", id);
-        return "redirect:/visitor/" + visitor1.getVisitorId() + "/visitorProfile/personal";
+        return "redirect:/userReplica/" + userReplica1.getId() + "/visitorProfile/personal";
     }
 }

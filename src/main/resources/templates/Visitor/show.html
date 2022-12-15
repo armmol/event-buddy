@@ -34,16 +34,16 @@
                     <div class="card-body text-center" style="
                  border: 3px solid white;background-image: url('/assets/images/background.png');">
                         <h4 style="color:#DFF3E4;" class="mb-2"
-                            th:text="${visitor.visitorName + ' ' + visitor.visitorSurname}">name</h4>
+                            th:text="${visitor.name + ' ' + visitor.surname}">name</h4>
                         <p class="text mb-4" style="color:#DFF3E4" th:inline="text">[[${visitor.user.username}]]<span
-                                class="mx-2">|</span>[[${visitor.visitorEmail}]]</p>
+                                class="mx-2">|</span>[[${visitor.email}]]</p>
                         <div class="d-flex justify-content-center">
 
                         </div>
 
                         <a type="button" class="btn btn-outline-light"
                            style="color:#DFF3E4; border: 3px solid #DFF3E4;"
-                           th:href="'mailto:' + ${visitor.visitorEmail}">
+                           th:href="'mailto:' + ${visitor.email}">
                             Message now
                         </a>
                     </div>
@@ -61,7 +61,7 @@
                                     style="color:#DFF3E4;" th:text="${visitor.gender}" class="text">gender</span>
                                 <p></p>
                                 <p class="mb-1" style="color:#DFF3E4; font-size: 1rem;">Language</p><span
-                                    style="color:#DFF3E4;" th:text="${visitor.visitorLanguage}"
+                                    style="color:#DFF3E4;" th:text="${visitor.languages}"
                                     class="text">language</span>
 
                             </div>
@@ -73,7 +73,7 @@
                                 <p class="mb-3"><span style="color:#DFF3E4; font-size: 1.5rem"
                                                       class="text font-italic me-1 ">Description</span></p>
                                 <p class="mb-1" style="color:#DFF3E4; font-size: 1rem;"
-                                   th:text="${visitor.visitorDescription}">description</p>
+                                   th:text="${visitor.description}">description</p>
 
                             </div>
                         </div>
