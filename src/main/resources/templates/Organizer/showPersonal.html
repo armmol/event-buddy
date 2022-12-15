@@ -10,16 +10,23 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <nav class="navbar navbar-dark bg-dark">
   <form>
-    <a type="button"
-       class="btn btn-outline-light"
-       style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
-       th:href="@{~/matches}">Matches
-    </a>
-    <a type="button"
-       class="btn btn-outline-light"
-       style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
-       th:href="@{/event/{id}/eventList(id=${user})}">Events
-    </a>
+    <form>
+      <a type="button"
+         class="btn btn-outline-light"
+         style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+         th:href="@{/match/{id}/matches(id=${userId})}">Matches
+      </a>
+      <a type="button"
+         class="btn btn-outline-light"
+         style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+         th:href="@{/event/{id}/eventList(id=${userId})}">Events
+      </a>
+      <a type="button"
+         class="btn btn-outline-light"
+         style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+         th:href="@{/registration/login}">Log Out
+      </a>
+    </form>
   </form>
 </nav>
 <section class="">
