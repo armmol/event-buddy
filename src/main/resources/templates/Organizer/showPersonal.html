@@ -40,9 +40,9 @@
                 <div class="card" style="border-radius: 15px;">
                     <div class="card-body text-center" style="
                  border: 3px solid white;background-image: url('/assets/images/background.png');">
-                        <h4 style="color:#DFF3E4;" class="mb-2" th:text="${organizer.organizerName}">name</h4>
-                        <p class="text mb-4" style="color:#DFF3E4" th:inline="text">[[${organizer.user.username}]]<span
-                                class="mx-2">|</span>[[${organizer.organizerEmail}]]<span class="mx-2">|</span>[[${organizer.phoneNumber}]]
+                        <h4 style="color:#DFF3E4;" class="mb-2" th:text="${organizer.name}">name</h4>
+                        <p class="text mb-4" style="color:#DFF3E4" th:inline="text">[[${organizer.username}]]<span
+                                class="mx-2">|</span>[[${organizer.email}]]<span class="mx-2">|</span>[[${organizer.phoneNumber}]]
 
                         </p>
                         <div class="d-flex justify-content-center">

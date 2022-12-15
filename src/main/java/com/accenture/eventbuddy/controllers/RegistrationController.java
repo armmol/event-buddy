@@ -24,7 +24,7 @@ public class RegistrationController {
         return "registration";
     }
 
-    @PostMapping("/register/saveVisitor")
+    @PostMapping("/register/saveUser")
     public String saveVisitor(@ModelAttribute("user") TypeUser user) {
         UserReplica userReplica = user.isUserReplica();
         userReplicaService.storeUserReplica(userReplica);

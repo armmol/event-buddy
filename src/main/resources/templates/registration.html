@@ -36,7 +36,7 @@ function validateOrganizer(){
                 return false;
         }
         else{
-            document.getElementById('registrationForm').setAttribute("th:action","@{register/saveOrganizer}");
+            document.getElementById('registrationForm').setAttribute("th:action","@{register/saveUser}");
             return true;
         }
 }
@@ -54,7 +54,7 @@ function validateVisitor(){
                 return false;
         }
         else{
-            document.getElementById('registrationForm').setAttribute("th:action","@{register/saveVisitor}");
+            document.getElementById('registrationForm').setAttribute("th:action","@{register/saveUser}");
             return true;
         }
 }
@@ -120,7 +120,7 @@ function validateVisitor(){
                         <form id="registrationForm"
                               method="post"
                               role="form"
-                              th:action="@{register/saveVisitor}"
+                              th:action="@{register/saveUser}"
                               th:object="${user}">
                             <h1 style="color:#DFF3E4;">If you are a visitor, fill this:</h1>
                             <div id="username-wasValid" class="was-validated">
@@ -311,7 +311,7 @@ function validateVisitor(){
                         <form
                                 method="post"
                                 role="form"
-                                th:action="@{register/saveOrganizer}"
+                                th:action="@{register/saveUser}"
                                 th:object="${user}">
                             <h1 style="color:#DFF3E4;">If you are an organizer, fill this:</h1>
                             <div id="username-wasValidOrganizer" class="was-validated">

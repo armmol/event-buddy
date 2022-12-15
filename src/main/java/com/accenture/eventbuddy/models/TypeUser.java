@@ -34,11 +34,14 @@ public class TypeUser {
         user.setPhoneNumber(phoneNumber);
         user.setGender(gender);
         user.setLanguages(language);
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        try {
-            user.setDateOfBirth(formatter.parse(dateOfBirth));
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
+
+        if(dateOfBirth!=null) {
+            try {
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+                user.setDateOfBirth(formatter.parse(dateOfBirth));
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
         }
         return user;
     }

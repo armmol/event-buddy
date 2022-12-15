@@ -24,7 +24,7 @@ public class Event{
     @Enumerated(EnumType.STRING)
     private Genre genre;
 
-    @ManyToOne(targetEntity = UserReplica.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = UserReplica.class, cascade = CascadeType.ALL,  fetch = FetchType.LAZY)
     @JoinColumn(name="org_col")
     private UserReplica userReplica;
 

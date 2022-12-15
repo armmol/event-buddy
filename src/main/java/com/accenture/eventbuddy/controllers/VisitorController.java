@@ -140,7 +140,7 @@ public class VisitorController {
     public String showEditUserReplicaProfilePage(Model model, @PathVariable Long id, Principal principal) {
         Optional<UserReplica> user = userReplicaRepository.findById(id);
         if (user.isPresent()) {
-            model.addAttribute("visitor", user);
+            model.addAttribute("visitor", user.get());
             model.addAttribute("userId", id);
             return "visitor/edit";
         }
@@ -148,15 +148,15 @@ public class VisitorController {
     }
 
     @RequestMapping(value = {"/{id}/visitorProfile/edit"}, method = RequestMethod.POST)
-    public String editUserReplicaProfile(@ModelAttribute("userReplica") UserReplica userReplica, BindingResult result, Model model, @PathVariable Long id) {
+    public String editUserReplicaProfile(@ModelAttribute("visitor") UserReplica userReplica, BindingResult result, Model model, @PathVariable Long id) {
         if (result.hasErrors()) {
             userReplica.setId(id);
-            return "userReplica/edit";
+            return "visitor/edit";
         }
         UserReplica userReplica1 = userReplicaService.getById(id);
         userReplica1.setDescription(userReplica.getDescription());
         userReplicaService.updateUserReplica(userReplica1);
         model.addAttribute("user", id);
-        return "redirect:/userReplica/" + userReplica1.getId() + "/visitorProfile/personal";
+        return "redirect:/visitor/" + userReplica1.getId() + "/visitorProfile/personal";
     }
 }
