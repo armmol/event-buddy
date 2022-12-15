@@ -35,11 +35,12 @@
 </nav>
 <div class="container">
     <div class="row">
+        <h4 style="color:#DFF3E4;" class="mb-2" >name</h4>
         <div class="row row-cols-1 py-3 row-cols-md-3 g-4" style="padding: 20px">
-            <a style="text-decoration: none;" th:href="@{/event/{id}/showEvent/{id2}(id=${userId}, id2=${event.eventId})}"
+            <a style="text-decoration: none; color: white" th:href="@{/event/{id}/showEvent/{id2}(id=${userId}, id2=${event.eventId})}"
                th:each="event: ${events}">
                 <div class="col">
-                    <div class="card h-100">
+                    <div class="card h-100" style="border: 3px solid white;background-image: url('/assets/images/background.png');color:171738">
                         <img th:src="@{/assets/images/eventImg ({id}).jpg(id=${event.eventId})}" class="card-img-top" alt="Hollywood Sign on The Hill"/>
                         <div class="card-body">
                             <h5 class="card-title" th:text="${event.name}">Card title</h5>

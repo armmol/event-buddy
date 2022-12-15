@@ -1,28 +1,33 @@
-Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('a', 'VISITOR', 'a');
-Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('b', 'ORGANIZER', 'b');
-Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('c', 'ORGANIZER', 'c');
-Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('d', 'ORGANIZER', 'd');
-Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('e', 'ORGANIZER', 'e');
-Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('f', 'VISITOR', 'f');
-Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('g', 'VISITOR', 'g');
-Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('h', 'VISITOR', 'h');
-Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('testingpassword', 'VISITOR', 'HannaRa');
-Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('Nothing', 'ORGANIZER', 'nonono');
+--Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('a', 'VISITOR', 'a');
+--Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('b', 'ORGANIZER', 'b');
+--Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('c', 'ORGANIZER', 'c');
+--Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('d', 'ORGANIZER', 'd');
+--Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('e', 'ORGANIZER', 'e');
+--Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('f', 'VISITOR', 'f');
+--Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('g', 'VISITOR', 'g');
+--Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('h', 'VISITOR', 'h');
+--Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('testingpassword', 'VISITOR', 'HannaRa');
+--Insert into USER_TABLE (PASSWORD, ROLE, USERNAME) Values ('Nothing', 'ORGANIZER', 'nonono');
 
-Insert into VISITORS_TABLE (DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('1974-12-06', 'MAN', 'I’m very creative, communicative, and flexible', 'beastop0@tripadvisor.com', 'EN','Steve', 'Eastop', 1);
-Insert into VISITORS_TABLE (DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('1999-04-19', 'MAN', 'My hobbies are reading books and working out', 'mflicker1@boston.com', 'EN', 'Andrew', 'Flicker', 6);
-Insert into VISITORS_TABLE (DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('1998-06-25', 'WOMAN', 'My favourite hobby is travelling because I love discovering new cities and places around the world. ', 'uvenditti2@linkedin.com', 'LV', 'Anna', 'Venditti', 7);
-Insert into VISITORS_TABLE (DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('2010-01-28', 'OTHER', 'I like spending time in nature and capture all the wonderful moments of beauty with my camera', 'vyanov3@globo.com', 'LT', 'Eve', 'Yanov', 8);
-Insert into VISITORS_TABLE (DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('2001-10-06', 'WOMAN', 'I love trying new cuisine. As soon as a new restaurant opens, I would like to find a new friend to join in on the experience.', 'roconnor4@drupal.org', 'EN', 'Penelope', 'Connor', 9);
+Insert into USER_TABLE (PHONE_NUMBER, PASSWORD, ROLE, USERNAME, DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('', 'a', 'VISITOR', 'a', '1974-12-06', 'MAN', 'I’m very creative, communicative, and flexible', 'beastop0@tripadvisor.com', 'EN','Steve', 'Eastop', 1);
+Insert into USER_TABLE (PHONE_NUMBER, PASSWORD, ROLE, USERNAME, DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('', 'f', 'VISITOR', 'f', '1999-04-19', 'MAN', 'My hobbies are reading books and working out', 'mflicker1@boston.com', 'EN', 'Andrew', 'Flicker', 6);
+Insert into USER_TABLE (PHONE_NUMBER, PASSWORD, ROLE, USERNAME, DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('', 'g', 'VISITOR', 'g', '1998-06-25', 'WOMAN', 'My favourite hobby is travelling because I love discovering new cities and places around the world. ', 'uvenditti2@linkedin.com', 'LV', 'Anna', 'Venditti', 7);
+Insert into USER_TABLE (PHONE_NUMBER, PASSWORD, ROLE, USERNAME, DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('', 'h', 'VISITOR', 'h', '2010-01-28', 'OTHER', 'I like spending time in nature and capture all the wonderful moments of beauty with my camera', 'vyanov3@globo.com', 'LT', 'Eve', 'Yanov', 8);
+Insert into USER_TABLE (PHONE_NUMBER, PASSWORD, ROLE, USERNAME, DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('', 'testingpassword', 'VISITOR', 'HannaRa', '2001-10-06', 'WOMAN', 'I love trying new cuisine. As soon as a new restaurant opens, I would like to find a new friend to join in on the experience.', 'roconnor4@drupal.org', 'EN', 'Penelope', 'Connor', 9);
+Insert into USER_TABLE (PHONE_NUMBER, PASSWORD, ROLE, USERNAME, DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('836-710-1765', 'b', 'ORGANIZER', 'b', '2001-10-06', 'WOMAN', 'I love trying new cuisine. As soon as a new restaurant opens, I would like to find a new friend to join in on the experience.', 'roconnor4@drupal.org', 'EN', 'Penelope', 'Connor', 9);
+Insert into USER_TABLE (PHONE_NUMBER, PASSWORD, ROLE, USERNAME, DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('635-636-8732', 'c', 'ORGANIZER', 'c', '2001-10-06', 'WOMAN', 'I love trying new cuisine. As soon as a new restaurant opens, I would like to find a new friend to join in on the experience.', 'roconnor4@drupal.org', 'EN', 'Penelope', 'Connor', 9);
+Insert into USER_TABLE (PHONE_NUMBER, PASSWORD, ROLE, USERNAME, DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('141-431-4124', 'd', 'ORGANIZER', 'd', '2001-10-06', 'WOMAN', 'I love trying new cuisine. As soon as a new restaurant opens, I would like to find a new friend to join in on the experience.', 'roconnor4@drupal.org', 'EN', 'Penelope', 'Connor', 9);
+Insert into USER_TABLE (PHONE_NUMBER, PASSWORD, ROLE, USERNAME, DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('715-810-1953', 'e', 'ORGANIZER', 'e', '2001-10-06', 'WOMAN', 'I love trying new cuisine. As soon as a new restaurant opens, I would like to find a new friend to join in on the experience.', 'roconnor4@drupal.org', 'EN', 'Penelope', 'Connor', 9);
+Insert into USER_TABLE (PHONE_NUMBER, PASSWORD, ROLE, USERNAME, DATE_OF_BIRTH, GENDER, VISITOR_DESCRIPTION, VISITOR_EMAIL, VISITOR_LANGUAGE, VISITOR_NAME, VISITOR_SURNAME, USER_COL) values ('367-805-7317', 'Nothing', 'ORGANIZER', 'nonono', '2001-10-06', 'WOMAN', 'I love trying new cuisine. As soon as a new restaurant opens, I would like to find a new friend to join in on the experience.', 'roconnor4@drupal.org', 'EN', 'Penelope', 'Connor', 9);
 
 Insert into ADDRESS_TABLE ( CITY, COUNTRY) Values ( 'Kaunas', 'Lithuania');
 Insert into ADDRESS_TABLE ( CITY, COUNTRY) Values ( 'Vilnius', 'Lithuania');
 
-insert into ORGANIZERS_TABLE ( ORGANIZER_EMAIL, ORGANIZER_NAME, PHONE_NUMBER, USER_COL) values ( 'eventagency@agency.io', 'Event Agency', '836-710-1765', 2);
-insert into ORGANIZERS_TABLE ( ORGANIZER_EMAIL, ORGANIZER_NAME, PHONE_NUMBER, USER_COL) values ( 'fbotterman1@unicef.org', 'Eight Event', '635-636-8732', 3);
-insert into ORGANIZERS_TABLE ( ORGANIZER_EMAIL, ORGANIZER_NAME, PHONE_NUMBER, USER_COL) values ( 'vcastagne2@mapy.cz', 'Laboratorium', '141-431-4124', 4);
-insert into ORGANIZERS_TABLE ( ORGANIZER_EMAIL, ORGANIZER_NAME, PHONE_NUMBER, USER_COL) values ( 'gdrache3@mtv.com', 'TMF Production', '715-810-1953', 5);
-insert into ORGANIZERS_TABLE ( ORGANIZER_EMAIL, ORGANIZER_NAME, PHONE_NUMBER, USER_COL) values ( 'jledgister4@photobucket.com', 'Bravo Events', '367-805-7317', 10);
+--insert into ORGANIZERS_TABLE ( ORGANIZER_EMAIL, ORGANIZER_NAME, PHONE_NUMBER, USER_COL) values ( 'eventagency@agency.io', 'Event Agency', '836-710-1765', 2);
+--insert into ORGANIZERS_TABLE ( ORGANIZER_EMAIL, ORGANIZER_NAME, PHONE_NUMBER, USER_COL) values ( 'fbotterman1@unicef.org', 'Eight Event', '635-636-8732', 3);
+--insert into ORGANIZERS_TABLE ( ORGANIZER_EMAIL, ORGANIZER_NAME, PHONE_NUMBER, USER_COL) values ( 'vcastagne2@mapy.cz', 'Laboratorium', '141-431-4124', 4);
+--insert into ORGANIZERS_TABLE ( ORGANIZER_EMAIL, ORGANIZER_NAME, PHONE_NUMBER, USER_COL) values ( 'gdrache3@mtv.com', 'TMF Production', '715-810-1953', 5);
+--insert into ORGANIZERS_TABLE ( ORGANIZER_EMAIL, ORGANIZER_NAME, PHONE_NUMBER, USER_COL) values ( 'jledgister4@photobucket.com', 'Bravo Events', '367-805-7317', 10);
 
 insert into EVENT_TABLE ( DESCRIPTION, END_DATE, GENRE, NAME, START_DATE, ADDRESS_COL, ORG_COL) values ( 'Christmas is approaching, and one of the signs testifying to this is the Old Town Christmas Fair with sweet-smelling mulled wine, roasted almonds, glittering glazed gingerbread and local handcraft.', '2022-11-27 22:44:26', 'MARKET', 'Old Town Christmas Fair', '2023-01-01 08:26:31', 2, 1);
 insert into EVENT_TABLE ( DESCRIPTION, END_DATE, GENRE, NAME, START_DATE, ADDRESS_COL, ORG_COL) values ( 'Visit the park which has the largest exhibition of ice sculptures in the Baltics, and where musical shows, demonstrations of sculpture creation, and various activities for children will be organized..', '2022-12-30 21:42:17', 'FESTIVAL', 'International Ice Sculpture Festival', '2023-03-13 01:11:37', 2, 3);
