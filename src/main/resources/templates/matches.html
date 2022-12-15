@@ -13,9 +13,14 @@
 <nav class="navbar sticky-top navbar-dark bg-dark">
     <form>
         <a type="button"
-                class="btn btn-outline-light"
-                style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
-                th:href="@{/event/eventList}">Events
+           class="btn btn-outline-light"
+           style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+           th:href="@{/event/{id}/eventList(id=${userId})}">Events
+        </a>
+        <a type="button"
+           class="btn btn-outline-light"
+           style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+           th:href="@{/registration/login}">Log Out
         </a>
     </form>
 </nav>
@@ -24,7 +29,7 @@
     width: 50%;
     border: 3px solid white;
     padding: 10px;"
-    th:object=${visitorMatches}>
+     th:object=${visitorMatches}>
     <h1 style="color:#DFF3E4; margin: 10px; font-weight:bold;">All Matches</h1>
     <table class="table table-dark">
         <thead>

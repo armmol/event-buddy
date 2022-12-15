@@ -72,32 +72,6 @@ public class VisitorController {
         return "visitor/details";
     }
 
-    //where is this going to be used?
-
-    /**
-     * Commenting out because was not used. Check Registration Controller to add Visitors and Organizer
-     */
-//    @RequestMapping(value = {"/addVisitor"}, method = RequestMethod.GET)
-//    public String showAddVisitorPage(@PathVariable Long id, Model model){
-//        Visitor visitor = new Visitor();
-//        model.addAttribute("visitor", visitor);
-//        return "addVisitor";
-//    }
-//
-//    @RequestMapping(value = {"/addVisitor"}, method = RequestMethod.POST)
-//    public String saveVisitor(@ModelAttribute("visitorForm") Visitor visitor){
-//        //Language language = visitor.getLanguage();
-//        if(visitor != null ){
-//            visitorService.storeVisitor(visitor);
-//            return "redirect:/showVisitor/" + visitor.getVisitorId();
-//        }else return "redirect:/notFoundError";
-//    }
-
-//    @RequestMapping(value = {"/deleteVisitor"}, method = RequestMethod.POST)
-//    public String deleteVisitor(@RequestParam Long id){
-//        visitorService.deleteById(id);
-//        return "redirect:/visitorList";
-//    }
     @RequestMapping(value = {"visitorList"}, method = RequestMethod.GET)
     public String visitors(Model model) {
         List<Visitor> visitors = visitorService.all();
@@ -143,7 +117,7 @@ public class VisitorController {
     @RequestMapping(value = {"/{id}/visitorProfile/personal"}, method = RequestMethod.GET)
     public String showEditVisitorProfilePersonalPage(Model model, @PathVariable Long id) {
         Optional<User> user = userRepository.findById(id);
-        model.addAttribute("user", id);
+        model.addAttribute("userId", id);
         if (user.isPresent()) {
             UserRole role = user.get().getRole();
             if (role == UserRole.VISITOR) {
@@ -163,12 +137,6 @@ public class VisitorController {
             }
             return "registration";
         }
-//        if (user.isPresent()) {
-//            Visitor visitor = visitorService.getByUser(user.get());
-//            model.addAttribute("visitor", visitor);
-//            model.addAttribute("user", id);
-//            return "visitor/showPersonal";
-//        }
         return "registration";
     }
 
@@ -178,6 +146,7 @@ public class VisitorController {
         if (user.isPresent()) {
             Visitor visitor = visitorService.getByUser(user.get());
             model.addAttribute("visitor", visitor);
+            model.addAttribute("userId", id);
             return "visitor/edit";
         }
         return "registration/register";
@@ -195,28 +164,4 @@ public class VisitorController {
         model.addAttribute("user", id);
         return "redirect:/visitor/" + visitor1.getVisitorId() + "/visitorProfile/personal";
     }
-
-    // edit profile post method
-//    @RequestMapping(value = {"/visitorProfile/edit"}, method = RequestMethod.POST)
-//    public String editVisitorProfile(@ModelAttribute("visitorForm") Visitor visitor, Principal principal){
-//        String username = principal.getName();
-//        User user = userRepository.findByUsername(username);
-//        visitor.setUser(user);
-//
-//        if(visitor != null ){
-//            visitorService.updateVisitor(visitor);
-//            return "redirect:/visitor/visitorProfile";
-//        }else return "redirect:/notFoundError";
-//    }
-
-//    @RequestMapping(value = {"/visitorProfile/edit"}, method = RequestMethod.POST)
-//    public String editVisitorProfile(Visitor visitor, Principal principal){
-//        System.out.println("VisitorController: editVisitorProfile");
-//        System.out.println(visitor);
-//        String username = principal.getName();
-//        User user = userRepository.findByUsername(username);
-//        visitor.setUser(user);
-//        visitorService.storeVisitor(visitor);
-//        return "redirect:/visitorProfile";
-//    }
 }

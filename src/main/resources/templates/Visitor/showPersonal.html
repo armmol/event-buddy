@@ -1,79 +1,95 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8">
-  <title>Visitor Profile</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Visitor Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
 </head>
 <body style="background-color:#7180B9; color:171738">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
 <nav class="navbar navbar-dark bg-dark">
-  <form>
-    <a type="button"
-       class="btn btn-outline-light"
-       style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
-       th:href="@{~/matches}">Matches
-    </a>
-    <a type="button"
-       class="btn btn-outline-light"
-       style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
-       th:href="@{/event/{id}/eventList(id=${user})}">Events
-    </a>
-  </form>
+    <form>
+        <a type="button"
+           class="btn btn-outline-light"
+           style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+           th:href="@{/match/{id}/matches(id=${userId})}">Matches
+        </a>
+        <a type="button"
+           class="btn btn-outline-light"
+           style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+           th:href="@{/event/{id}/eventList(id=${userId})}">Events
+        </a>
+        <a type="button"
+           class="btn btn-outline-light"
+           style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+           th:href="@{/registration/login}">Log Out
+        </a>
+    </form>
 </nav>
 <section class="">
-  <div class="container py-5 h-100" >
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-md-10 col-x1-4">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-10 col-x1-4">
 
-        <div class="card" style="border-radius: 15px;" >
-          <div class="card-body text-center" style="
+                <div class="card" style="border-radius: 15px;">
+                    <div class="card-body text-center" style="
                  border: 3px solid white;background-color:#7180B9">
-            <h4 style="color:#DFF3E4;" class="mb-2" th:inline="text">[[${visitor.visitorName}]] [[${visitor.visitorSurname}]]</h4>
-            <p class="text mb-4" style="color:#DFF3E4" th:inline="text">[[${visitor.user.username}]]<span class="mx-2">|</span>[[${visitor.visitorEmail}]]</p>
-            <div class="d-flex justify-content-center">
-            </div>
+                        <h4 style="color:#DFF3E4;" class="mb-2" th:inline="text">[[${visitor.visitorName}]]
+                            [[${visitor.visitorSurname}]]</h4>
+                        <p class="text mb-4" style="color:#DFF3E4" th:inline="text">[[${visitor.user.username}]]<span
+                                class="mx-2">|</span>[[${visitor.visitorEmail}]]</p>
+                        <div class="d-flex justify-content-center">
+                        </div>
 
-            <a type="button" class="btn btn-outline-light"
-               style="color:#DFF3E4; border: 3px solid #DFF3E4;"
-               th:href="@{/visitor/{id}/visitorProfile/edit(id=${user})}">
-              Edit
-            </a>
-          </div>
+                        <a type="button" class="btn btn-outline-light"
+                           style="color:#DFF3E4; border: 3px solid #DFF3E4;"
+                           th:href="@{/visitor/{id}/visitorProfile/edit(id=${userId})}">
+                            Edit
+                        </a>
+                    </div>
+                </div>
+                <div class="row py-3">
+                    <div class="col-md-4">
+                        <div class="card mb-4 mb-md-0">
+                            <div class="card-body" style="border: 3px solid white;background-color:#7180B9">
+                                <p class="mb-3"><span style="color:#DFF3E4; font-size: 1.5rem"
+                                                      class="text font-italic me-1 ">Details</span>
+                                </p>
+                                <p class="mb-1" style="color:#DFF3E4; font-size: 1rem;">Age</p><span
+                                    style="color:#DFF3E4" th:text="${visitor.getAge}" class="text">age</span>
+                                <p></p>
+                                <p class="mb-1" style="color:#DFF3E4; font-size: 1rem;">Gender</p><span
+                                    style="color:#DFF3E4;" th:text="${visitor.gender}" class="text">gender</span>
+                                <p></p>
+                                <p class="mb-1" style="color:#DFF3E4; font-size: 1rem;">Language</p><span
+                                    style="color:#DFF3E4;" th:text="${visitor.visitorLanguage}"
+                                    class="text">language</span>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card mb-4 mb-md-0">
+                            <div class="card-body" style="border: 3px solid white;background-color:#7180B9">
+                                <p class="mb-3"><span style="color:#DFF3E4; font-size: 1.5rem"
+                                                      class="text font-italic me-1 ">Description</span>
+                                </p>
+                                <p class="mb-1" style="color:#DFF3E4; font-size: 1rem;"
+                                   th:text="${visitor.visitorDescription}">description</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-        <div class="row py-3" >
-          <div class="col-md-4">
-            <div class="card mb-4 mb-md-0">
-              <div class="card-body" style="border: 3px solid white;background-color:#7180B9">
-                <p class="mb-3"><span style="color:#DFF3E4; font-size: 1.5rem" class="text font-italic me-1 ">Details</span>
-                </p>
-                <p class="mb-1" style="color:#DFF3E4; font-size: 1rem;">Age</p><span style="color:#DFF3E4" th:text="${visitor.getAge}" class="text">age</span>
-                <p></p>
-                <p class="mb-1" style="color:#DFF3E4; font-size: 1rem;">Gender</p><span style="color:#DFF3E4;" th:text="${visitor.gender}" class="text">gender</span>
-                <p></p>
-                <p class="mb-1" style="color:#DFF3E4; font-size: 1rem;">Language</p><span style="color:#DFF3E4;" th:text="${visitor.visitorLanguage}" class="text">language</span>
-
-
-              </div>
-            </div>
-          </div>
-          <div class="col-md-8">
-            <div class="card mb-4 mb-md-0">
-              <div class="card-body" style="border: 3px solid white;background-color:#7180B9">
-                <p class="mb-3"><span style="color:#DFF3E4; font-size: 1.5rem" class="text font-italic me-1 ">Description</span>
-                </p>
-                <p class="mb-1" style="color:#DFF3E4; font-size: 1rem;" th:text="${visitor.visitorDescription}">description</p>
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
     </div>
-  </div>
-
 </section>
 </body>
 </html>

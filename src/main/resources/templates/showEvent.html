@@ -17,24 +17,26 @@ function ConnectToast(){
     toast.show()
 }
 
+
+
 </script>
 <nav class="navbar sticky-top navbar-dark bg-dark">
     <form>
         <a type="button"
            class="btn btn-outline-light"
            style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
-           th:href="@{/matches}">Matches
+           th:href="@{/match/{id}/matches(id=${userId})}">Matches
         </a>
         <a type="button"
            class="btn btn-outline-light"
            style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
-           th:href="@{/event/eventList}">Events
+           th:href="@{/event/{id}/eventList(id=${userId})}">Events
         </a>
-        <!--        <button type="button"-->
-        <!--                class="btn btn-outline-light"-->
-        <!--                style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "-->
-        <!--                th:action="@{/details/${visitorId}">Profile-->
-        <!--        </button>-->
+        <a type="button"
+           class="btn btn-outline-light"
+           style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+           th:href="@{/registration/login}">Log Out
+        </a>
     </form>
 </nav>
 <div class="container">
@@ -82,57 +84,58 @@ function ConnectToast(){
                     </div>
                 </div>
             </div>
-        <div th:if="${filterData != null}">
-            <form method="post"
-                    role="form"
-                    action="#"
-                    th:action="@{/event/{visitorId}/showEvent/{eventId}(visitorId=${visitorId},eventId=${event.eventId})}"
-                    th:object="${filterData}">
+            <div th:if="${filterData != null}">
+                <form method="post"
+                      role="form"
+                      action="#"
+                      th:action="@{/event/{visitorId}/showEvent/{eventId}(visitorId=${visitorId},eventId=${event.eventId})}"
+                      th:object="${filterData}">
 
-                <div>
-                    <h3 style="color:#DFF3E4;">Choose sort criteria</h3>
-                <select class="form-select form-select-sm mb-3"
-                        aria-label=".form-select-lg example"
-                        style="background-color:#DFF3E4; opacity:0.5; color:171738;"
-                        id="language"
-                        name="language"
-                        th:field="*{language}">
-                    <option
-                            th:each="language : ${T(com.accenture.eventbuddy.models.Language).values()}"
-                            th:value="${language}"
-                            th:text="${language}">
-                    </option>
-                </select>
-            </div>
-            <div>
-                <select class="form-select form-select-sm mb-3"
-                        aria-label=".form-select-lg example"
-                        style="background-color:#DFF3E4; opacity:0.5; color:171738;"
-                        id="gender"
-                        name="gender"
-                        th:field="*{gender}">
-                    <option th:each="gender : ${T(com.accenture.eventbuddy.models.Gender).values()}"
-                            th:value="${gender}"
-                            th:text="${gender}">
-                    </option>
-                </select>
-            </div>
-                <div class="col">
-                    <div style="margin: 10px;">
-                        <div class="input-block">
-                            <div class="col-5">
-                                <div class="input-group dateOfBirth" id="datePicker" th:field="*{dateOfBirth}">
-                                   <input type="date" id="dateOfBirth" name="dateOfBirth"
-                                    value="1952-07-22">
+                    <div>
+                        <h3 style="color:#DFF3E4;">Choose sort criteria</h3>
+                        <select class="form-select form-select-sm mb-3"
+                                aria-label=".form-select-lg example"
+                                style="background-color:#DFF3E4; opacity:0.5; color:171738;"
+                                id="language"
+                                name="language"
+                                th:field="*{language}">
+                            <option
+                                    th:each="language : ${T(com.accenture.eventbuddy.models.Language).values()}"
+                                    th:value="${language}"
+                                    th:text="${language}">
+                            </option>
+                        </select>
+                    </div>
+                    <div>
+                        <select class="form-select form-select-sm mb-3"
+                                aria-label=".form-select-lg example"
+                                style="background-color:#DFF3E4; opacity:0.5; color:171738;"
+                                id="gender"
+                                name="gender"
+                                th:field="*{gender}">
+                            <option th:each="gender : ${T(com.accenture.eventbuddy.models.Gender).values()}"
+                                    th:value="${gender}"
+                                    th:text="${gender}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <div style="margin: 10px;">
+                            <div class="input-block">
+                                <div class="col-5">
+                                    <div class="input-group dateOfBirth" id="datePicker" th:field="*{dateOfBirth}">
+                                        <input type="date" id="dateOfBirth" name="dateOfBirth"
+                                               value="1952-07-22">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            <button class="btn btn-outline-light"
-                    type="submit">Find matches</button>
-            </form>
-        </div>
+                    <button class="btn btn-outline-light"
+                            type="submit">Find matches
+                    </button>
+                </form>
+            </div>
             <h1 style="color:Green">You are Attending this Event</h1>
             <table class="table table-dark">
                 <thead>
@@ -152,32 +155,32 @@ function ConnectToast(){
                     <td th:text="${attendee.visitor.gender}">
                     <td th:text="${attendee.visitor.visitorDescription}">
                     <td>
-                    <a class="btn btn-outline-light"
-                       th:href="@{/match/add/{visitorId}/{attId}(visitorId=${visitorId},attId=${attendee.attendanceId})}">
-                        <i class="fa fa-arrow-circle-o-left"></i>
-                        Connect
-                    </a>
+                        <a class="btn btn-outline-light"
+                           th:href="@{/match/add/{visitorId}/{attId}(visitorId=${visitorId},attId=${attendee.attendanceId})}">
+                            <i class="fa fa-arrow-circle-o-left"></i>
+                            Connect
+                        </a>
 
-                    <!--
-                        <button class="btn btn-outline-success"
-                                type="button"
-                                onclick="ConnectToast()">Connect
-                        </button>
-                        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                                <div class="toast-header">
-                                    <img src="handshake.png" class="rounded me-2" alt="handshake" height="15px"
-                                         width="15px">
-                                    <strong class="me-auto">Connection Update</strong>
-                                    <button type="button" class="btn-close" data-bs-dismiss="toast"
-                                            aria-label="Close"></button>
-                                </div>
-                                <div class="toast-body">
-                                    Connected successfully!
+                        <!--
+                            <button class="btn btn-outline-success"
+                                    type="button"
+                                    onclick="ConnectToast()">Connect
+                            </button>
+                            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                                <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                                    <div class="toast-header">
+                                        <img src="handshake.png" class="rounded me-2" alt="handshake" height="15px"
+                                             width="15px">
+                                        <strong class="me-auto">Connection Update</strong>
+                                        <button type="button" class="btn-close" data-bs-dismiss="toast"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="toast-body">
+                                        Connected successfully!
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        -->
+                            -->
                     </td>
                 </tr>
                 </tbody>

@@ -25,6 +25,7 @@ function check(){
     }
 }
 
+
 </script>
 <script type="text/javascript">
 function validateOrganizer(){
@@ -39,7 +40,6 @@ function validateOrganizer(){
             return true;
         }
 }
-
 </script>
 <script type="text/javascript">
 function validateVisitor(){
@@ -58,16 +58,15 @@ function validateVisitor(){
             return true;
         }
 }
-
 </script>
 
 <nav class="navbar sticky-top navbar-dark bg-dark">
     <form>
-        <button type="submit"
-                class="btn btn-outline-light"
-                style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
-                th:href="@{login}">Sign In
-        </button>
+        <a type="submit"
+           class="btn btn-outline-light"
+           style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+           th:href="@{login}">Sign In
+        </a>
     </form>
 </nav>
 
