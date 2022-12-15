@@ -40,8 +40,7 @@
                th:each="event: ${events}">
                 <div class="col">
                     <div class="card h-100">
-                        <img src="https://picsum.photos/2500/1667" class="card-img-top"
-                             alt="Hollywood Sign on The Hill"/>
+                        <img th:src="@{/assets/images/eventImg ({id}).jpg(id=${event.eventId})}" class="card-img-top" alt="Hollywood Sign on The Hill"/>
                         <div class="card-body">
                             <h5 class="card-title" th:text="${event.name}">Card title</h5>
                             <p class="card-text" th:text="${event.description}">
