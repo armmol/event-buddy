@@ -20,6 +20,11 @@
         <a type="button"
            class="btn btn-outline-light"
            style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+           th:href="@{/visitor/{id}/visitorProfile/personal(id=${userId})}">Profile
+        </a>
+        <a type="button"
+           class="btn btn-outline-light"
+           style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
            th:href="@{/registration/login}">Log Out
         </a>
     </form>
@@ -43,6 +48,7 @@
             <th scope="col">Description</th>
             <th scope="col">E-mail</th>
             <th scope="col">Event</th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -54,6 +60,13 @@
             <td th:text="${match.attendance1.userReplica.description}">
             <td th:text="${match.attendance1.userReplica.email}">
             <td th:text="${match.attendance1.event.name}">
+            <td>
+                <a type="button"
+                   class="btn btn-outline-light"
+                   style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+                   th:href="@{/visitor/{userId}/{id}/visitorProfile(userId=${userId}, id=${match.attendance1.userReplica.id})}">Message
+                </a>
+            </td>
         </tr>
         </tbody>
     </table>

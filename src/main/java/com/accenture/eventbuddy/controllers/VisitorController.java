@@ -88,10 +88,11 @@ public class VisitorController {
     }
 
 
-    @RequestMapping(value = {"/{id}/visitorProfile"}, method = RequestMethod.GET)
-    public String showEditUserReplicaProfilePage(Model model, @PathVariable Long id) {
+    @RequestMapping(value = {"/{userId}/{id}/visitorProfile"}, method = RequestMethod.GET)
+    public String showEditUserReplicaProfilePage(Model model, @PathVariable Long userId , @PathVariable Long id) {
         Optional<UserReplica> user = userReplicaRepository.findById(id);
         model.addAttribute("user", id);
+        model.addAttribute("userId", userId);
         if (user.isPresent()) {
             UserRole role = user.get().getRole();
             if (role == UserRole.VISITOR) {
