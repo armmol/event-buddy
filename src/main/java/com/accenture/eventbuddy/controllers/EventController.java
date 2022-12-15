@@ -66,6 +66,8 @@ public class EventController {
         Event event = eventService.getById(eventId);
         model.addAttribute("event", event);
         model.addAttribute("visitorId", visitorId);
+        model.addAttribute("userId", visitorId);
+        model.addAttribute("eventId", eventId);
         model.addAttribute("attendances", event.getAttendances());
         model.addAttribute("filterData", new FilterAttendanceFormData());
         return "showEvent";
