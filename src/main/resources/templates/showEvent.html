@@ -6,7 +6,7 @@
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <meta charset="utf-8">
 </head>
-<body style="background-image: url('/assets/images/background.png');color:171738">
+<body style="background-image: url('/assets/images/background.png'); color:171738" >
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
@@ -64,7 +64,7 @@ function ConnectToast(){
                  height: 300px;
                  padding: 10px;">
                         <div>
-                            <img th:src="@{/assets/images/logo.png}" alt="Bootcamp" height="270px" width="300px">
+                            <img th:src="@{/assets/images/event.png}" alt="Bootcamp" height="300px" width="600px">
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@ function ConnectToast(){
                  border: 3px solid white;
                  padding: 10px;
                  Overflow-y:scroll;">
-                        <h1 style="color #DFF3E4">Description</h1>
+                        <h1 style="color:White">Description</h1>
                         <div class="overflow-auto" style="font-weight:bold;
                             color:#DFF3E4;" th:text="${event.description}">
                         </div>
@@ -97,6 +97,7 @@ function ConnectToast(){
                         id="language"
                         name="language"
                         th:field="*{language}">
+                    <option selected value="language">Language</option>
                     <option
                             th:each="language : ${T(com.accenture.eventbuddy.models.Language).values()}"
                             th:value="${language}"
@@ -111,6 +112,7 @@ function ConnectToast(){
                         id="gender"
                         name="gender"
                         th:field="*{gender}">
+                    <option selected value="gender">Gender</option>
                     <option th:each="gender : ${T(com.accenture.eventbuddy.models.Gender).values()}"
                             th:value="${gender}"
                             th:text="${gender}">
@@ -122,8 +124,12 @@ function ConnectToast(){
                         <div class="input-block">
                             <div class="col-5">
                                 <div class="input-group dateOfBirth" id="datePicker" th:field="*{dateOfBirth}">
-                                   <input type="date" id="dateOfBirth" name="dateOfBirth"
-                                    value="1952-07-22">
+                                   <input type="date"
+                                          id="dateOfBirth"
+                                          name="dateOfBirth"
+                                          max="2016-12-31"
+                                          width="40px"
+                                    >
                                 </div>
                             </div>
                         </div>
@@ -133,7 +139,7 @@ function ConnectToast(){
                     type="submit">Find matches</button>
             </form>
         </div>
-            <h1 style="color:Green">You are Attending this Event</h1>
+            <h3 style="color:White">Another attendees of this event</h3>
             <table class="table table-dark">
                 <thead>
                 <tr>

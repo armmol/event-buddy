@@ -2,5 +2,6 @@ package com.accenture.eventbuddy.models;
 
 public enum Genre {
     EXHIBITION(),
-    FESTIVAL()
+    FESTIVAL(),
+    MARKET()
 }
