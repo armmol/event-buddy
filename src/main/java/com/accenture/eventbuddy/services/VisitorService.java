@@ -1,6 +1,7 @@
 package com.accenture.eventbuddy.services;
 
 import com.accenture.eventbuddy.auth.User;
+import com.accenture.eventbuddy.models.Organizer;
 import com.accenture.eventbuddy.models.Visitor;
 import com.accenture.eventbuddy.repo.VisitorRepository;
 import org.springframework.stereotype.Service;
@@ -39,4 +40,5 @@ public class VisitorService {
     public Visitor getByUser(User user) {
         return visitorRepository.findByUser(user);
     }
+
 }
