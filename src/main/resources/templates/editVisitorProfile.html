@@ -38,23 +38,22 @@
                         </div>
 
                         <form id="descForm" method="post" action="#"
-                              th:object="${visitor}" th:action="@{/visitor/visitorProfile/edit}">
+                              th:object="${visitor}" th:action="@{/visitor/{id}/visitorProfile/edit}">
                             <div class="col-md-8">
                                 <div class="card mb-4 mb-md-0">
                                     <div class="card-body" style="border: 3px solid white;background-color:#7180B9">
                                         <p class="mb-3"><span style="color:#DFF3E4; font-size: 1.5rem" class="text font-italic me-1 ">Description</span>
                                         </p>
                                         <textarea class="form-control" rows="5" th:field="*{visitorDescription}" th:placeholder="*{visitorDescription}"></textarea>
-                                        <!--                                <p class="mb-1" style="color:#DFF3E4; font-size: 1rem;" th:text="${visitor.visitorDescription}">description</p>-->
 
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-outline-light"
+                            <a type="button" class="btn btn-outline-light"
                                style="color:#DFF3E4; border: 3px solid #DFF3E4;"
-                               >
-                                Cancel changes
-                            </button>
+                               th:href="@{/visitor/{id}/visitorProfile/personal(id=${user})}">
+                                Caasnges
+                            </a>
                             <button type="submit" class="btn btn-outline-light"
                                style="color:#DFF3E4; border: 3px solid #DFF3E4;">
                                 Apply changes

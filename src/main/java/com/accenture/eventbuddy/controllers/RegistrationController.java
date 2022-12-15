@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+//@RequestMapping("/registration")
 @RequestMapping(path = "registration")
 public class RegistrationController {
     @Autowired
@@ -19,6 +20,7 @@ public class RegistrationController {
     @Autowired
     private OrganizerService organizerService;
 
+//    @GetMapping("/")
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         TypeUser user = new TypeUser();
