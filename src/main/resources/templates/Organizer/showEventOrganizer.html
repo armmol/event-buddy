@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <meta charset="utf-8">
+</head>
+<body style="background-image: url('/assets/images/background.png'); color:171738">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+<script>
+function ConnectToast(){
+    const toastLiveExample = document.getElementById('liveToast')
+    const toast = new bootstrap.Toast(toastLiveExample)
+    toast.show()
+}
+</script>
+<nav class="navbar sticky-top navbar-dark bg-dark">
+    <form>
+        <a type="button"
+           class="btn btn-outline-light"
+           style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+           th:href="@{/event/{id}/eventList(id=${visitorId})}">Events
+        </a>
+        <a type="button"
+           class="btn btn-outline-light"
+           style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+           th:href="@{/registration/login}">Log Out
+        </a>
+    </form>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="container-fluid">
+            <div style="margin: 10px;
+                 text-align: center;
+                 height: 300px;
+                 padding: 10px;">
+                <div class="container" style="position: relative;">
+                    <img th:src="@{/assets/images/eventImg ({id}).jpg(id=${event.eventId})}" height="300px"
+                         width="100%">
+                    <div class="text-block" style="position: absolute;
+                            bottom: 20px;
+                            right: 20px;
+                            background-color: black;
+                            color: white;
+                            padding-left: 20px;
+                            padding-right: 20px;">
+                        <h4 th:text="${event.name}"></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div style="margin: 10px;
+                 text-align: center;
+                 height: 300px;
+                 padding: 10px;">
+                        <div>
+                            <img th:src="@{/assets/images/event.png}" alt="Bootcamp" height="300px" width="600px">
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div style="margin: 10px;
+                 text-align: center;
+                 height: 300px;
+                 border: 3px solid white;
+                 padding: 10px;
+                 Overflow-y:scroll;">
+                        <h1 style="color:White">Description</h1>
+                        <div class="overflow-auto" style="font-weight:bold;
+                            color:#DFF3E4;" th:text="${event.description}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${filterData != null}">
+<!--                <form method="post"-->
+<!--                      role="form"-->
+<!--                      action="#"-->
+<!--                      th:action="@{/event/{id}/showEvent/{eventId}(id=${userId},eventId=${event.eventId})}"-->
+<!--                      th:object="${filterData}">-->
+
+<!--                    <div>-->
+<!--                        <h3 style="color:#DFF3E4;">Choose sort criteria</h3>-->
+<!--                        <select class="form-select form-select-sm mb-3"-->
+<!--                                aria-label=".form-select-lg example"-->
+<!--                                style="background-color:#DFF3E4; opacity:0.5; color:171738;"-->
+<!--                                id="language"-->
+<!--                                name="language"-->
+<!--                                th:field="*{language}">-->
+<!--                            <option selected value="language">Language</option>-->
+<!--                            <option-->
+<!--                                    th:each="language : ${T(com.accenture.eventbuddy.models.Language).values()}"-->
+<!--                                    th:value="${language}"-->
+<!--                                    th:text="${language}">-->
+<!--                            </option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <select class="form-select form-select-sm mb-3"-->
+<!--                                aria-label=".form-select-lg example"-->
+<!--                                style="background-color:#DFF3E4; opacity:0.5; color:171738;"-->
+<!--                                id="gender"-->
+<!--                                name="gender"-->
+<!--                                th:field="*{gender}">-->
+<!--                            <option selected value="gender">Gender</option>-->
+<!--                            <option th:each="gender : ${T(com.accenture.eventbuddy.models.Gender).values()}"-->
+<!--                                    th:value="${gender}"-->
+<!--                                    th:text="${gender}">-->
+<!--                            </option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                    <div class="col">-->
+<!--                        <div style="margin: 10px;">-->
+<!--                            <div class="input-block">-->
+<!--                                <div class="col-5">-->
+<!--                                    <div class="input-group dateOfBirth" id="datePicker" th:field="*{dateOfBirth}">-->
+<!--                                        <input type="date" id="dateOfBirth" name="dateOfBirth"-->
+<!--                                               max="2016-12-31"-->
+<!--                                               width="40px">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <button class="btn btn-outline-light"-->
+<!--                            type="submit">Find Demographics-->
+<!--                    </button>-->
+<!--                </form>-->
+            </div>
+            <h3 style="color:White">Attendees of this event</h3>
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Surname</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Language</th>
+                    <th scope="col">Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                <tr th:each="attendee : ${attendances}">
+                    <td th:text="${attendee.visitor.visitorName}">
+                    <td th:text="${attendee.visitor.visitorSurname}">
+                    <td th:text="${attendee.visitor.gender}">
+                    <td th:text="${attendee.visitor.visitorLanguage}">
+                    <td th:text="${attendee.visitor.visitorDescription}">
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
