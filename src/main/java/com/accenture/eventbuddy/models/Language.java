@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 public enum Language {
 
     LV,
-    RU,
-    EN;
+    LT,
+    EN
 
 }
