@@ -1,5 +1,6 @@
 package com.accenture.eventbuddy.services;
 
+import com.accenture.eventbuddy.auth.User;
 import com.accenture.eventbuddy.contracts.OrganizerServiceContract;
 import com.accenture.eventbuddy.models.Organizer;
 import com.accenture.eventbuddy.repo.OrganizerRepository;
@@ -34,5 +35,10 @@ public class OrganizerService implements OrganizerServiceContract {
     @Override
     public void deleteById(Long id) {
         organizerRepository.deleteById(id);
+    }
+
+    @Override
+    public Organizer getByUser(User user) {
+        return organizerRepository.findByUser(user);
     }
 }
