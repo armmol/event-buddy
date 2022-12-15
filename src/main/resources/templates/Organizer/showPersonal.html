@@ -7,7 +7,7 @@
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
 </head>
-<body style="background-color:#7180B9; color:171738">
+<body style="background-image: url('/assets/images/background.png');color:171738">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
@@ -39,32 +39,38 @@
 
                 <div class="card" style="border-radius: 15px;">
                     <div class="card-body text-center" style="
-                 border: 3px solid white;background-color:#7180B9">
+                 border: 3px solid white;background-image: url('/assets/images/background.png');">
                         <h4 style="color:#DFF3E4;" class="mb-2" th:text="${organizer.organizerName}">name</h4>
                         <p class="text mb-4" style="color:#DFF3E4" th:inline="text">[[${organizer.user.username}]]<span
                                 class="mx-2">|</span>[[${organizer.organizerEmail}]]<span class="mx-2">|</span>[[${organizer.phoneNumber}]]
+
                         </p>
                         <div class="d-flex justify-content-center">
                         </div>
-
-                        <!--            <a type="button" class="btn btn-outline-light"-->
-                        <!--               style="color:#DFF3E4; border: 3px solid #DFF3E4;"-->
-                        <!--               th:href="@{/visitor/{id}/visitorProfile/edit(id=${user})}">-->
-                        <!--              Edit-->
-                        <!--            </a>-->
                     </div>
                 </div>
                 <div class="row py-3">
                     <div class="col-md-0">
                         <div class="card mb-1 mb-md-0">
-                            <div class="card-body" style="border: 3px solid white;background-color:#7180B9">
-                                <h5 class="card-title
-                text-center" style="color:#DFF3E4">Events</h5>
-                                <ul class="list-group
-                list-group-flush">
-                                    <li class="list-group
-                    item" style="color:#DFF3E4" th:each="event : ${organizer.events}">
-                                        <p th:text="${event.name}">event name</p>
+                            <div class="card-body"
+                                 style="border: 3px solid white;background-image: url('/assets/images/background.png');">
+                                <h5 class="card-title text-center" style="color:#DFF3E4">Events</h5>
+
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group item" style="color:#DFF3E4">
+                                        <table class="table table-dark">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">Event name</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                            <tr th:each="event : ${organizer.events}">
+                                                <td th:text="${event.name}">
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                     </li>
                                 </ul>
                             </div>
