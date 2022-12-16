@@ -28,6 +28,7 @@ function ConnectToast(){
 
 
 
+
 </script>
 <nav class="navbar sticky-top navbar-dark bg-dark">
     <form>
@@ -120,7 +121,8 @@ function ConnectToast(){
                                             style="background-color:#DFF3E4; opacity:0.5; color:171738;"
                                             id="language"
                                             name="language"
-                                            th:field="*{language}">
+                                            th:field="*{language}"
+                                            required>
                                         <option
                                                 th:each="language : ${T(com.accenture.eventbuddy.models.Language).values()}"
                                                 th:value="${language}"
@@ -137,7 +139,8 @@ function ConnectToast(){
                                             style="background-color:#DFF3E4; opacity:0.5; color:171738;"
                                             id="gender"
                                             name="gender"
-                                            th:field="*{gender}">
+                                            th:field="*{gender}"
+                                            required>
                                         <option th:each="gender : ${T(com.accenture.eventbuddy.models.Gender).values()}"
                                                 th:value="${gender}"
                                                 th:text="${gender}">
@@ -153,7 +156,8 @@ function ConnectToast(){
                                             <label style="color:White;" for="dateOfBirth">Born After -</label>
                                             <input type="date" id="dateOfBirth" name="dateOfBirth"
                                                    max="2016-12-31"
-                                                   width="40px">
+                                                   width="40px"
+                                                   required>
                                         </div>
                                     </div>
                                 </div>
