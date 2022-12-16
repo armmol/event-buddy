@@ -23,6 +23,11 @@ function ConnectToast(){
         <a type="button"
            class="btn btn-outline-light"
            style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+           th:href="@{/match/{id}/matches(id=${visitorId})}">Matches
+        </a>
+        <a type="button"
+           class="btn btn-outline-light"
+           style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
            th:href="@{/event/{id}/eventList(id=${visitorId})}">Events
         </a>
         <a type="button"

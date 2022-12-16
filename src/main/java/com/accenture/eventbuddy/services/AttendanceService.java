@@ -39,12 +39,13 @@ public class AttendanceService implements AttendanceServiceContract {
         attendanceRepository.deleteById(id);
     }
 
-    public List<Attendance> getMatchingAttendanceList(Event event, Gender gender, Language language, Date dateOfBirth) {
+    public List<Attendance> getMatchingAttendanceList(Long userId, Event event, Gender gender, Language language, Date dateOfBirth) {
         return event.getAttendances()
                 .stream().filter(i ->
                         i.getUserReplica().getGender() == gender
                                 && i.getUserReplica().getDateOfBirth().after(dateOfBirth)
-                                && i.getUserReplica().getLanguages() == language)
+                                && i.getUserReplica().getLanguages() == language
+                                && !i.getUserReplica().getId().equals(userId))
                 .toList();
     }
 

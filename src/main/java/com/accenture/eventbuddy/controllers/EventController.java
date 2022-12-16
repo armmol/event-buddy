@@ -94,37 +94,32 @@ public class EventController {
 //        model.addAttribute("userId", visitorId);
         model.addAttribute("eventId", eventId);
         model.addAttribute("filterData", new FilterAttendanceFormData());
-        for (UserReplica userReplica : userReplicaService.all()) {
-            if (userReplica.getId().equals(visitorId)) {
-                List<Match> allMatches = matchService.all();
-                if (userReplica.getRole() == UserRole.VISITOR) {
-                    for (Attendance attendance : event.getAttendances()) {
-                        if (attendance.getUserReplica().getId().equals(visitorId)) {
-                            List<Attendance> filteredList = new ArrayList<>();
-                            List<Match> newMatches = allMatches.stream().filter(match -> !match.getAttendance1().getAttendanceId().equals(attendance.getAttendanceId())
-                                    || !match.getAttendance2().getAttendanceId().equals(attendance.getAttendanceId())).toList();
-
-                            List<Long> attendanceIds = new ArrayList<>();
-                            for (Match newMatch : newMatches) {
-                                attendanceIds.add(newMatch.getAttendance1().getAttendanceId());
-                                attendanceIds.add(newMatch.getAttendance2().getAttendanceId());
-                            }
-                            for (Long attendanceId : attendanceIds.stream().distinct().toList()) {
-                                filteredList.add(attendanceService.getById(attendanceId));
-                            }
-                            model.addAttribute("attendances", filteredList);
-                            return "Visitor/showEvent";
-                        }
+        UserReplica userReplica = userReplicaService.getById(visitorId);
+        List<Match> allMatches = matchService.all();
+        if (userReplica.getRole() == UserRole.VISITOR) {
+            for (Attendance attendance : event.getAttendances()) {
+                if (attendance.getUserReplica().getId().equals(visitorId)) {
+                    List<Attendance> filteredList = new ArrayList<>();
+                    List<Match> newMatches = allMatches.stream().filter(match -> !match.getAttendance1().getAttendanceId().equals(attendance.getAttendanceId())
+                            && !match.getAttendance2().getAttendanceId().equals(attendance.getAttendanceId())).toList();
+                    List<Long> attendanceIds = new ArrayList<>();
+                    for (Match newMatch : newMatches) {
+                        attendanceIds.add(newMatch.getAttendance1().getAttendanceId());
+                        attendanceIds.add(newMatch.getAttendance2().getAttendanceId());
                     }
-                    model.addAttribute("attendances", event.getAttendances());
-                    return "visitor/showEventNotAttending";
-                } else {
-                    model.addAttribute("attendances", event.getAttendances());
-                    return "Organizer/showEventOrganizer";
+                    for (Long attendanceId : attendanceIds.stream().distinct().toList()) {
+                        filteredList.add(attendanceService.getById(attendanceId));
+                    }
+                    model.addAttribute("attendances", filteredList);
+                    return "Visitor/showEvent";
                 }
             }
+            model.addAttribute("attendances", event.getAttendances());
+            return "visitor/showEventNotAttending";
+        } else {
+            model.addAttribute("attendances", event.getAttendances());
+            return "Organizer/showEventOrganizer";
         }
-        return "showEvent";
     }
 
     @RequestMapping(value = {"/{visitorId}/showEvent/{id}"}, method = RequestMethod.POST)
@@ -133,6 +128,7 @@ public class EventController {
         model.addAttribute("event", event);
         model.addAttribute("visitorId", visitorId);
         model.addAttribute("attendances", attendanceService.getMatchingAttendanceList(
+                visitorId,
                 event,
                 filterData.getGender(),
                 filterData.getLanguage(),
@@ -161,7 +157,7 @@ public class EventController {
         model.addAttribute("event", event);
         model.addAttribute("visitorId", visitorId);
         model.addAttribute("eventId", eventId);
-        model.addAttribute("attendances", attendanceService.all().stream()
+        model.addAttribute("attendances", event.getAttendances().stream()
                 .filter(attendance1 -> !attendance1.getUserReplica().getId().equals(visitorId)).toList());
         model.addAttribute("filterData", new FilterAttendanceFormData());
         return "Visitor/showEvent";
@@ -170,11 +166,12 @@ public class EventController {
     @PostMapping("/{id1}/{id2}")
     public String interestedPost(@ModelAttribute("filterData") FilterAttendanceFormData filterData,
                                  @PathVariable("id2") Long eventId,
-                                 @PathVariable("id1") Long visitorId, Model model){
+                                 @PathVariable("id1") Long visitorId, Model model) {
         Event event = eventService.getById(eventId);
         model.addAttribute("event", event);
         model.addAttribute("visitorId", visitorId);
         model.addAttribute("attendances", attendanceService.getMatchingAttendanceList(
+                visitorId,
                 event,
                 filterData.getGender(),
                 filterData.getLanguage(),
