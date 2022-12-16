@@ -36,6 +36,9 @@
     </form>
 </nav>
 <section class="">
+    <div style="margin: 30px;text-align:center;color:#DFF3E4;">
+        <h2>User Profile</h2>
+    </div>
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-md-10 col-x1-4">
@@ -43,10 +46,10 @@
                 <div class="card" style="border-radius: 15px;">
                     <div class="card-body text-center" style="
                  border: 3px solid white;background-image: url('/assets/images/background.png');">
-                        <h4 style="color:#DFF3E4;" class="mb-2"
+                        <h4 style="color:#DFF3E4;font-weight:bold;" class="mb-2"
                             th:text="${visitor.name + ' ' + visitor.surname}">name</h4>
-                        <p class="text mb-4" style="color:#DFF3E4" th:inline="text">[[${visitor.username}]]<span
-                                class="mx-2">|</span>[[${visitor.email}]]</p>
+                        <p class="text mb-4" style="color:#DFF3E4;font-weight:bold;" th:inline="text">Username - [[${visitor.username}]]<span
+                                class="mx-2">|</span>User Email - [[${visitor.email}]]</p>
                         <div class="d-flex justify-content-center">
 
                         </div>
@@ -62,15 +65,15 @@
                     <div class="col-md-4">
                         <div class="card mb-4 mb-md-0">
                             <div class="card-body" style="border: 3px solid white;background-image: url('/assets/images/background.png');">
-                                <p class="mb-3"><span style="color:#DFF3E4; font-size: 1.5rem"
+                                <p class="mb-3"><span style="color:#DFF3E4; font-size: 1.5rem;font-weight:bold;"
                                                       class="text font-italic me-1 ">Details</span></p>
-                                <p class="mb-1" style="color:#DFF3E4; font-size: 1rem;">Age</p><span
+                                <p class="mb-1" style="color:#DFF3E4; font-size: 1rem;font-weight:bold;">Age</p><span
                                     style="color:#DFF3E4" th:text="${visitor.getAge}" class="text">age</span>
                                 <p></p>
-                                <p class="mb-1" style="color:#DFF3E4; font-size: 1rem;">Gender</p><span
+                                <p class="mb-1" style="color:#DFF3E4; font-size: 1rem;font-weight:bold;">Gender</p><span
                                     style="color:#DFF3E4;" th:text="${visitor.gender}" class="text">gender</span>
                                 <p></p>
-                                <p class="mb-1" style="color:#DFF3E4; font-size: 1rem;">Language</p><span
+                                <p class="mb-1" style="color:#DFF3E4; font-size: 1rem;font-weight:bold;">Language</p><span
                                     style="color:#DFF3E4;" th:text="${visitor.languages}"
                                     class="text">language</span>
 
@@ -80,7 +83,7 @@
                     <div class="col-md-8">
                         <div class="card mb-4 mb-md-0">
                             <div class="card-body" style="border: 3px solid white;background-image: url('/assets/images/background.png');">
-                                <p class="mb-3"><span style="color:#DFF3E4; font-size: 1.5rem"
+                                <p class="mb-3"><span style="color:#DFF3E4; font-size: 1.5rem;font-weight:bold;"
                                                       class="text font-italic me-1 ">Description</span></p>
                                 <p class="mb-1" style="color:#DFF3E4; font-size: 1rem;"
                                    th:text="${visitor.description}">description</p>

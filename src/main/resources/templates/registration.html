@@ -72,13 +72,13 @@ function validateVisitor(){
         </a>
     </form>
 </nav>
-<div style="margin: 170px;
+<div style="margin: 70px;
      border: 3px solid white;
      padding: 10px;">
     <div class="container-fluid">
         <div class="row">
             <div style="mx: 30px;text-align:center;color:#DFF3E4;">
-                <h1>Sign up to find an Event Buddy!<br>Already registered? Sign in by clicking the "Sign In" button in the bar above!</h1>
+                <h4>Sign up to find an Event Buddy!<br>Already registered? Sign in by clicking the "Sign In" button in the bar above!</h4>
             </div>
             <div class="col">
                 <div style="margin: 10px;
@@ -95,14 +95,14 @@ function validateVisitor(){
                             text-align: center;
                             border: 3px solid white;
                             padding: 10px;">
-                    <div class="was-validated">
-                        <select onchange="check()" class="form-select form-select-sm mb-3"
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="role">Role</label>
+                        <select onchange="check()" class="form-select"
                                 aria-label=".form-select-lg example"
                                 id="role"
                                 name="role"
                                 style="background-color:#DFF3E4; opacity:0.5; color:#171738;"
                                 required>
-                            <option selected value="role" style="color:#171738">Role</option>
                             <option style="color:#171738"
                                     th:each="role : ${T(com.accenture.eventbuddy.auth.UserRole).values()}"
                                     th:value="${role}"
@@ -118,7 +118,7 @@ function validateVisitor(){
                               th:action="@{register/saveUser}"
                               th:object="${user}">
                             <h1 style="color:#DFF3E4;">If you are a visitor, fill this:</h1>
-                            <div id="username-wasValid" class="was-validated">
+                            <div id="username-wasValid" class="">
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-username">Username</span>
 
@@ -133,7 +133,7 @@ function validateVisitor(){
                                     />
                                 </div>
                             </div>
-                            <div class="was-validated">
+                            <div class="">
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-password">Password</span>
                                     <input
@@ -149,7 +149,7 @@ function validateVisitor(){
                                 </div>
                             </div>
                             <div>
-                                <div class="was-validated" style="display:none">
+                                <div class="" style="display:none">
                                     <select onchange="check()" class="form-select form-select-sm mb-3"
                                             aria-label=".form-select-lg example"
                                             id="roleVisitor"
@@ -161,7 +161,7 @@ function validateVisitor(){
                                     </select>
                                 </div>
                             </div>
-                            <div class="was-validated">
+                            <div class="">
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-name">Name</span>
                                     <input
@@ -176,7 +176,7 @@ function validateVisitor(){
                                     />
                                 </div>
                             </div>
-                            <div class="was-validated">
+                            <div class="">
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-surname">Surname</span>
                                     <input style="background-color:#DFF3E4; opacity:0.5; color:#171738;"
@@ -191,7 +191,7 @@ function validateVisitor(){
                                 </div>
                             </div>
 
-                            <div class="was-validated">
+                            <div class="">
 
                                 <div class="input-group input-group-sm mb-3">
 
@@ -208,7 +208,7 @@ function validateVisitor(){
                                     />
                                 </div>
                             </div>
-                            <div class="was-validated">
+                            <div class="">
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-description">Description</span>
                                     <input
@@ -223,7 +223,7 @@ function validateVisitor(){
                                     />
                                 </div>
                             </div>
-                            <div class="was-validated">
+                            <div class="">
                                 <div class="input-group mb-3">
                                     <label class="input-group-text" for="gender">Gender</label>
                                     <select id="gender" class="form-select"
@@ -236,7 +236,7 @@ function validateVisitor(){
                                     </select>
                                 </div>
                             </div>
-                            <div class="was-validated">
+                            <div class="">
                                 <div class="input-group mb-3">
                                     <label class="input-group-text" for="language">Preferred Language</label>
                                     <select id="language" class="form-select"
@@ -296,7 +296,7 @@ function validateVisitor(){
                                 th:action="@{register/saveUser}"
                                 th:object="${user}">
                             <h1 style="color:#DFF3E4;">If you are an organizer, fill this:</h1>
-                            <div id="username-wasValidOrganizer" class="was-validated">
+                            <div id="username-wasValidOrganizer" class="">
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-usernameOrganizer">Username</span>
 
@@ -311,7 +311,7 @@ function validateVisitor(){
                                     />
                                 </div>
                             </div>
-                            <div class="was-validated">
+                            <div class="">
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-passwordOrganizers">Password</span>
                                     <input
@@ -327,7 +327,7 @@ function validateVisitor(){
                                 </div>
                             </div>
                             <div>
-                                <div class="was-validated" style="display:none">
+                                <div class="" style="display:none">
                                     <select onchange="check()" class="form-select form-select-sm mb-3"
                                             aria-label=".form-select-lg example"
                                             id="roleOrganizer"
@@ -339,7 +339,7 @@ function validateVisitor(){
                                     </select>
                                 </div>
                             </div>
-                            <div class="was-validated">
+                            <div class="">
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text">Name</span>
                                     <input
@@ -354,7 +354,7 @@ function validateVisitor(){
                                     />
                                 </div>
                             </div>
-                            <div class="was-validated">
+                            <div class="">
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text">Email</span>
                                     <input
@@ -369,7 +369,7 @@ function validateVisitor(){
                                     />
                                 </div>
                             </div>
-                            <div class="was-validated">
+                            <div class="">
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-phoneNumber">Phone Number</span>
                                     <input type="number"

@@ -33,6 +33,9 @@
     </form>
 </nav>
 <div class="container">
+    <div style="margin: 30px;text-align:center;color:#DFF3E4;">
+        <h2>Events List</h2>
+    </div>
     <div class="row">
         <div class="row row-cols-1 py-3 row-cols-md-3 g-4" style="padding: 20px">
             <a style="text-decoration: none;" th:href="@{/event/{id}/showEvent/{id2}(id=${userId}, id2=${event.eventId})}"

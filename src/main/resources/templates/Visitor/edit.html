@@ -33,6 +33,9 @@
     </form>
 </nav>
 <section class="">
+    <div style="margin: 30px;text-align:center;color:#DFF3E4;">
+        <h2>My Profile</h2>
+    </div>
     <div class="container py-5 h-100" >
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-md-10 col-x1-4">
@@ -40,15 +43,15 @@
                 <div class="card" style="border-radius: 15px;" >
                     <div class="card-body text-center" style="
                  border: 3px solid white;background-image: url('/assets/images/background.png');">
-                        <h4 style="color:#DFF3E4;" class="mb-2" th:inline="text">[[${visitor.name}]] [[${visitor.surname}]]</h4>
+                        <h4 style="color:#DFF3E4;font-weight:bold;" class="mb-2" th:inline="text">[[${visitor.name}]] [[${visitor.surname}]]</h4>
                         <div class="text-allign-center" style="color:#DFF3E4;">
-                            <p class="text-center mb-4" style="color:#DFF3E4" th:inline="text">[[${visitor.username}]]<span class="text-center mx-2">|</span>[[${visitor.email}]]</p>
+                            <p class="text-center mb-4" style="color:#DFF3E4;font-weight:bold;" th:inline="text">Username - [[${visitor.username}]]<span class="text-center mx-2">|</span>User Email -[[${visitor.email}]]</p>
                         </div>
                         <form action="#" th:action="@{/visitor/{id}/visitorProfile/edit(id=${visitor.id})}" th:object="${visitor}" method="post" >
                             <div class="">
                                 <div class="card mb-4 mb-md-0">
                                     <div class="card-body" style="border: 3px solid white;background-image: url('/assets/images/background.png');">
-                                        <p class="mb-3"><span style="color:#DFF3E4; font-size: 1.5rem" class="text font-italic me-1 ">Description</span></p>
+                                        <p class="mb-3"><span style="color:#DFF3E4; font-size: 1.5rem,font-weight:bold;" class="text font-italic me-1 ">Description</span></p>
 
                                         <textarea class="form-control" rows="5" th:field="*{description}" th:placeholder="*{description}"></textarea>
 
@@ -57,13 +60,13 @@
                             </div>
                             <a type="button"
                                class="btn btn-outline-light"
-                               style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+                               style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px;font-weight:bold;"
                                th:href="@{/visitor/{id}/visitorProfile/personal(id=${visitor.id})}">Cancel changes
 <!--                            <button type="button" class="btn btn-outline-light" style="color:#DFF3E4; border: 3px solid #DFF3E4;">-->
 <!--                                Cancel changes-->
 <!--                            </button>-->
                             </a>
-                            <button type="submit" class="btn btn-outline-light" style="color:#DFF3E4; border: 3px solid #DFF3E4;">
+                            <button type="submit" class="btn btn-outline-light" style="color:#DFF3E4; border: 3px solid #DFF3E4;font-weight:bold;">
                                 Apply changes
                             </button>
                         </form>

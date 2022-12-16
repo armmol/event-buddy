@@ -1,17 +1,17 @@
 package com.accenture.eventbuddy.controllers;
 
 import com.accenture.eventbuddy.auth.UserRole;
-import com.accenture.eventbuddy.models.Event;
-import com.accenture.eventbuddy.models.FilterAttendanceFormData;
-import com.accenture.eventbuddy.models.UserReplica;
+import com.accenture.eventbuddy.models.*;
 import com.accenture.eventbuddy.services.AttendanceService;
 import com.accenture.eventbuddy.services.EventService;
+import com.accenture.eventbuddy.services.MatchService;
 import com.accenture.eventbuddy.services.UserReplicaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +24,8 @@ public class EventController {
 
     @Autowired
     private AttendanceService attendanceService;
+    @Autowired
+    private MatchService matchService;
     @Autowired
     private UserReplicaService userReplicaService;
 
@@ -87,12 +89,32 @@ public class EventController {
         model.addAttribute("visitorId", visitorId);
 //        model.addAttribute("userId", visitorId);
         model.addAttribute("eventId", eventId);
-        model.addAttribute("attendances", event.getAttendances());
         model.addAttribute("filterData", new FilterAttendanceFormData());
         for (UserReplica userReplica : userReplicaService.all()) {
             if (userReplica.getId().equals(visitorId)) {
-                if (userReplica.getRole() == UserRole.VISITOR)
-                    return "Visitor/showEvent";
+                List<Match> allMatches = matchService.all();
+                if (userReplica.getRole() == UserRole.VISITOR) {
+                    for (Attendance attendance : event.getAttendances()) {
+                        if (attendance.getUserReplica().getId().equals(visitorId)){
+                            List<Attendance> filteredList = new ArrayList<>();
+                            List<Match> newMatches = allMatches.stream().filter(match -> !match.getAttendance1().getAttendanceId().equals(attendance.getAttendanceId())
+                                            || !match.getAttendance2().getAttendanceId().equals(attendance.getAttendanceId())).toList();
+
+                            List<Long> attendanceIds = new ArrayList<>();
+                            for (Match newMatch : newMatches) {
+                                attendanceIds.add(newMatch.getAttendance1().getAttendanceId());
+                                attendanceIds.add(newMatch.getAttendance2().getAttendanceId());
+                            }
+                            for(Long attendanceId : attendanceIds.stream().distinct().toList()){
+                                filteredList.add(attendanceService.getById(attendanceId));
+                            }
+                            model.addAttribute("attendances", filteredList);
+                            return "Visitor/showEvent";
+                        }
+                    }
+                    model.addAttribute("attendances", event.getAttendances());
+                    return "visitor/showEventNotAttending";
+                }
                 else
                     return "Organizer/showEventOrganizer";
             }

@@ -17,6 +17,17 @@ function ConnectToast(){
     toast.show()
 }
 
+
+
+
+
+
+
+
+
+
+
+
 </script>
 <nav class="navbar sticky-top navbar-dark bg-dark">
     <form>
@@ -43,6 +54,9 @@ function ConnectToast(){
     </form>
 </nav>
 <div class="container">
+    <div style="margin: 30px;text-align:center;color:#DFF3E4;">
+        <h2 th:text="${event.name}"></h2>
+    </div>
     <div class="row">
         <div class="container-fluid">
             <div style="margin: 10px;
@@ -80,8 +94,7 @@ function ConnectToast(){
                  text-align: center;
                  height: 300px;
                  border: 3px solid white;
-                 padding: 10px;
-                 Overflow-y:scroll;">
+                 padding: 10px;">
                         <h1 style="color:White">Description</h1>
                         <div class="overflow-auto" style="font-weight:bold;
                             color:#DFF3E4;" th:text="${event.description}">
@@ -97,54 +110,63 @@ function ConnectToast(){
                       th:object="${filterData}">
 
                     <div>
-                        <h3 style="color:#DFF3E4;">Choose sort criteria</h3>
-                        <select class="form-select form-select-sm mb-3"
-                                aria-label=".form-select-lg example"
-                                style="background-color:#DFF3E4; opacity:0.5; color:171738;"
-                                id="language"
-                                name="language"
-                                th:field="*{language}">
-                            <option selected value="language">Language</option>
-                            <option
-                                    th:each="language : ${T(com.accenture.eventbuddy.models.Language).values()}"
-                                    th:value="${language}"
-                                    th:text="${language}">
-                            </option>
-                        </select>
-                    </div>
-                    <div>
-                        <select class="form-select form-select-sm mb-3"
-                                aria-label=".form-select-lg example"
-                                style="background-color:#DFF3E4; opacity:0.5; color:171738;"
-                                id="gender"
-                                name="gender"
-                                th:field="*{gender}">
-                            <option selected value="gender">Gender</option>
-                            <option th:each="gender : ${T(com.accenture.eventbuddy.models.Gender).values()}"
-                                    th:value="${gender}"
-                                    th:text="${gender}">
-                            </option>
-                        </select>
-                    </div>
-                    <div class="col">
-                        <div style="margin: 10px;">
-                            <div class="input-block">
-                                <div class="col-5">
-                                    <div class="input-group dateOfBirth" id="datePicker" th:field="*{dateOfBirth}">
-                                        <input type="date" id="dateOfBirth" name="dateOfBirth"
-                                               max="2016-12-31"
-                                               width="40px">
+                        <h3 style="color:#DFF3E4;margin:5px;font-weight:bold;">Choose sort criteria</h3>
+                        <div class="row">
+                            <div class="col">
+                                <div class="input-group mb-3" style="margin:5px;">
+                                    <label class="input-group-text" for="language">Language</label>
+                                    <select class="form-select"
+                                            aria-label=".form-select-lg example"
+                                            style="background-color:#DFF3E4; opacity:0.5; color:171738;"
+                                            id="language"
+                                            name="language"
+                                            th:field="*{language}">
+                                        <option
+                                                th:each="language : ${T(com.accenture.eventbuddy.models.Language).values()}"
+                                                th:value="${language}"
+                                                th:text="${language}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="input-group mb-3" style="margin:5px;">
+                                    <label class="input-group-text" for="gender">Gender</label>
+                                    <select class="form-select"
+                                            aria-label=".form-select-lg example"
+                                            style="background-color:#DFF3E4; opacity:0.5; color:171738;"
+                                            id="gender"
+                                            name="gender"
+                                            th:field="*{gender}">
+                                        <option th:each="gender : ${T(com.accenture.eventbuddy.models.Gender).values()}"
+                                                th:value="${gender}"
+                                                th:text="${gender}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="input-block">
+                                    <div class="col-5">
+                                        <div class="input-group dateOfBirth" id="datePicker"
+                                             th:field="*{dateOfBirth}">
+                                            <label style="color:White;" for="dateOfBirth">Born After -</label>
+                                            <input type="date" id="dateOfBirth" name="dateOfBirth"
+                                                   max="2016-12-31"
+                                                   width="40px">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <button class="btn btn-outline-light"
+                            style="margin:5px;"
                             type="submit">Find matches
                     </button>
                 </form>
             </div>
-            <h3 style="color:White">Another attendees of this event</h3>
+            <h3 style="color:White; margin:5px;">Attendees of this event</h3>
             <table class="table table-dark">
                 <thead>
                 <tr>
