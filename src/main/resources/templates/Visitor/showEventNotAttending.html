@@ -16,6 +16,7 @@ function ConnectToast(){
     const toast = new bootstrap.Toast(toastLiveExample)
     toast.show()
 }
+
 </script>
 <nav class="navbar sticky-top navbar-dark bg-dark">
     <form>
@@ -85,61 +86,19 @@ function ConnectToast(){
                 </div>
             </div>
             <div th:if="${filterData != null}">
-<!--                <form method="post"-->
-<!--                      role="form"-->
-<!--                      action="#"-->
-<!--                      th:action="@{/event/{id}/showEvent/{eventId}(id=${userId},eventId=${event.eventId})}"-->
-<!--                      th:object="${filterData}">-->
-
-<!--                    <div>-->
-<!--                        <h3 style="color:#DFF3E4;">Choose sort criteria</h3>-->
-<!--                        <select class="form-select form-select-sm mb-3"-->
-<!--                                aria-label=".form-select-lg example"-->
-<!--                                style="background-color:#DFF3E4; opacity:0.5; color:171738;"-->
-<!--                                id="language"-->
-<!--                                name="language"-->
-<!--                                th:field="*{language}">-->
-<!--                            <option selected value="language">Language</option>-->
-<!--                            <option-->
-<!--                                    th:each="language : ${T(com.accenture.eventbuddy.models.Language).values()}"-->
-<!--                                    th:value="${language}"-->
-<!--                                    th:text="${language}">-->
-<!--                            </option>-->
-<!--                        </select>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        <select class="form-select form-select-sm mb-3"-->
-<!--                                aria-label=".form-select-lg example"-->
-<!--                                style="background-color:#DFF3E4; opacity:0.5; color:171738;"-->
-<!--                                id="gender"-->
-<!--                                name="gender"-->
-<!--                                th:field="*{gender}">-->
-<!--                            <option selected value="gender">Gender</option>-->
-<!--                            <option th:each="gender : ${T(com.accenture.eventbuddy.models.Gender).values()}"-->
-<!--                                    th:value="${gender}"-->
-<!--                                    th:text="${gender}">-->
-<!--                            </option>-->
-<!--                        </select>-->
-<!--                    </div>-->
-<!--                    <div class="col">-->
-<!--                        <div style="margin: 10px;">-->
-<!--                            <div class="input-block">-->
-<!--                                <div class="col-5">-->
-<!--                                    <div class="input-group dateOfBirth" id="datePicker" th:field="*{dateOfBirth}">-->
-<!--                                        <input type="date" id="dateOfBirth" name="dateOfBirth"-->
-<!--                                               max="2016-12-31"-->
-<!--                                               width="40px">-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <button class="btn btn-outline-light"-->
-<!--                            type="submit">Find Demographics-->
-<!--                    </button>-->
-<!--                </form>-->
             </div>
-            <h3 style="color:White">Attendees of this event</h3>
+            <div class="row">
+                <div class="col">
+                    <h3 style="color:White">Attendees of this event</h3>
+                </div>
+                <div class="col">
+                    <a type="button"
+                       class="btn btn-outline-light"
+                       style="color:#DFF3E4; border: 3px solid #DFF3E4; margin: 10px "
+                       th:href="@{/event/{id}/{id2}(id=${visitorId}, id2=${event.eventId})}">Interested
+                    </a>
+                </div>
+            </div>
             <table class="table table-dark">
                 <thead>
                 <tr>

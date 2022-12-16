@@ -2,6 +2,7 @@ package com.accenture.eventbuddy.controllers;
 
 import com.accenture.eventbuddy.auth.UserRole;
 import com.accenture.eventbuddy.models.*;
+import com.accenture.eventbuddy.repo.AttendanceRepository;
 import com.accenture.eventbuddy.services.AttendanceService;
 import com.accenture.eventbuddy.services.EventService;
 import com.accenture.eventbuddy.services.MatchService;
@@ -28,6 +29,9 @@ public class EventController {
     private MatchService matchService;
     @Autowired
     private UserReplicaService userReplicaService;
+
+    @Autowired
+    private AttendanceRepository attendanceRepository;
 
     //Add event GET
     @RequestMapping(value = {"/addEvent"}, method = RequestMethod.GET)
@@ -95,17 +99,17 @@ public class EventController {
                 List<Match> allMatches = matchService.all();
                 if (userReplica.getRole() == UserRole.VISITOR) {
                     for (Attendance attendance : event.getAttendances()) {
-                        if (attendance.getUserReplica().getId().equals(visitorId)){
+                        if (attendance.getUserReplica().getId().equals(visitorId)) {
                             List<Attendance> filteredList = new ArrayList<>();
                             List<Match> newMatches = allMatches.stream().filter(match -> !match.getAttendance1().getAttendanceId().equals(attendance.getAttendanceId())
-                                            || !match.getAttendance2().getAttendanceId().equals(attendance.getAttendanceId())).toList();
+                                    || !match.getAttendance2().getAttendanceId().equals(attendance.getAttendanceId())).toList();
 
                             List<Long> attendanceIds = new ArrayList<>();
                             for (Match newMatch : newMatches) {
                                 attendanceIds.add(newMatch.getAttendance1().getAttendanceId());
                                 attendanceIds.add(newMatch.getAttendance2().getAttendanceId());
                             }
-                            for(Long attendanceId : attendanceIds.stream().distinct().toList()){
+                            for (Long attendanceId : attendanceIds.stream().distinct().toList()) {
                                 filteredList.add(attendanceService.getById(attendanceId));
                             }
                             model.addAttribute("attendances", filteredList);
@@ -114,9 +118,10 @@ public class EventController {
                     }
                     model.addAttribute("attendances", event.getAttendances());
                     return "visitor/showEventNotAttending";
-                }
-                else
+                } else {
+                    model.addAttribute("attendances", event.getAttendances());
                     return "Organizer/showEventOrganizer";
+                }
             }
         }
         return "showEvent";
@@ -124,6 +129,48 @@ public class EventController {
 
     @RequestMapping(value = {"/{visitorId}/showEvent/{id}"}, method = RequestMethod.POST)
     public String showFilteredVisitorsEvent(@ModelAttribute("filterData") FilterAttendanceFormData filterData, @PathVariable("id") Long eventId, @PathVariable("visitorId") Long visitorId, Model model) {
+        Event event = eventService.getById(eventId);
+        model.addAttribute("event", event);
+        model.addAttribute("visitorId", visitorId);
+        model.addAttribute("attendances", attendanceService.getMatchingAttendanceList(
+                event,
+                filterData.getGender(),
+                filterData.getLanguage(),
+                filterData.getDateOfBirth()));
+        model.addAttribute("filterData", new FilterAttendanceFormData());
+        for (UserReplica user : userReplicaService.all()) {
+            if (user.getId().equals(visitorId)) {
+                if (user.getRole() == UserRole.VISITOR)
+                    return "Visitor/showEvent";
+                else
+                    return "Organizer/showEventOrganizer";
+            }
+        }
+        return "Visitor/showEvent";
+    }
+
+    @GetMapping("/{id1}/{id2}")
+    public String interested(@PathVariable("id2") Long eventId,
+                             @PathVariable("id1") Long visitorId, Model model) {
+        Attendance attendance = new Attendance();
+        attendance.setEvent(eventService.getById(eventId));
+        attendance.setUserReplica(userReplicaService.getById(visitorId));
+        attendanceService.storeAttendance(attendance);
+
+        Event event = eventService.getById(eventId);
+        model.addAttribute("event", event);
+        model.addAttribute("visitorId", visitorId);
+        model.addAttribute("eventId", eventId);
+        model.addAttribute("attendances", attendanceService.all().stream()
+                .filter(attendance1 -> !attendance1.getUserReplica().getId().equals(visitorId)).toList());
+        model.addAttribute("filterData", new FilterAttendanceFormData());
+        return "Visitor/showEvent";
+    }
+
+    @PostMapping("/{id1}/{id2}")
+    public String interestedPost(@ModelAttribute("filterData") FilterAttendanceFormData filterData,
+                                 @PathVariable("id2") Long eventId,
+                                 @PathVariable("id1") Long visitorId, Model model){
         Event event = eventService.getById(eventId);
         model.addAttribute("event", event);
         model.addAttribute("visitorId", visitorId);
